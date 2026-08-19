@@ -1,0 +1,30 @@
+{
+  "name": "chess-quest",
+  "version": "3.0.0",
+  "description": "Wildcat Chess: a single-file chess game that teaches. Ten difficulty levels, a coach that names every mistake, spaced-repetition puzzles from the player's own blunders, themed for Woodland Springs Elementary.",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "python3 tools/build.py && node tools/minify.js",
+    "test": "npm run build && node tests/perft.js && node tests/contrast.test.js && QUICK=1 node tests/engine.test.js && node tests/browser.test.js",
+    "test:perft": "node tests/perft.js",
+    "test:quick": "QUICK=1 node tests/engine.test.js",
+    "test:engine": "node tests/engine.test.js",
+    "test:browser": "node tests/browser.test.js",
+    "test:browser:readable": "TARGET=dist/chess-quest.html node tests/browser.test.js",
+    "test:browser:webkit": "ENGINE=webkit node tests/browser.test.js",
+    "test:browser:firefox": "ENGINE=firefox node tests/browser.test.js",
+    "test:safari": "ENGINE=webkit node tests/browser.test.js && ENGINE=webkit node tests/safari.test.js",
+    "test:repetition": "node tests/repetition.test.js",
+    "test:all": "npm run build && node tests/perft.js && node tests/contrast.test.js && node tests/engine.test.js && node tests/browser.test.js && ENGINE=chromium node tests/safari.test.js && node tests/repetition.test.js",
+    "puzzles": "node tools/generate-puzzles.js",
+    "pieces": "node tools/preview-pieces.js",
+    "serve": "python3 -m http.server 8080 --directory dist",
+    "test:contrast": "node tests/contrast.test.js"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "playwright": "^1.49.0",
+    "terser": "^5.36.0"
+  }
+}

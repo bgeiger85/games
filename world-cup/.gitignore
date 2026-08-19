@@ -1,0 +1,7 @@
+node_modules/
+shots/
+tests/shots/
+dist/world-cup-site.zip
+.DS_Store
+*.log
+.env

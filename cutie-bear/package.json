@@ -1,0 +1,28 @@
+{
+  "name": "cutie-bear",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Cutie Bear, an iPad web app designed by Addison (age 8). One self-contained HTML file.",
+  "scripts": {
+    "build": "node tools/build.js",
+    "test": "npm run test:screens && npm run test:games && npm run test:care && npm run test:levels && npm run test:garden && npm run test:dance && npm run test:learn && npm run test:playtest && npm run test:safari",
+    "test:screens": "node tests/screens.test.js",
+    "test:games": "node tests/games.test.js",
+    "test:care": "node tests/care.test.js",
+    "test:levels": "node tests/levels.test.js",
+    "test:garden": "node tests/garden.test.js",
+    "test:dance": "node tests/dance.test.js",
+    "test:safari": "node tests/safari.test.js",
+    "test:webkit": "ENGINE=webkit npm run test",
+    "options": "node tools/shot-character-options.js",
+    "logo-options": "node tools/shot-logo-options.js",
+    "icon": "node tools/make-icon.js",
+    "serve": "node tools/serve.js",
+    "test:playtest": "node tests/playtest.test.js",
+    "outfits": "node tools/shot-outfits.js",
+    "test:learn": "node tests/learn.test.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}

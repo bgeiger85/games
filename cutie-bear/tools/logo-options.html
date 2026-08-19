@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cutie Bear logo options</title>
+<!--
+  Four logo options for Addison to pick between.
+
+  Same idea as character-options.html: she is the designer, so she gets real
+  choices rather than one thing someone else decided. Render it with
+  `npm run logo-options` and show her the PNG.
+
+  All four are pure SVG using the system font, matching the house rule that the
+  app ships no image files and no downloaded fonts. Whichever she picks drops
+  straight into the app as-is.
+-->
+<style>
+  body{
+    margin:0; padding:28px;
+    background:linear-gradient(#BFE6FF,#FFE3F3);
+    font:16px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    color:#5B3F73;
+  }
+  h1{font-size:26px; text-align:center; margin:0 0 6px}
+  .sub{text-align:center; margin:0 0 22px; font-size:17px; color:#7A6690}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:1180px; margin:0 auto}
+  .card{
+    background:#fff; border-radius:26px; padding:16px 14px 12px;
+    box-shadow:0 8px 0 rgba(155,123,232,.25);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .num{
+    font-size:30px; font-weight:800; color:#fff; background:#FF8FA8;
+    width:52px; height:52px; border-radius:50%; display:grid; place-items:center;
+    box-shadow:0 4px 0 #D9548F;
+  }
+  .name{font-size:19px; font-weight:800; color:#6B4E86}
+  svg.logo{display:block}
+</style>
+</head>
+<body>
+  <h1>Which Cutie Bear logo do you like best?</h1>
+  <p class="sub">Point at the number you want!</p>
+  <div class="grid">
+
+    <!-- 1: fat bubble letters, star over the i -->
+    <div class="card">
+      <div class="num">1</div>
+      <svg class="logo" width="500" height="190" viewBox="0 0 500 190">
+        <g font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-weight="800" text-anchor="middle">
+          <text x="250" y="86" font-size="72" fill="#fff" stroke="#fff" stroke-width="16" stroke-linejoin="round">Cutie</text>
+          <text x="250" y="86" font-size="72" fill="#F0837C">Cutie</text>
+          <text x="250" y="158" font-size="72" fill="#fff" stroke="#fff" stroke-width="16" stroke-linejoin="round">Bear</text>
+          <text x="250" y="158" font-size="72" fill="#9B7BE8">Bear</text>
+        </g>
+        <!-- star sitting where the dot on the i goes -->
+        <path d="M303 22l6 15 15 6-15 6-6 15-6-15-15-6 15-6z" fill="#FFD362" stroke="#D9A62E" stroke-width="2.5" stroke-linejoin="round"/>
+      </svg>
+      <div class="name">Bubble Letters</div>
+    </div>
+
+    <!-- 2: rainbow letters on an arc -->
+    <div class="card">
+      <div class="num">2</div>
+      <svg class="logo" width="500" height="190" viewBox="0 0 500 190">
+        <g fill="none" stroke-width="13" stroke-linecap="round">
+          <path d="M84 176a166 166 0 0 1 332 0" stroke="#FF8FA8"/>
+          <path d="M106 176a144 144 0 0 1 288 0" stroke="#FFB067"/>
+          <path d="M128 176a122 122 0 0 1 244 0" stroke="#FFE07A"/>
+          <path d="M150 176a100 100 0 0 1 200 0" stroke="#8FE0A8"/>
+        </g>
+        <!-- Straight text above the arch, not curved along it. Running it along
+             the arc put the letters on top of the stripes where they vanished,
+             and the per-letter rotation walked the word off the end. -->
+        <text font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-weight="800"
+              font-size="52" text-anchor="middle" x="250" y="72">
+          <tspan fill="#E85D75">C</tspan><tspan fill="#E8893D">u</tspan><tspan fill="#C9A21E">t</tspan><tspan fill="#3FA97C">i</tspan><tspan fill="#3FA8E0">e</tspan><tspan> </tspan><tspan fill="#7458C4">B</tspan><tspan fill="#D9548F">e</tspan><tspan fill="#E85D75">a</tspan><tspan fill="#E8893D">r</tspan>
+        </text>
+      </svg>
+      <div class="name">Rainbow Arch</div>
+    </div>
+
+    <!-- 3: the bear's face above the words, in a badge -->
+    <div class="card">
+      <div class="num">3</div>
+      <svg class="logo" width="500" height="190" viewBox="0 0 500 190">
+        <rect x="118" y="8" width="264" height="174" rx="40" fill="#FFF4FA" stroke="#F0837C" stroke-width="6"/>
+        <g transform="translate(250 62) scale(0.62) translate(-90 -96)">
+          <circle cx="52" cy="60" r="24" fill="#F0837C"/><circle cx="128" cy="60" r="24" fill="#F0837C"/>
+          <circle cx="52" cy="63" r="14" fill="#F9D8C0"/><circle cx="128" cy="63" r="14" fill="#F9D8C0"/>
+          <ellipse cx="90" cy="96" rx="54" ry="50" fill="#F0837C"/>
+          <ellipse cx="90" cy="112" rx="33" ry="25" fill="#F9D8C0"/>
+          <ellipse cx="68" cy="90" rx="11" ry="13" fill="#2E1B0A"/><ellipse cx="112" cy="90" rx="11" ry="13" fill="#2E1B0A"/>
+          <circle cx="64" cy="85" r="4" fill="#fff"/><circle cx="108" cy="85" r="4" fill="#fff"/>
+          <ellipse cx="90" cy="104" rx="10" ry="7" fill="#CB7F86"/>
+          <path d="M90 118q-8 8-14 1M90 118q8 8 14 1" stroke="#CB7F86" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </g>
+        <g font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-weight="800" text-anchor="middle">
+          <text x="250" y="132" font-size="38" fill="#F0837C">CUTIE</text>
+          <text x="250" y="168" font-size="38" fill="#9B7BE8">BEAR</text>
+        </g>
+        <path d="M150 40l4 11 11 4-11 4-4 11-4-11-11-4 11-4z" fill="#FFD362"/>
+        <path d="M352 132l4 11 11 4-11 4-4 11-4-11-11-4 11-4z" fill="#FFD362"/>
+      </svg>
+      <div class="name">Bear Badge</div>
+    </div>
+
+    <!-- 4: words sitting on a cloud -->
+    <div class="card">
+      <div class="num">4</div>
+      <svg class="logo" width="500" height="190" viewBox="0 0 500 190">
+        <g fill="#fff" stroke="#7FBEE8" stroke-width="5">
+          <ellipse cx="150" cy="112" rx="66" ry="50"/>
+          <ellipse cx="350" cy="112" rx="72" ry="54"/>
+          <ellipse cx="250" cy="92" rx="96" ry="64"/>
+          <ellipse cx="250" cy="126" rx="130" ry="42"/>
+        </g>
+        <g fill="#fff" stroke="none">
+          <ellipse cx="150" cy="112" rx="66" ry="50"/>
+          <ellipse cx="350" cy="112" rx="72" ry="54"/>
+          <ellipse cx="250" cy="92" rx="96" ry="64"/>
+          <ellipse cx="250" cy="126" rx="130" ry="42"/>
+        </g>
+        <g font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif" font-weight="800" text-anchor="middle">
+          <text x="250" y="106" font-size="46" fill="#F0837C">Cutie</text>
+          <text x="250" y="150" font-size="46" fill="#7FA8E0">Bear</text>
+        </g>
+        <path d="M96 46l5 13 13 5-13 5-5 13-5-13-13-5 13-5z" fill="#FFD362"/>
+        <path d="M404 40l4 11 11 4-11 4-4 11-4-11-11-4 11-4z" fill="#FFD362"/>
+        <circle cx="60" cy="150" r="9" fill="#fff" opacity=".85"/>
+        <circle cx="440" cy="152" r="7" fill="#fff" opacity=".85"/>
+      </svg>
+      <div class="name">Cloud Sign</div>
+    </div>
+
+  </div>
+</body>
+</html>

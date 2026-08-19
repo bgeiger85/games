@@ -1,0 +1,3274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="World Cup">
+<meta name="theme-color" content="#0B7A3B">
+<title>Yamal's World Cup</title>
+<!-- Browser tab icon. Separate from apple-touch-icon below, which iOS insists
+     is a PNG; this one can stay a tiny inline SVG. Without it the browser asks
+     for /favicon.ico and takes a 404 on every load. -->
+<link rel="icon" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23C6101F'/%3E%3Ccircle cx='32' cy='32' r='21' fill='%23fff' stroke='%230F1B33' stroke-width='3'/%3E%3Cpath d='M32 16l8 6-3 10H27l-3-10zM14 30l6 4-2 8-6-1zM50 30l-6 4 2 8 6-1zM23 50l4-7h10l4 7-6 4z' fill='%230F1B33'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<style>
+/* ---------- 1. RESET AND PAGE ---------- */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
+html,body{height:100%;overflow:hidden;background:#0A1428;
+  font-family:ui-rounded,"SF Pro Rounded","Avenir Next Rounded",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:#12233F;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+body{display:flex;align-items:center;justify-content:center}
+
+/* ---------- 2. FIXED STAGE, SCALED TO ANY SCREEN ----------
+   The whole game is laid out on a 960x720 board (iPad 4:3) and one CSS
+   transform scales that board to fit the device. Nothing is ever re-laid-out
+   responsively. Copied wholesale from Cutie Bear, including the flex-shrink
+   fix: body is a flex container, so without it the fixed board collapses to
+   the viewport width on anything narrower than 960 CSS px. */
+#stage{position:relative;width:960px;height:720px;transform-origin:center center;
+  border-radius:26px;overflow:hidden;box-shadow:0 18px 60px rgba(0,0,0,.5);flex-shrink:0}
+
+/* ---------- 2b. TURN YOUR IPAD ---------- */
+#rotate{position:fixed;inset:0;z-index:60;display:none;
+  background:linear-gradient(#0E8C46,#075E2E);align-items:center;justify-content:center;
+  text-align:center;padding:24px}
+#rotate.on{display:flex}
+.rotinner{display:flex;flex-direction:column;align-items:center;gap:10px}
+.rottitle{font-size:30px;font-weight:900;color:#fff}
+.rotsub{font-size:18px;font-weight:700;color:#BFF0D2}
+
+/* ---------- 3. SCREENS ---------- */
+.screen{position:absolute;inset:0;display:none;flex-direction:column}
+.screen.on{display:flex;animation:pop .28s ease}
+@keyframes pop{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:scale(1)}}
+.stadium{background:linear-gradient(#0C2B5A 0%,#164B86 34%,#0E8C46 34%,#0A6E38 100%)}
+
+/* ---------- 4. BACKGROUND DECOR (crowd + confetti bunting) ---------- */
+.deco{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.fan{position:absolute;width:14px;height:14px;border-radius:50%;opacity:.55}
+.flagbit{position:absolute;width:22px;height:26px;clip-path:polygon(0 0,100% 0,100% 70%,50% 100%,0 70%)}
+.spark{position:absolute;color:#FFE07A;font-size:20px;animation:tw 2.4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
+
+/* ---------- 5. TOP BAR ---------- */
+.bar{position:relative;z-index:5;height:78px;flex:0 0 78px;display:flex;align-items:center;
+  gap:12px;padding:0 18px;background:rgba(6,26,16,.42);backdrop-filter:blur(3px)}
+.bar h1{font-size:27px;font-weight:900;color:#fff;letter-spacing:.5px;text-shadow:0 2px 0 rgba(0,0,0,.28)}
+.spacer{flex:1}
+.btn{border:none;border-radius:20px;font-family:inherit;font-weight:900;color:#fff;
+  background:#E23744;padding:14px 24px;font-size:20px;min-height:56px;min-width:56px;
+  box-shadow:0 5px 0 rgba(0,0,0,.26);cursor:pointer}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.26)}
+.btn.gold{background:#F0A500;color:#3A2400}
+.btn.navy{background:#20406E}
+.btn.ghost{background:rgba(255,255,255,.22)}
+.btn[disabled]{opacity:.45;box-shadow:none}
+.boots{display:flex;align-items:center;gap:8px;background:rgba(0,0,0,.3);
+  border-radius:22px;padding:9px 18px;font-size:22px;font-weight:900;color:#FFD966}
+
+/* ---------- 6. HOME ---------- */
+.homewrap{flex:1;display:flex;align-items:center;justify-content:space-between;
+  padding:0 54px 24px;position:relative;z-index:5}
+.hometext{display:flex;flex-direction:column;gap:14px;max-width:470px}
+.bigtitle{font-size:62px;line-height:.94;font-weight:900;color:#fff;text-shadow:0 4px 0 rgba(0,0,0,.3)}
+.bigtitle em{font-style:normal;color:#FFD24A;display:block}
+.tag{font-size:22px;font-weight:800;color:#D6F3E2}
+.menu{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+.menu .btn{font-size:26px;padding:20px 28px;text-align:left;min-height:70px}
+.hero{width:340px;height:430px;display:flex;align-items:flex-end;justify-content:center}
+
+/* ---------- 7. TOURNAMENT LADDER ---------- */
+.ladder{flex:1;display:flex;flex-direction:column;gap:12px;padding:16px 34px 22px;
+  position:relative;z-index:5;overflow:hidden}
+.rung{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.93);
+  border-radius:20px;padding:11px 18px;box-shadow:0 4px 0 rgba(0,0,0,.2)}
+.rung.locked{opacity:.5}
+.rung.won{background:linear-gradient(90deg,#FFF4D2,#FFE7A6)}
+.rung .flag{width:56px;height:38px;border-radius:6px;overflow:hidden;flex:0 0 56px;
+  box-shadow:0 0 0 2px rgba(0,0,0,.14) inset}
+.rung .who{flex:1;display:flex;flex-direction:column}
+.rung .stage{font-size:14px;font-weight:900;letter-spacing:1.4px;color:#7A8698;text-transform:uppercase}
+.rung .foe{font-size:26px;font-weight:900;color:#12233F}
+.rung .res{font-size:24px;font-weight:900;color:#0E8C46;min-width:96px;text-align:center}
+.rung .res.lost{color:#C0392B}
+
+/* ---------- 7b. CAMPAIGN: PHASES AND TABLES ----------
+   Fourteen rungs do not fit on an iPad, so the screen shows the phase he is in
+   and the strip along the top says where that sits in the whole campaign. */
+.phases{display:flex;gap:8px;justify-content:center;margin-bottom:2px;flex:0 0 auto}
+.phase{font-size:14px;font-weight:900;letter-spacing:1.2px;color:#9FB3C8;
+  background:rgba(0,0,0,.26);border-radius:14px;padding:7px 16px}
+.phase.here{background:#F0A500;color:#3A2400}
+.phase.passed{background:rgba(14,140,70,.9);color:#fff}
+.tablebox{background:rgba(255,255,255,.95);border-radius:18px;padding:10px 14px;
+  box-shadow:0 4px 0 rgba(0,0,0,.2);flex:0 0 auto}
+.trow{display:flex;align-items:center;gap:6px;padding:4px 6px;border-radius:10px}
+.trow.thead{font-size:13px;font-weight:900;letter-spacing:1px;color:#7A8698;text-transform:uppercase}
+/* The top two go through, so they are marked. A six year old should be able to
+   see whether he is above the line without counting rows. */
+.trow.tgo{background:rgba(14,140,70,.13)}
+.trow.tus{outline:3px solid #F0A500;outline-offset:-3px;font-weight:900}
+.tteam{flex:1;display:flex;align-items:center;gap:9px;font-size:19px;font-weight:800;color:#12233F}
+.tflag{width:30px;height:20px;border-radius:4px;overflow:hidden;display:block;flex:0 0 30px}
+.tflag svg{display:block;width:100%;height:100%}
+.tn{width:34px;text-align:center;font-size:18px;font-weight:800;color:#43536B}
+.tn.tpts{color:#12233F;font-weight:900}
+.tnote{font-size:15px;font-weight:800;color:#5A6A80;padding:6px 4px 2px}
+.rungs{display:flex;flex-direction:column;gap:7px;overflow:auto;flex:1 1 auto;padding-right:2px}
+.rungs .rung{padding:6px 14px}
+.rungs .rung .foe{font-size:20px}
+.rungs .rung .flag{width:44px;height:30px;flex:0 0 44px}
+.kotitle{font-size:17px;font-weight:900;letter-spacing:2px;color:#D6F3E2;text-align:center}
+.kobox{display:flex;flex-direction:column;gap:9px;flex:0 0 auto}
+.rung.drew{background:linear-gradient(90deg,#EEF3F8,#DCE6F0)}
+.rung.lost{background:linear-gradient(90deg,#FDECEA,#F8DAD6)}
+
+/* ---------- 8. MATCH ---------- */
+#pitchwrap{flex:1;position:relative;background:#0A6E38}
+#pitch{position:absolute;inset:0;width:960px;height:642px;display:block;touch-action:none}
+.score{display:flex;align-items:center;gap:10px;background:rgba(8,20,12,.72);
+  border-radius:16px;padding:8px 16px;color:#fff;font-weight:900;font-size:26px}
+.score .flag{width:36px;height:24px;border-radius:4px;overflow:hidden}
+.clock{background:#FFD24A;color:#2B1E00;border-radius:14px;padding:8px 16px;
+  font-weight:900;font-size:24px;min-width:88px;text-align:center}
+#shootbtn{position:absolute;right:22px;bottom:20px;z-index:7;width:158px;height:158px;
+  border-radius:50%;border:none;background:radial-gradient(circle at 35% 30%,#FF6B57,#D62A28);
+  color:#fff;font-family:inherit;font-weight:900;font-size:32px;letter-spacing:1px;
+  box-shadow:0 8px 0 rgba(0,0,0,.32);cursor:pointer;touch-action:none}
+#shootbtn:active{transform:translateY(4px);box-shadow:0 4px 0 rgba(0,0,0,.32)}
+#shootbtn[disabled]{opacity:.4}
+/* PASS sits above SHOOT, same thumb, and is deliberately smaller: shooting is
+   still the main event and should always be the biggest thing on the screen.
+   It only appears in rounds where Nico is on the pitch. */
+#passbtn{position:absolute;right:34px;bottom:196px;z-index:7;width:126px;height:126px;
+  border-radius:50%;border:none;background:radial-gradient(circle at 35% 30%,#5B9BE8,#1D4F9E);
+  color:#fff;font-family:inherit;font-weight:900;font-size:26px;letter-spacing:1px;
+  box-shadow:0 7px 0 rgba(0,0,0,.32);cursor:pointer;touch-action:none;display:none}
+#passbtn.on{display:block}
+#passbtn:active{transform:translateY(4px);box-shadow:0 3px 0 rgba(0,0,0,.32)}
+#passbtn[disabled]{opacity:.4}
+/* Shown when the iPad sleeps, the app is switched away, or the tab is hidden
+   mid-match. Covers the pitch so play cannot continue by accident, and needs a
+   deliberate tap to restart. */
+#pausewrap{position:absolute;inset:0;z-index:9;display:none;align-items:center;
+  justify-content:center;background:rgba(6,26,16,.72);cursor:pointer}
+#pausewrap.on{display:flex}
+.pausecard{display:flex;flex-direction:column;align-items:center;gap:14px;
+  background:#fff;border-radius:28px;padding:34px 46px;box-shadow:0 18px 44px rgba(0,0,0,.4)}
+.pausecard .pt{font-size:36px;font-weight:900;color:#12233F}
+.pausecard .ps{font-size:21px;font-weight:700;color:#5A6A80}
+.toast{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:8;
+  font-size:76px;font-weight:900;color:#fff;text-shadow:0 6px 0 rgba(0,0,0,.35);
+  pointer-events:none;opacity:0;white-space:nowrap}
+.toast.show{animation:toast 1.5s ease}
+@keyframes toast{0%{opacity:0;transform:translate(-50%,-50%) scale(.4)}
+  22%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}
+  76%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1)}}
+
+/* ---------- 8b. KEEPER MOMENT ----------
+   The other team breaks away and Jaxson picks a side. Same three choices as
+   the shootout on purpose: he already knows this move, so it needs no
+   teaching in the middle of a match. */
+#savewrap{position:absolute;inset:0;z-index:20;display:none;flex-direction:column;
+  align-items:center;justify-content:center;gap:18px;background:rgba(6,18,10,.72)}
+#savewrap.on{display:flex}
+.savehead{font-size:44px;font-weight:900;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.35);text-align:center}
+.savesub{font-size:24px;font-weight:800;color:#FFE07A}
+.savebtns{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+.savebtn{border:none;border-radius:22px;font-family:inherit;font-weight:900;color:#fff;
+  background:#20406E;padding:22px 30px;font-size:28px;min-height:96px;min-width:190px;
+  box-shadow:0 6px 0 rgba(0,0,0,.3);cursor:pointer}
+.savebtn:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.3)}
+.savebtn.picked{background:#F0A500;color:#3A2400}
+/* A bar that runs down rather than a number counting down. He cannot read a
+   clock yet but he can see a bar getting shorter. */
+.savebar{width:420px;max-width:80%;height:14px;border-radius:8px;background:rgba(255,255,255,.25);overflow:hidden}
+.savebar i{display:block;height:100%;width:100%;background:#FFD24A;transform-origin:left center}
+.saveout{font-size:52px;font-weight:900;color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.35)}
+
+/* ---------- 9. PENALTY SHOOTOUT ---------- */
+.penwrap{flex:1;position:relative;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:10px;padding:8px 0 18px;z-index:5}
+.penhead{font-size:30px;font-weight:900;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.35);height:38px}
+/* 700 x 416 keeps the 640 x 380 viewBox square-on. The goal fills the top of
+   that box and the penalty spot sits on the grass below it, all in one
+   coordinate space so the ball can fly from one to the other. */
+.goalbox{position:relative;width:700px;height:416px}
+.zone{position:absolute;width:33.33%;border:3px dashed rgba(255,255,255,.55);
+  border-radius:14px;background:rgba(255,255,255,.06);cursor:pointer}
+.zone:active{background:rgba(255,255,255,.36)}
+.zone.dim{opacity:.25;pointer-events:none}
+/* a target pip so each third reads as something you are meant to hit */
+.zone::after{content:'';position:absolute;left:50%;top:50%;width:26px;height:26px;
+  margin:-13px 0 0 -13px;border-radius:50%;border:3px solid rgba(255,255,255,.5)}
+.divebtns{display:flex;gap:18px}
+.divebtns .btn{font-size:24px;padding:18px 34px}
+.pentrack{display:flex;gap:26px}
+.pencol{display:flex;flex-direction:column;align-items:center;gap:6px}
+.penrow{display:flex;gap:8px}
+.pendot{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.28);
+  border:2px solid rgba(255,255,255,.45)}
+.pendot.goal{background:#3DD07A;border-color:#fff}
+.pendot.miss{background:#D8453F;border-color:#fff}
+.penname{font-size:16px;font-weight:900;color:#fff;letter-spacing:1px}
+
+/* ---------- 9b. WARM UP ----------
+   Deliberately the same furniture as the rest of the game: stadium behind,
+   crowd, big soft buttons. It is a drill on the training ground, not a
+   worksheet that happens to be inside a game. */
+.warmwrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:22px;padding:0 40px 26px;position:relative;z-index:5}
+.warmask{font-size:26px;font-weight:900;color:#D6F3E2;text-align:center}
+.pips{display:flex;gap:9px}
+.pip{width:17px;height:17px;border-radius:50%;background:rgba(255,255,255,.28)}
+.pip.got{background:#FFD24A;box-shadow:0 0 0 3px rgba(255,210,74,.25)}
+/* The question itself. Big, because he reads it from across the sofa. */
+.qcard{background:#fff;border-radius:26px;padding:26px 40px;min-width:620px;
+  text-align:center;box-shadow:0 8px 0 rgba(0,0,0,.2)}
+.qsum{font-size:66px;font-weight:900;color:#12233F;letter-spacing:3px}
+.qsent{font-size:40px;font-weight:900;color:#12233F;line-height:1.3}
+.qsent u{text-decoration:none;border-bottom:6px solid #F0A500;padding:0 34px;margin:0 4px}
+.qballs{display:flex;gap:26px;justify-content:center;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.qgrp{display:flex;gap:8px}
+/* Big enough to count from across the sofa, and they have to read as balls
+   rather than as circles, or the row stops being about soccer. */
+.qb{width:36px;height:36px;border-radius:50%;border:3px solid #12233F;
+  background:radial-gradient(circle at 50% 50%,#12233F 0 7px,#fff 7px)}
+.qplus{font-size:38px;font-weight:900;color:#5A6A80}
+.qrow{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.ans{min-width:150px;font-size:40px;padding:20px 30px;background:#fff;color:#12233F;
+  border:none;border-radius:22px;font-family:inherit;font-weight:900;
+  box-shadow:0 6px 0 rgba(0,0,0,.24);cursor:pointer}
+.ans:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.24)}
+.ans.right{background:#3DD07A;color:#08351C}
+/* A wrong answer fades out of the way. No red, no shake, no buzzer: the only
+   thing left on screen to tap is the right answer, and he taps it himself. */
+.ans.gone{opacity:.22;box-shadow:none;pointer-events:none}
+/* The pulse is a ring that grows out of the button, not the button moving.
+   A tapped target that never holds still is hard to hit for a six year old,
+   and Playwright will not click it either: it waits for an element to be
+   stable and a looping transform means it never is. */
+.ans.show{background:#FFD24A;color:#3A2400;animation:nudge 1.2s ease-out infinite}
+@keyframes nudge{
+  0%{box-shadow:0 6px 0 rgba(0,0,0,.24),0 0 0 0 rgba(255,210,74,.85)}
+  100%{box-shadow:0 6px 0 rgba(0,0,0,.24),0 0 0 18px rgba(255,210,74,0)}}
+.warmhint{font-size:22px;font-weight:800;color:#FFE07A;height:26px}
+.saybtn{background:#20406E;border:none;border-radius:50%;width:64px;height:64px;
+  font-size:28px;color:#fff;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.26)}
+.drills{display:flex;gap:26px;flex-wrap:wrap;justify-content:center}
+.drill{width:290px;background:#fff;border-radius:26px;padding:26px 20px;border:none;
+  font-family:inherit;cursor:pointer;box-shadow:0 8px 0 rgba(0,0,0,.24)}
+.drill:active{transform:translateY(4px);box-shadow:0 4px 0 rgba(0,0,0,.24)}
+.drill .dico{font-size:52px;font-weight:900;color:#F0A500;letter-spacing:2px}
+.drill .dname{font-size:30px;font-weight:900;color:#12233F;margin-top:6px}
+.drill .dsub{font-size:18px;font-weight:800;color:#7A8698;margin-top:4px}
+
+/* ---------- 9c. GROWN-UPS PANEL ----------
+   Plain and dense on purpose. Brian reads this, Jaxson does not. */
+.gwrap{flex:1;overflow:auto;padding:14px 40px 26px;position:relative;z-index:5}
+.gsec{background:rgba(255,255,255,.94);border-radius:18px;padding:14px 20px;margin-bottom:12px}
+.gsec h3{font-size:15px;font-weight:900;letter-spacing:1.4px;color:#7A8698;
+  text-transform:uppercase;margin-bottom:10px}
+.gopts{display:flex;gap:10px;flex-wrap:wrap}
+.gopt{border:none;border-radius:14px;font-family:inherit;font-weight:900;font-size:19px;
+  padding:12px 20px;background:#E7ECF3;color:#43536B;cursor:pointer;min-height:48px}
+.gopt.sel{background:#0E8C46;color:#fff}
+.gread{font-size:19px;font-weight:800;color:#43536B;line-height:1.5}
+.gread b{color:#12233F}
+.gtag{display:inline-block;background:#FFE7A6;color:#6A4A00;border-radius:9px;
+  padding:3px 10px;margin:3px 5px 3px 0;font-size:18px;font-weight:900}
+
+/* ---------- 10. TROPHY ROOM ---------- */
+.trophywrap{flex:1;display:flex;align-items:center;justify-content:center;gap:44px;
+  padding:0 46px 26px;z-index:5}
+.statgrid{display:flex;flex-direction:column;gap:12px;min-width:330px}
+.stat{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.93);
+  border-radius:18px;padding:14px 20px;box-shadow:0 4px 0 rgba(0,0,0,.2)}
+.stat .n{font-size:38px;font-weight:900;color:#E23744;min-width:70px;text-align:center}
+.stat .l{font-size:19px;font-weight:800;color:#43536B;line-height:1.15}
+
+/* ---------- 11. POPUP ---------- */
+#pop{position:absolute;inset:0;z-index:30;display:none;align-items:center;justify-content:center;
+  background:rgba(6,18,10,.62);padding:30px}
+#pop.on{display:flex}
+.card{background:#fff;border-radius:28px;padding:30px 34px;max-width:600px;width:100%;
+  text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.card h2{font-size:38px;font-weight:900;color:#12233F;margin-bottom:8px}
+.card p{font-size:23px;font-weight:700;color:#5A6A80;line-height:1.35;margin-bottom:20px}
+.card .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* ---------- 12. CONFETTI ---------- */
+#confetti{position:absolute;inset:0;z-index:25;pointer-events:none;overflow:hidden}
+.conf{position:absolute;width:13px;height:19px;border-radius:3px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(780px) rotate(760deg);opacity:.1}}
+</style>
+</head>
+<body>
+
+<div id="rotate"><div class="rotinner">
+  <div style="font-size:66px">&#x1F4F1;</div>
+  <div class="rottitle">Turn your iPad sideways</div>
+  <div class="rotsub">The pitch is wider than it is tall</div>
+</div></div>
+
+<div id="stage">
+
+  <!-- ===================== HOME ===================== -->
+  <div id="home" class="screen stadium on">
+    <div class="deco" id="homedeco"></div>
+    <div class="bar">
+      <h1>YAMAL'S WORLD CUP</h1>
+      <div class="spacer"></div>
+      <div class="boots"><span>&#x1F45F;</span><span id="bootcount">0</span></div>
+    </div>
+    <div class="homewrap">
+      <div class="hometext">
+        <div class="bigtitle">PLAY AS<em>&#35;19 YAMAL</em></div>
+        <div class="tag">Five matches. One trophy. Vamos Espa&#241;a!</div>
+        <div class="menu">
+          <button class="btn gold" id="btncup">&#x1F3C6;&nbsp; Play the World Cup</button>
+          <button class="btn navy" id="btnpass">&#x1F91D;&nbsp; Passing Practice</button>
+          <button class="btn navy" id="btnpens">&#x26BD;&nbsp; Penalty Practice</button>
+          <button class="btn ghost" id="btntrophy">&#x1F396;&nbsp; Trophy Room</button>
+        </div>
+      </div>
+      <div class="hero" id="hero"></div>
+    </div>
+  </div>
+
+  <!-- ===================== TOURNAMENT LADDER ===================== -->
+  <div id="cup" class="screen stadium">
+    <div class="deco" id="cupdeco"></div>
+    <div class="bar">
+      <button class="btn ghost" data-go="home">&#x2190;</button>
+      <h1 id="cuptitle">THE ROAD TO THE FINAL</h1>
+      <div class="spacer"></div>
+      <button class="btn ghost" id="btnreset">Start over</button>
+    </div>
+    <div class="ladder" id="ladder"></div>
+  </div>
+
+  <!-- ===================== MATCH ===================== -->
+  <div id="match" class="screen">
+    <div class="bar">
+      <button class="btn ghost" id="btnquit">&#x2190;</button>
+      <h1 id="matchstage">MATCH</h1>
+      <div class="spacer"></div>
+      <div class="score">
+        <div class="flag" id="scoreflagA"></div><span id="scoreA">0</span>
+        <span style="opacity:.5">-</span>
+        <span id="scoreB">0</span><div class="flag" id="scoreflagB"></div>
+      </div>
+      <div class="clock" id="clock">0'</div>
+    </div>
+    <div id="pitchwrap">
+      <canvas id="pitch" width="960" height="642"></canvas>
+      <div class="toast" id="toast"></div>
+      <button id="passbtn">PASS</button>
+      <button id="shootbtn">SHOOT</button>
+      <div id="savewrap">
+        <div class="savehead" id="savehead">THEY BREAK AWAY!</div>
+        <div class="savesub" id="savesub">Pick a side to dive!</div>
+        <div class="savebtns" id="savebtns">
+          <button class="savebtn" data-save="0">&#x2190; Dive left</button>
+          <button class="savebtn" data-save="1">&#x2191; Stay</button>
+          <button class="savebtn" data-save="2">Dive right &#x2192;</button>
+        </div>
+        <div class="savebar"><i id="savebar"></i></div>
+      </div>
+      <div id="pausewrap"><div class="pausecard">
+        <div style="font-size:56px">&#9917;</div>
+        <div class="pt">Still here?</div>
+        <div class="ps">Tap to keep playing</div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ===================== PENALTY SHOOTOUT ===================== -->
+  <div id="pens" class="screen stadium">
+    <div class="deco" id="pendeco"></div>
+    <div class="bar">
+      <button class="btn ghost" id="btnpenback">&#x2190;</button>
+      <h1 id="pentitle">PENALTY SHOOTOUT</h1>
+      <div class="spacer"></div>
+      <div class="score">
+        <div class="flag" id="penflagA"></div><span id="penA">0</span>
+        <span style="opacity:.5">-</span>
+        <span id="penB">0</span><div class="flag" id="penflagB"></div>
+      </div>
+    </div>
+    <div class="penwrap">
+      <div class="penhead" id="penhead">Pick a corner!</div>
+      <div class="goalbox" id="goalbox"></div>
+      <div class="divebtns" id="divebtns" style="display:none">
+        <button class="btn navy" data-dive="0">&#x2190; Dive left</button>
+        <button class="btn navy" data-dive="1">&#x2191; Stay</button>
+        <button class="btn navy" data-dive="2">Dive right &#x2192;</button>
+      </div>
+      <div class="pentrack">
+        <div class="pencol"><div class="penrow" id="penrowA"></div><div class="penname" id="pennameA">SPAIN</div></div>
+        <div class="pencol"><div class="penrow" id="penrowB"></div><div class="penname" id="pennameB">THEM</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== WARM UP ===================== -->
+  <div id="warm" class="screen stadium">
+    <div class="deco" id="warmdeco"></div>
+    <div class="bar">
+      <button class="btn ghost" id="btnwarmback">&#x2190;</button>
+      <h1 id="warmtitle">WARM UP</h1>
+      <div class="spacer"></div>
+      <div class="pips" id="warmpips"></div>
+    </div>
+    <div class="warmwrap" id="warmwrap"></div>
+  </div>
+
+  <!-- ===================== GROWN-UPS PANEL ===================== -->
+  <div id="grown" class="screen stadium">
+    <div class="bar">
+      <button class="btn ghost" data-go="home">&#x2190;</button>
+      <h1>GROWN-UPS</h1>
+    </div>
+    <div class="gwrap" id="gwrap"></div>
+  </div>
+
+  <!-- ===================== TROPHY ROOM ===================== -->
+  <div id="trophy" class="screen stadium">
+    <div class="deco" id="trdeco"></div>
+    <div class="bar">
+      <button class="btn ghost" data-go="home">&#x2190;</button>
+      <h1>TROPHY ROOM</h1>
+    </div>
+    <div class="trophywrap">
+      <div id="trophyart" style="width:290px;height:390px"></div>
+      <div class="statgrid" id="statgrid"></div>
+    </div>
+  </div>
+
+  <!-- ===================== POPUP AND CONFETTI ===================== -->
+  <div id="confetti"></div>
+  <div id="pop"><div class="card">
+    <h2 id="poptitle"></h2>
+    <p id="popbody"></p>
+    <div class="row" id="poprow"></div>
+  </div></div>
+
+</div>
+
+<script>
+/* ==========================================================================
+   YAMAL'S WORLD CUP
+   Built for Jaxson, age 6. One file, no dependencies, no network after load.
+
+   Read CLAUDE.md before changing anything. The short version:
+     - the stage is CSS-scaled, so every touch goes through stageXY()
+     - the match is one canvas and one requestAnimationFrame loop
+     - there are no fail states: losing a match costs nothing but a replay
+   ========================================================================== */
+
+/* ---------- A. STAGE SCALING ---------- */
+var stage = document.getElementById('stage');
+var BOARD_W = 960, BOARD_H = 720;
+
+function fitStage() {
+  var vw = window.innerWidth, vh = window.innerHeight;
+  var s = Math.min(vw / BOARD_W, vh / BOARD_H);
+  stage.style.transform = 'scale(' + s + ')';
+  /* Portrait phones get a rotate prompt rather than a squeezed pitch. An iPad
+     in portrait is still perfectly playable, so the cutoff is on the ratio
+     being phone-shaped, not merely taller than wide. */
+  document.getElementById('rotate').classList.toggle('on', vh / vw > 1.5);
+}
+window.addEventListener('resize', fitStage);
+window.addEventListener('orientationchange', function () { setTimeout(fitStage, 120); });
+
+/* A raw touch coordinate is in screen pixels; everything in this file is in
+   board pixels. Skip this and taps drift further off the further the stage is
+   scaled from 1. Every pointer handler in the game goes through it. */
+function stageXY(e) {
+  var r = stage.getBoundingClientRect();
+  var s = r.width / BOARD_W;
+  return { x: (e.clientX - r.left) / s, y: (e.clientY - r.top) / s };
+}
+
+/* ---------- B. SAVE ---------- */
+var SAVE_KEY = 'worldcup.save.v1';
+var S = {
+  v: 2,
+  round: 0,          // next round to play, 0..5 (5 == cup won)
+  results: [],       // one {gf, ga, pens} per completed round
+  cups: 0,           // World Cups lifted
+  goals: 0,          // career goals
+  boots: 0,          // golden boots earned
+  penGoals: 0,
+  penSaves: 0,
+  ones: 0,           // one-twos played with Nico
+  sound: true,
+  stickSeen: false,   // hides the DRAG HERE hint once he has used the stick
+  /* The warm-up. See section O for what all of this means. Kept in one nested
+     object so that a save written before warm-ups existed simply arrives
+     without the key and gets these defaults, which is exactly right. */
+  warm: {
+    on: true,        // the grown-ups switch
+    n: 5,            // questions per warm-up
+    ready: -1,       // the round index he has warmed up for. -1 is none.
+    gold: false,     // a perfect warm-up. Gold ball for the match.
+    mlev: 1,         // numbers level, 1..3
+    wlev: 1,         // words level, 1..2
+    done: 0,         // warm-ups finished
+    perfect: 0,      // of which perfect
+    right: 0, wrong: 0,
+    facts: {}        // "4+3" or "ran" -> {r: right, w: wrong}
+  }
+};
+
+function load() {
+  try {
+    var raw = localStorage.getItem(SAVE_KEY);
+    if (raw) {
+      var got = JSON.parse(raw);
+      for (var k in S) if (Object.prototype.hasOwnProperty.call(got, k)) S[k] = got[k];
+    }
+  } catch (e) { /* private browsing, or a save from the future. Start fresh. */ }
+  /* Anything read back off the device is untrusted, even our own save. A round
+     index past the end of the ladder would hand ROUNDS[idx] === undefined to
+     startMatch and take the whole game down on boot, and it is one line to
+     make that impossible rather than hope. */
+  if (!(S.results instanceof Array)) S.results = [];
+
+  /* Save migration, v1 to v2. v1 was the five match ladder, where round 2 meant
+     "quarter final". v2 is the fourteen entry campaign, where round 2 means
+     "third qualifier". Carrying the number across unchanged would drop him into
+     the middle of qualifying holding results that belong to a tournament that
+     no longer exists.
+
+     So the CAMPAIGN restarts and everything he EARNED is kept: trophies,
+     career goals, golden boots, penalties, one-twos, and everything the warm-up
+     has learned about him. That is the same bargain "Start over" already makes
+     on the ladder screen, and it is the only honest way to change the shape of
+     a tournament somebody is halfway through. */
+  if ((S.v | 0) < 2) {
+    S.v = 2;
+    S.round = 0;
+    S.results = [];
+  }
+
+  S.round = Math.max(0, Math.min(ROUNDS.length, S.round | 0));
+  ['cups', 'goals', 'boots', 'penGoals', 'penSaves', 'ones'].forEach(function (k) {
+    if (typeof S[k] !== 'number' || !isFinite(S[k]) || S[k] < 0) S[k] = 0;
+  });
+  /* Same distrust for the warm-up block, which the loop above will have
+     replaced wholesale with whatever the save happened to hold. A save from
+     before warm-ups existed has no key and keeps the defaults, which is right.
+     A corrupted one must not be able to lock him out of his own game. */
+  var W = S.warm;
+  if (!W || typeof W !== 'object') W = S.warm = {};
+  W.on = (W.on !== false);
+  W.n = [3, 5, 7].indexOf(W.n | 0) >= 0 ? (W.n | 0) : 5;
+  /* An out of range level falls back to the easiest, it does not clamp to the
+     nearest. Clamping would answer a corrupted save by putting a six year old
+     on the hardest setting, which is the wrong way for this to fail. */
+  W.mlev = (W.mlev === 1 || W.mlev === 2 || W.mlev === 3) ? W.mlev : 1;
+  W.wlev = (W.wlev === 1 || W.wlev === 2) ? W.wlev : 1;
+  /* ready is an unlock, so a wrong one has to fail closed. Failing open would
+     hand an out of range index to startMatch. */
+  W.ready = W.ready | 0;
+  if (W.ready < 0 || W.ready >= ROUNDS.length) W.ready = -1;
+  W.gold = !!W.gold;
+  S.stickSeen = !!S.stickSeen;
+  ['done', 'perfect', 'right', 'wrong'].forEach(function (k) {
+    if (typeof W[k] !== 'number' || !isFinite(W[k]) || W[k] < 0) W[k] = 0;
+  });
+  if (!W.facts || typeof W.facts !== 'object') W.facts = {};
+}
+function persist() {
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify(S)); } catch (e) {}
+}
+
+/* ---------- C. SOUND ----------
+   Every sound is an oscillator. No audio files, so nothing to download and
+   nothing to go missing. iOS keeps the context suspended until a real gesture,
+   so unlock() is wired to the first pointerdown and not called before. */
+var AC = null;
+function unlock() {
+  if (AC) { if (AC.state === 'suspended') AC.resume(); return; }
+  try {
+    var Ctx = window.AudioContext || window.webkitAudioContext;
+    if (Ctx) AC = new Ctx();
+  } catch (e) { AC = null; }
+}
+window.addEventListener('pointerdown', unlock, true);
+
+function tone(freq, dur, type, vol, delay) {
+  if (!AC || !S.sound) return;
+  try {
+    var t = AC.currentTime + (delay || 0);
+    var o = AC.createOscillator(), g = AC.createGain();
+    o.type = type || 'sine';
+    o.frequency.setValueAtTime(freq, t);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol || 0.16, t + 0.012);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(AC.destination);
+    o.start(t); o.stop(t + dur + 0.02);
+  } catch (e) {}
+}
+/* Crowd noise is filtered white noise. A roar is the same thing louder and
+   longer, which is exactly what a crowd is. */
+function noise(dur, vol, freq) {
+  if (!AC || !S.sound) return;
+  try {
+    var n = Math.floor(AC.sampleRate * dur);
+    var buf = AC.createBuffer(1, n, AC.sampleRate);
+    var d = buf.getChannelData(0);
+    for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / n);
+    var src = AC.createBufferSource(); src.buffer = buf;
+    var f = AC.createBiquadFilter(); f.type = 'bandpass';
+    f.frequency.value = freq || 900; f.Q.value = 0.7;
+    var g = AC.createGain(); g.gain.value = vol || 0.1;
+    src.connect(f); f.connect(g); g.connect(AC.destination);
+    src.start();
+  } catch (e) {}
+}
+function sfxKick()   { tone(180, 0.09, 'square', 0.2); noise(0.09, 0.09, 1500); }
+function sfxWhistle(){ tone(2100, 0.16, 'sine', 0.11); tone(2400, 0.14, 'sine', 0.09, 0.05); }
+function sfxGoal()   {
+  noise(1.5, 0.16, 700);
+  [523, 659, 784, 1047].forEach(function (f, i) { tone(f, 0.42, 'triangle', 0.16, i * 0.1); });
+}
+function sfxSave()   { tone(320, 0.14, 'sawtooth', 0.13); noise(0.3, 0.08, 500); }
+function sfxTackle() { tone(140, 0.16, 'sawtooth', 0.13); }
+function sfxTap()    { tone(660, 0.07, 'sine', 0.1); }
+function sfxSad()    { tone(392, 0.22, 'sine', 0.11); tone(311, 0.34, 'sine', 0.1, 0.16); }
+function sfxRight()  { tone(784, 0.09, 'sine', 0.12); tone(1175, 0.17, 'sine', 0.11, 0.09); }
+/* Deliberately not a buzzer. A wrong answer in the warm-up gets a soft neutral
+   note, the same one a menu would make. Nothing in this game tells him off. */
+function sfxNudge()  { tone(440, 0.13, 'sine', 0.09); }
+
+/* ---------- D. TEAMS ----------
+   Flags are inline SVG strings, kits are the two colours the canvas draws
+   players with. Adding a team is one entry here. */
+var TEAMS = {
+  spain:     { name: 'Spain',     short: 'ESP', kit: '#D4262E', trim: '#FFC400', shorts: '#16223D',
+    flag: '<svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#C60B1E"/><rect y="10" width="60" height="20" fill="#FFC400"/></svg>' },
+  /* The qualifying group, then the World Cup itself. Flags are deliberately
+     simplified: a six year old reads them at 56x38 on a ladder row, and a
+     faithful crest costs a kilobyte to be a smudge. */
+  norway:    { name: 'Norway',    short: 'NOR', kit: '#BA0C2F', trim: '#fff', shorts: '#00205B',
+    flag: '<svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#BA0C2F"/><rect x="14" width="10" height="40" fill="#fff"/><rect y="15" width="60" height="10" fill="#fff"/><rect x="16.5" width="5" height="40" fill="#00205B"/><rect y="17.5" width="60" height="5" fill="#00205B"/></svg>' },
+  scotland:  { name: 'Scotland',  short: 'SCO', kit: '#0B4EA2', trim: '#fff', shorts: '#fff',
+    flag: '<svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#0B4EA2"/><path d="M0 0l60 40M60 0L0 40" stroke="#fff" stroke-width="7"/></svg>' },
+  greece:    { name: 'Greece',    short: 'GRE', kit: '#fff', trim: '#0D5EAF', shorts: '#0D5EAF',
+    flag: '<svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><rect width="60" height="4.4" y="4.4" fill="#0D5EAF"/><rect width="60" height="4.4" y="13.2" fill="#0D5EAF"/><rect width="60" height="4.4" y="22" fill="#0D5EAF"/><rect width="60" height="4.4" y="30.8" fill="#0D5EAF"/><rect width="22" height="22" fill="#0D5EAF"/><rect x="9" width="4" height="22" fill="#fff"/><rect y="9" width="22" height="4" fill="#fff"/></svg>' },
+  ukraine:   { name: 'Ukraine',   short: 'UKR', kit: '#FFD500', trim: '#0057B7', shorts: '#0057B7',
+    flag: '<svg viewBox="0 0 60 40"><rect width="60" height="20" fill="#0057B7"/><rect y="20" width="60" height="20" fill="#FFD500"/></svg>' },
+  morocco:   { name: 'Morocco',   short: 'MAR', kit: '#C1272D', trim: '#006233', shorts: '#C1272D',
+    flag: '<svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#C1272D"/><path d="M30 12l3.5 10.8-9.2-6.7h11.4l-9.2 6.7z" fill="none" stroke="#006233" stroke-width="1.8"/></svg>' },
+  uruguay:   { name: 'Uruguay',   short: 'URU', kit: '#5CBFEB', trim: '#fff', shorts: '#12233F',
+    flag: '<svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><rect y="8" width="60" height="4.5" fill="#5CBFEB"/><rect y="17" width="60" height="4.5" fill="#5CBFEB"/><rect y="26" width="60" height="4.5" fill="#5CBFEB"/><rect y="35" width="60" height="4.5" fill="#5CBFEB"/><rect width="24" height="21" fill="#fff"/><circle cx="12" cy="10.5" r="6" fill="#FFD24A"/></svg>' },
+  japan:     { name: 'Japan',     short: 'JPN', kit: '#2B3A94', trim: '#fff', shorts: '#1B255E',
+    flag: '<svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><circle cx="30" cy="20" r="11" fill="#BC002D"/></svg>' },
+  nigeria:   { name: 'Nigeria',   short: 'NGA', kit: '#118A46', trim: '#fff', shorts: '#0B6132',
+    flag: '<svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><rect width="20" height="40" fill="#008751"/><rect x="40" width="20" height="40" fill="#008751"/></svg>' },
+  germany:   { name: 'Germany',   short: 'GER', kit: '#F2F2F2', trim: '#1B1B1B', shorts: '#1B1B1B',
+    flag: '<svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#DD0000"/><rect width="60" height="13.3" fill="#000"/><rect y="26.7" width="60" height="13.3" fill="#FFCE00"/></svg>' },
+  brazil:    { name: 'Brazil',    short: 'BRA', kit: '#F2CD2E', trim: '#1E7A3C', shorts: '#1B3D8F',
+    flag: '<svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#009B3A"/><path d="M30 5l25 15-25 15L5 20z" fill="#FEDF00"/><circle cx="30" cy="20" r="8" fill="#002776"/></svg>' },
+  argentina: { name: 'Argentina', short: 'ARG', kit: '#7BB0E0', trim: '#fff', shorts: '#16223D',
+    flag: '<svg viewBox="0 0 60 40"><rect width="60" height="40" fill="#fff"/><rect width="60" height="13.3" fill="#74ACDF"/><rect y="26.7" width="60" height="13.3" fill="#74ACDF"/><circle cx="30" cy="20" r="5" fill="#F6B40E"/></svg>' }
+};
+
+/* ---------- E. THE LADDER ----------
+   Five matches, tuned rather than random, so a level plays the same every time
+   and can be tuned once and stay tuned.
+
+   secs    real seconds the match lasts (the clock always shows 0' to 90')
+   defs    how many defenders are on the pitch
+   dspeed  defender pixels per frame. ALWAYS below Yamal's 4.3: he must be able
+           to outrun them, so the challenge is finding the angle, not the pace
+   lead    how far ahead of Yamal a defender aims. 0 = chases where he is now
+   range   how close Yamal has to be before a defender leaves his zone
+   keeper  keeper dive accuracy, 0..1
+   counter chance the other team scores when they carry the ball to our goal
+
+   gap      seconds of play between the other team's break aways, when Jaxson
+            has to keep goal. A RATE and not a count, so the number of them
+            follows how long a match actually is. It was a count first, and
+            that quietly made the final much harder under test than in the
+            real game: tournament.test shortens every match to 25 seconds, so
+            a fixed two break aways arrived inside 38% of the playing time.
+            Without these the scoreboard only ever moves one way:
+            conceding used to need him to ignore the ball for ten seconds AND
+            lose a dice roll that was zero on the first round, so in practice
+            the opposition never scored and 3-0 meant nothing.
+   mate     whether Nico runs with him. False for the group stage and the
+            round of 16, true from the quarter-final on. Deliberately gated:
+            the rounds used to get harder without ever asking anything new, so
+            after about three minutes the game had nothing left to teach. Now
+            the ladder is a curriculum - shoot, beat a man, pass around a man,
+            combine - and "you get a teammate in the quarter-final" is
+            something a six year old will talk about at dinner.
+   forgive  chance of a fingertip save when he dives the WRONG way. His guess
+            still decides most of it - a right guess always saves - but this is
+            what keeps a wrong guess from being a certain goal, and it is the
+            dial to turn if a round starts feeling harsh. Effective save rate
+            is 1/3 + 2/3 * forgive, so 0.55 is 70% and 0.35 is 57%. */
+/* THE CAMPAIGN. Fourteen entries, thirteen of them normally played.
+
+   The five match ladder was too short - Brian's words, after the passing work
+   landed: "the season is now too short... I think we need a longer version."
+   He was right, and it is the same problem the curriculum fixed at the round
+   level, one size up. Five matches is an evening. A campaign is a season.
+
+   The shape is the real thing, simplified:
+
+     0-5    QUALIFYING. A group of four, home and away, so six matches.
+            Finish top two and Spain go straight to the World Cup.
+     6      THE PLAYOFF. Only played if he finished third or fourth. Skipped
+            entirely otherwise, which is why nextRound() exists rather than
+            S.round simply incrementing.
+     7-9    THE GROUP STAGE. Three matches, another table of four.
+     10-13  THE KNOCKOUTS. Round of 16, quarter, semi, final.
+
+   Losing never ends the campaign. A qualifying group he finishes bottom of
+   still leads to the playoff, and losing the playoff offers it again. There is
+   no arrangement of results that stops him reaching the World Cup, only
+   arrangements that make him take the long way round.
+
+   The difficulty curve now has thirteen rungs to climb instead of five, so
+   every number moves more gently. Qualifying is genuinely easy: he is learning
+   the controls and the crowd is on his side. Nico joins for the last two
+   qualifiers, which is earlier than before because there is room for it. */
+var ROUNDS = [
+  /* --- qualifying: Norway, Scotland and Greece, home and away --- */
+  { phase: 'qual', stage: 'Qualifier 1',   foe: 'norway',    secs: 40, defs: 1, dspeed: 1.8, lead: 0,   range: 220, keeper: 0.20, counter: 0.00, gap: 40, forgive: 0.60, mate: false },
+  { phase: 'qual', stage: 'Qualifier 2',   foe: 'scotland',  secs: 40, defs: 2, dspeed: 1.9, lead: 0,   range: 230, keeper: 0.24, counter: 0.00, gap: 38, forgive: 0.58, mate: false },
+  { phase: 'qual', stage: 'Qualifier 3',   foe: 'greece',    secs: 45, defs: 2, dspeed: 2.0, lead: 2,   range: 240, keeper: 0.28, counter: 0.10, gap: 36, forgive: 0.56, mate: false },
+  { phase: 'qual', stage: 'Qualifier 4',   foe: 'norway',    secs: 45, defs: 2, dspeed: 2.1, lead: 4,   range: 250, keeper: 0.32, counter: 0.14, gap: 36, forgive: 0.54, mate: false },
+  { phase: 'qual', stage: 'Qualifier 5',   foe: 'scotland',  secs: 50, defs: 2, dspeed: 2.2, lead: 6,   range: 255, keeper: 0.34, counter: 0.18, gap: 34, forgive: 0.52, mate: true  },
+  { phase: 'qual', stage: 'Qualifier 6',   foe: 'greece',    secs: 50, defs: 2, dspeed: 2.3, lead: 6,   range: 260, keeper: 0.36, counter: 0.20, gap: 34, forgive: 0.52, mate: true  },
+
+  /* --- the playoff, only if he needs it --- */
+  { phase: 'playoff', stage: 'THE PLAYOFF', foe: 'ukraine',  secs: 50, defs: 2, dspeed: 2.3, lead: 6,   range: 260, keeper: 0.36, counter: 0.20, gap: 32, forgive: 0.52, mate: true },
+
+  /* --- the World Cup group --- */
+  { phase: 'group', stage: 'Group Match 1', foe: 'japan',    secs: 50, defs: 2, dspeed: 2.4, lead: 8,   range: 270, keeper: 0.40, counter: 0.22, gap: 34, forgive: 0.50, mate: true },
+  { phase: 'group', stage: 'Group Match 2', foe: 'morocco',  secs: 55, defs: 3, dspeed: 2.5, lead: 8,   range: 280, keeper: 0.44, counter: 0.26, gap: 32, forgive: 0.48, mate: true },
+  { phase: 'group', stage: 'Group Match 3', foe: 'uruguay',  secs: 55, defs: 3, dspeed: 2.6, lead: 10,  range: 290, keeper: 0.47, counter: 0.30, gap: 30, forgive: 0.46, mate: true },
+
+  /* --- the knockouts --- */
+  { phase: 'ko', stage: 'Round of 16',      foe: 'nigeria',   secs: 55, defs: 3, dspeed: 2.7, lead: 10, range: 300, keeper: 0.50, counter: 0.32, gap: 30, forgive: 0.44, mate: true },
+  { phase: 'ko', stage: 'Quarter-Final',    foe: 'germany',   secs: 60, defs: 3, dspeed: 2.8, lead: 14, range: 310, keeper: 0.55, counter: 0.36, gap: 28, forgive: 0.42, mate: true },
+  { phase: 'ko', stage: 'Semi-Final',       foe: 'brazil',    secs: 60, defs: 3, dspeed: 2.9, lead: 14, range: 320, keeper: 0.58, counter: 0.42, gap: 26, forgive: 0.40, mate: true },
+  { phase: 'ko', stage: 'THE FINAL',        foe: 'argentina', secs: 65, defs: 4, dspeed: 3.1, lead: 18, range: 340, keeper: 0.64, counter: 0.50, gap: 26, forgive: 0.35, mate: true }
+];
+
+var QUAL_END = 6;        // index of the playoff
+var GROUP_START = 7;
+var KO_START = 10;
+
+/* The three rivals in each table, in the order they are listed. Spain is
+   always shown first and is not in here. */
+var QUAL_RIVALS = ['norway', 'scotland', 'greece'];
+var GROUP_RIVALS = ['japan', 'morocco', 'uruguay'];
+
+/* Passing Practice: the same match engine with the clock switched off and the
+   opposition harmless, so he can learn the one-two somewhere it costs nothing.
+   Same idea as Penalty Practice, which already works this way. secs 0 means
+   full time never comes, so the ladder is never touched. */
+var PRACTICE = {
+  stage: 'Passing Practice', foe: 'brazil', secs: 0, defs: 2, dspeed: 2.2,
+  lead: 6, range: 260, keeper: 0.30, counter: 0, gap: 99999, forgive: 1, mate: true
+};
+
+/* ==========================================================================
+   THE TABLES
+   Qualifying and the group stage are decided on points, not on a straight
+   win-or-else. Three for a win, one for a draw, which matters more here than
+   it looks: a draw stops being a non-result and becomes a point, and he can
+   lose a match and still go through. That fits the no-fail-states rule better
+   than the old ladder ever did.
+
+   The three rivals play each other too. Their results are generated from the
+   match index rather than from Math.random, so the table does not reshuffle
+   itself every time he opens the screen - a standings table that changes when
+   you look away is worse than no standings table.
+   ========================================================================== */
+
+/* A small deterministic hash, so rival results are stable across reloads but
+   still look arbitrary. */
+function rivalRoll(a, b, salt) {
+  var n = (a * 73856093) ^ (b * 19349663) ^ (salt * 83492791);
+  n = (n < 0 ? -n : n) % 1000;
+  return n / 1000;
+}
+
+/* Spain's own record over a phase, read straight off the results he earned. */
+function ourRecord(from, to) {
+  var rec = { key: 'spain', name: 'Spain', p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0, us: true };
+  for (var i = from; i <= to; i++) {
+    var r = S.results[i];
+    if (!r) continue;
+    rec.p++; rec.gf += r.gf | 0; rec.ga += r.ga | 0;
+    /* A knockout won on penalties is a draw in a league table, which is what
+       the real thing does too. pens only ever appears on a drawn scoreline. */
+    if (r.gf > r.ga) { rec.w++; rec.pts += 3; }
+    else if (r.gf < r.ga) { rec.l++; }
+    else { rec.d++; rec.pts += 1; }
+  }
+  return rec;
+}
+
+/* The rivals' table, generated from how many matches Spain has played so far,
+   so the standings fill in alongside his own. */
+function rivalRecords(rivals, played, perTeam, salt) {
+  return rivals.map(function (key, idx) {
+    var rec = { key: key, name: TEAMS[key].name, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 };
+    /* They play the same number of matches he has, capped at their fixture
+       count, so nobody is ever mysteriously ahead on games played. */
+    var n = Math.min(played, perTeam);
+    /* Rivals are not equally good. The first listed is the strong one and the
+       last is the weak one, which is what gives the table a shape worth
+       looking at - without it every rival lands on the same points and the
+       standings read as decoration. A playtest had all three on 5 points with
+       identical W-D-L, which is what prompted this. */
+    var strength = 0.12 - idx * 0.12;
+    for (var m = 0; m < n; m++) {
+      var roll = Math.max(0, Math.min(0.999, rivalRoll(idx + 1, m + 1, salt) - strength));
+      var gf, ga;
+      /* Draws are a narrower band than they were. At 26% wide, six match
+         records clustered on the same line far too often. */
+      if (roll < 0.45) { gf = 1 + Math.floor(roll * 7); ga = Math.floor(roll * 3); }
+      else if (roll < 0.60) { gf = Math.floor(roll * 4); ga = gf; }
+      else { gf = Math.floor((1 - roll) * 4); ga = 1 + Math.floor(roll * 4); }
+      rec.p++; rec.gf += gf; rec.ga += ga;
+      if (gf > ga) { rec.w++; rec.pts += 3; }
+      else if (gf === ga) { rec.d++; rec.pts += 1; }
+      else { rec.l++; }
+    }
+    return rec;
+  });
+}
+
+function sortTable(rows) {
+  return rows.slice().sort(function (a, b) {
+    if (b.pts !== a.pts) return b.pts - a.pts;
+    if ((b.gf - b.ga) !== (a.gf - a.ga)) return (b.gf - b.ga) - (a.gf - a.ga);
+    if (b.gf !== a.gf) return b.gf - a.gf;
+    return a.name < b.name ? -1 : 1;
+  });
+}
+
+/* The qualifying table: Spain plus three rivals, six matches each. */
+function qualTable() {
+  var played = Math.min(S.round, QUAL_END);
+  return sortTable([ourRecord(0, QUAL_END - 1)].concat(rivalRecords(QUAL_RIVALS, played, 6, 11)));
+}
+
+/* The World Cup group: Spain plus three, three matches each. */
+function groupTable() {
+  var played = Math.max(0, Math.min(S.round - GROUP_START, 3));
+  return sortTable([ourRecord(GROUP_START, GROUP_START + 2)].concat(rivalRecords(GROUP_RIVALS, played, 3, 29)));
+}
+
+function ourPlace(rows) {
+  for (var i = 0; i < rows.length; i++) if (rows[i].us) return i + 1;
+  return rows.length;
+}
+
+/* Whether the playoff has to be played. Top two go straight through. */
+function needPlayoff() {
+  return ourPlace(qualTable()) > 2;
+}
+
+/* Where the campaign goes after finishing match idx. The only place that knows
+   the playoff can be skipped, so nothing else has to. */
+function nextRound(idx) {
+  if (idx === QUAL_END - 1) return needPlayoff() ? QUAL_END : GROUP_START;
+  return idx + 1;
+}
+
+/* Where each defender stands when nobody is near him. Spread up the pitch and
+   alternating across it, so Yamal meets them one at a time rather than all at
+   once. See the zonal rule in step() for why that matters. */
+function defenderHome(i, n) {
+  return {
+    x: n > 1 ? 880 + i * (700 / (n - 1)) : 1200,
+    y: 321 + (i % 2 ? 1 : -1) * (110 + Math.floor(i / 2) * 70)
+  };
+}
+
+/* ---------- F. ART FOR THE MENUS ----------
+   The canvas draws its own players from primitives (section J). These SVGs are
+   only for the screens outside the match. */
+function yamalSVG() {
+  return '<svg viewBox="0 0 240 320" width="100%" height="100%">' +
+    '<ellipse cx="120" cy="306" rx="72" ry="12" fill="#000" opacity=".22"/>' +
+    /* legs */
+    '<rect x="94" y="212" width="22" height="76" rx="10" fill="#C9855E"/>' +
+    '<rect x="126" y="212" width="22" height="76" rx="10" fill="#C9855E"/>' +
+    '<rect x="88" y="282" width="34" height="18" rx="8" fill="#111"/>' +
+    '<rect x="122" y="282" width="34" height="18" rx="8" fill="#111"/>' +
+    /* shorts */
+    '<path d="M84 186h74v34a6 6 0 0 1-6 6h-22l-9-22-9 22H90a6 6 0 0 1-6-6z" fill="#16223D"/>' +
+    /* shirt */
+    '<path d="M92 96h58l30 18-14 30-14-8v56H90v-56l-14 8-14-30z" fill="#D4262E"/>' +
+    '<path d="M108 96h26l-13 16z" fill="#FFC400"/>' +
+    '<text x="121" y="166" font-family="ui-rounded,system-ui,sans-serif" font-size="40" font-weight="900" fill="#FFC400" text-anchor="middle">19</text>' +
+    /* arms */
+    '<rect x="56" y="112" width="20" height="62" rx="10" fill="#C9855E" transform="rotate(-12 66 143)"/>' +
+    '<rect x="166" y="112" width="20" height="62" rx="10" fill="#C9855E" transform="rotate(12 176 143)"/>' +
+    /* head */
+    '<circle cx="121" cy="64" r="34" fill="#C9855E"/>' +
+    /* Hair in two tones, blonde on top and brown underneath, which is how he
+       wears it. The dark path is the whole head of hair and the blonde sits
+       on top of it, so the brown stays visible at the sides and the fringe. */
+    '<path d="M87 58c0-22 16-36 34-36s34 14 34 36c0 0-10-8-18-6-10 2-14 8-24 6-12-2-18-6-26 0z" fill="#241610"/>' +
+    '<path d="M92 54c0-19 14-31 29-31s29 12 29 31c0 0-9-7-16-5-9 2-12 7-21 5-10-2-15-5-21 0z" fill="#E3BC55"/>' +
+    '<circle cx="108" cy="64" r="4" fill="#241610"/><circle cx="134" cy="64" r="4" fill="#241610"/>' +
+    '<path d="M110 80q11 9 22 0" stroke="#8A4A38" stroke-width="4" fill="none" stroke-linecap="round"/>' +
+    /* ball at his feet */
+    '<circle cx="176" cy="284" r="24" fill="#fff" stroke="#12233F" stroke-width="3"/>' +
+    '<path d="M176 268l8 6-3 10h-10l-3-10z" fill="#12233F"/>' +
+    '</svg>';
+}
+function trophySVG() {
+  return '<svg viewBox="0 0 220 300" width="100%" height="100%">' +
+    '<ellipse cx="110" cy="288" rx="66" ry="11" fill="#000" opacity=".25"/>' +
+    '<rect x="62" y="252" width="96" height="30" rx="9" fill="#8C6A16"/>' +
+    '<rect x="76" y="236" width="68" height="20" rx="7" fill="#B4901F"/>' +
+    '<path d="M84 40h52l-8 130a26 26 0 0 1-36 0z" fill="#F5C842"/>' +
+    '<path d="M92 168c8 24 28 24 36 0l-6 70H98z" fill="#E0AE2A"/>' +
+    '<path d="M84 40c-30 8-40 40-16 60M136 40c30 8 40 40 16 60" stroke="#F5C842" stroke-width="14" fill="none" stroke-linecap="round"/>' +
+    '<ellipse cx="110" cy="40" rx="26" ry="9" fill="#FFE083"/>' +
+    '<circle cx="110" cy="104" r="20" fill="#fff" opacity=".55"/>' +
+    '</svg>';
+}
+
+/* ---------- G. DECOR ---------- */
+function decorate(el) {
+  if (!el || el.childNodes.length) return;
+  var h = '';
+  var fanCols = ['#FFD24A', '#E23744', '#FFFFFF', '#4FC3F7', '#FF8A65'];
+  /* crowd: two bands of dots in the stand, above the grass line at y=34% */
+  for (var i = 0; i < 150; i++) {
+    h += '<div class="fan" style="left:' + (Math.random() * 100).toFixed(1) + '%;top:' +
+      (8 + Math.random() * 17).toFixed(1) + '%;background:' +
+      fanCols[i % fanCols.length] + '"></div>';
+  }
+  /* bunting along the top */
+  for (var j = 0; j < 22; j++) {
+    h += '<div class="flagbit" style="left:' + (j * 4.6).toFixed(1) + '%;top:0;background:' +
+      (j % 2 ? '#C60B1E' : '#FFC400') + '"></div>';
+  }
+  for (var k = 0; k < 7; k++) {
+    h += '<div class="spark" style="left:' + (10 + Math.random() * 80).toFixed(0) + '%;top:' +
+      (12 + Math.random() * 14).toFixed(0) + '%;animation-delay:' + (Math.random() * 2.4).toFixed(1) + 's">&#10022;</div>';
+  }
+  el.innerHTML = h;
+}
+
+/* ---------- H. ROUTER, POPUP, CELEBRATION ---------- */
+var current = 'home';
+var ROOM_LEAVE = {};
+
+function go(name) {
+  if (ROOM_LEAVE[current]) ROOM_LEAVE[current]();
+  closePop();
+  var prev = document.querySelector('.screen.on');
+  if (prev) prev.classList.remove('on');
+  document.getElementById(name).classList.add('on');
+  current = name;
+  if (ROOM_ENTER[name]) ROOM_ENTER[name]();
+}
+
+function popup(title, body, buttons) {
+  document.getElementById('poptitle').innerHTML = title;
+  document.getElementById('popbody').innerHTML = body;
+  var row = document.getElementById('poprow');
+  row.innerHTML = '';
+  (buttons || [{ label: 'OK' }]).forEach(function (b) {
+    var el = document.createElement('button');
+    el.className = 'btn ' + (b.style || 'gold');
+    el.innerHTML = b.label;
+    el.onclick = function () { sfxTap(); closePop(); if (b.fn) b.fn(); };
+    row.appendChild(el);
+  });
+  document.getElementById('pop').classList.add('on');
+}
+function closePop() { document.getElementById('pop').classList.remove('on'); }
+
+function celebrate(big) {
+  var box = document.getElementById('confetti');
+  var cols = ['#FFD24A', '#E23744', '#FFFFFF', '#3DD07A', '#4FC3F7', '#FF8A65'];
+  var n = big ? 90 : 44;
+  for (var i = 0; i < n; i++) {
+    var d = document.createElement('div');
+    d.className = 'conf';
+    d.style.left = (Math.random() * 100) + '%';
+    d.style.top = '-30px';
+    d.style.background = cols[i % cols.length];
+    d.style.animationDuration = (1.5 + Math.random() * 1.4) + 's';
+    d.style.animationDelay = (Math.random() * 0.5) + 's';
+    box.appendChild(d);
+    (function (node) { setTimeout(function () { if (node.parentNode) node.parentNode.removeChild(node); }, 3600); })(d);
+  }
+}
+
+function addBoots(n) {
+  /* Belt and braces after a QA pass called matchWon() with no arguments and
+     poisoned the counter: S.boots went NaN, JSON.stringify wrote null, and the
+     home screen badge rendered the literal text "NaN" next to the boot icon.
+     No live path does that - both callers pass a real score - but a six year
+     old's trophy count is not the place to find out a future one does. */
+  if (typeof n !== 'number' || !isFinite(n)) return;
+  S.boots += n; document.getElementById('bootcount').textContent = S.boots; persist();
+}
+
+/* ---------- I. HOME ---------- */
+var ROOM_ENTER = {
+  home: function () {
+    decorate(document.getElementById('homedeco'));
+    document.getElementById('hero').innerHTML = yamalSVG();
+    document.getElementById('bootcount').textContent = S.boots;
+  },
+  cup: function () { decorate(document.getElementById('cupdeco')); buildLadder(); },
+  trophy: function () { decorate(document.getElementById('trdeco')); buildTrophyRoom(); },
+  pens: function () { decorate(document.getElementById('pendeco')); },
+  warm: function () { decorate(document.getElementById('warmdeco')); },
+  grown: function () { buildGrownUps(); },
+  match: function () {}
+};
+
+document.getElementById('btncup').onclick = function () { sfxTap(); go('cup'); };
+document.getElementById('btnpens').onclick = function () { sfxTap(); startPens(null); };
+document.getElementById('btnpass').onclick = function () {
+  sfxTap();
+  startMatch('practice');
+  /* Told, not discovered. A free mode he does not understand is a free mode he
+     will not open twice. */
+  setTimeout(function () {
+    if (current === 'match') toast('PASS TO NICO, THEN GET IT BACK!');
+  }, 1400);
+};
+document.getElementById('btntrophy').onclick = function () { sfxTap(); go('trophy'); };
+Array.prototype.forEach.call(document.querySelectorAll('[data-go]'), function (b) {
+  b.onclick = function () { sfxTap(); go(b.getAttribute('data-go')); };
+});
+
+/* ---------- J. THE LADDER SCREEN ---------- */
+/* The campaign screen. Fourteen rungs will not fit on an iPad, and a list of
+   fourteen is not what he wants to look at anyway: during qualifying he wants
+   the TABLE, and in the knockouts he wants the path to the final. So the screen
+   shows the phase he is in and nothing else, with the phase strip along the top
+   telling him where he is in the whole campaign. */
+function phaseOf(i) { return ROUNDS[i] ? ROUNDS[i].phase : 'ko'; }
+
+function phaseRange(ph) {
+  var from = -1, to = -1;
+  ROUNDS.forEach(function (r, i) {
+    if (r.phase !== ph) return;
+    if (from < 0) from = i;
+    to = i;
+  });
+  return { from: from, to: to };
+}
+
+function tableHTML(rows, note) {
+  return '<div class="tablebox"><div class="trow thead">' +
+      '<div class="tteam">Team</div><div class="tn">P</div><div class="tn">W</div>' +
+      '<div class="tn">D</div><div class="tn">L</div><div class="tn">Pts</div></div>' +
+    rows.map(function (r, i) {
+      return '<div class="trow' + (r.us ? ' tus' : '') + (i < 2 ? ' tgo' : '') + '">' +
+        '<div class="tteam"><span class="tflag">' + TEAMS[r.key].flag + '</span>' + r.name + '</div>' +
+        '<div class="tn">' + r.p + '</div><div class="tn">' + r.w + '</div>' +
+        '<div class="tn">' + r.d + '</div><div class="tn">' + r.l + '</div>' +
+        '<div class="tn tpts">' + r.pts + '</div></div>';
+    }).join('') +
+    (note ? '<div class="tnote">' + note + '</div>' : '') + '</div>';
+}
+
+function rungHTML(i) {
+  var r = ROUNDS[i], foe = TEAMS[r.foe];
+  var done = i < S.round;
+  var res = S.results[i];
+  var out = '-';
+  if (done && res) {
+    out = res.gf + ' - ' + res.ga +
+      (res.pens ? ' <span style="font-size:14px">(pens)</span>' : '');
+  } else if (i === S.round) { out = '&#9654;'; }
+  else { out = '&#128274;'; }
+  var cls = 'rung';
+  if (done && res) cls += res.lost ? ' lost' : (res.drew ? ' drew' : ' won');
+  else if (i > S.round) cls += ' locked';
+  return '<div class="' + cls + '" data-idx="' + i + '">' +
+    '<div class="flag">' + foe.flag + '</div>' +
+    '<div class="who"><div class="stage">' + r.stage + '</div>' +
+    '<div class="foe">Spain v ' + foe.name + '</div></div>' +
+    '<div class="res' + (res && res.lost ? ' lost' : '') + '">' + out + '</div></div>';
+}
+
+function buildLadder() {
+  var box = document.getElementById('ladder');
+  var done = S.round >= ROUNDS.length;
+  var at = Math.min(S.round, ROUNDS.length - 1);
+  var ph = done ? 'ko' : phaseOf(at);
+  var html = '';
+
+  document.getElementById('cuptitle').textContent =
+    done ? 'CHAMPIONS OF THE WORLD'
+    : ph === 'qual' ? 'QUALIFYING FOR THE WORLD CUP'
+    : ph === 'playoff' ? 'THE PLAYOFF'
+    : ph === 'group' ? 'THE GROUP STAGE'
+    : 'THE ROAD TO THE FINAL';
+
+  /* Where he is in the whole campaign, always visible. */
+  var steps = [
+    { key: 'qual', label: 'QUALIFYING' },
+    { key: 'group', label: 'GROUP' },
+    { key: 'ko', label: 'KNOCKOUTS' }
+  ];
+  html += '<div class="phases">' + steps.map(function (st) {
+    var passed = (st.key === 'qual' && S.round >= GROUP_START) ||
+                 (st.key === 'group' && S.round >= KO_START) ||
+                 (st.key === 'ko' && done);
+    var here = !done && (ph === st.key || (ph === 'playoff' && st.key === 'qual'));
+    return '<div class="phase' + (here ? ' here' : '') + (passed ? ' passed' : '') + '">' +
+      (passed ? '&#10003; ' : '') + st.label + '</div>';
+  }).join('') + '</div>';
+
+  if (done) {
+    html += '<div class="rung won" style="justify-content:center">' +
+      '<div style="font-size:26px;font-weight:900;color:#12233F">' +
+      '&#x1F3C6; CHAMPIONS OF THE WORLD &#x1F3C6;</div></div>';
+    html += '<div class="kobox">' + [KO_START, KO_START + 1, KO_START + 2, KO_START + 3]
+      .map(rungHTML).join('') + '</div>';
+  } else if (ph === 'qual' || ph === 'playoff') {
+    var qt = qualTable();
+    var place = ourPlace(qt);
+    html += tableHTML(qt, S.round >= QUAL_END
+      ? (ph === 'playoff'
+          ? 'Third means a playoff. Win it and Spain are at the World Cup.'
+          : 'Top two go to the World Cup.')
+      : 'Top two go to the World Cup. Spain are <b>' + place +
+        (place === 1 ? 'st' : place === 2 ? 'nd' : place === 3 ? 'rd' : 'th') + '</b>.');
+    var qr = phaseRange('qual');
+    html += '<div class="rungs">';
+    for (var i = qr.from; i <= qr.to; i++) html += rungHTML(i);
+    if (S.round === QUAL_END) html += rungHTML(QUAL_END);
+    html += '</div>';
+  } else if (ph === 'group') {
+    var gt = groupTable();
+    html += tableHTML(gt, 'Top two reach the knockouts. Spain are <b>' +
+      ourPlace(gt) + (ourPlace(gt) === 1 ? 'st' : ourPlace(gt) === 2 ? 'nd' : ourPlace(gt) === 3 ? 'rd' : 'th') + '</b>.');
+    var gr = phaseRange('group');
+    html += '<div class="rungs">';
+    for (var j = gr.from; j <= gr.to; j++) html += rungHTML(j);
+    html += '</div>';
+  } else {
+    /* No sub-heading here: the bar above already says THE ROAD TO THE FINAL. */
+    html += '<div class="kobox">';
+    for (var k = KO_START; k < ROUNDS.length; k++) html += rungHTML(k);
+    html += '</div>';
+  }
+  box.innerHTML = html;
+
+  /* Only rungs he can actually play get a handler. */
+  Array.prototype.forEach.call(box.querySelectorAll('.rung[data-idx]'), function (el) {
+    var i = parseInt(el.getAttribute('data-idx'), 10);
+    if (i > S.round || S.round >= ROUNDS.length) return;
+    el.style.cursor = 'pointer';
+    el.onclick = function () { sfxTap(); kickOff(i); };
+  });
+
+  var foot = document.createElement('div');
+  if (done) {
+    var again = document.createElement('button');
+    again.className = 'btn gold';
+    again.style.cssText = 'margin:10px auto 0;display:block';
+    again.textContent = 'Play it again';
+    again.onclick = function () { sfxTap(); S.round = 0; S.results = []; persist(); buildLadder(); };
+    foot.appendChild(again);
+  } else {
+    var play = document.createElement('button');
+    play.className = 'btn gold';
+    play.style.cssText = 'margin:6px auto 0;display:block;font-size:24px;padding:16px 34px';
+    play.innerHTML = needsWarmUp(S.round)
+      ? '&#x26BD; Warm up: ' + ROUNDS[S.round].stage
+      : 'Kick off: ' + ROUNDS[S.round].stage;
+    play.onclick = function () { sfxTap(); kickOff(S.round); };
+    foot.appendChild(play);
+  }
+  box.appendChild(foot);
+}
+
+/* The only door the warm-up stands in front of. Everything else that starts a
+   match - "Play it again" after a loss, the replay button in the shootout, and
+   every test in tests/ - calls startMatch directly and is deliberately not
+   gated.
+
+   A round he has already won is free to replay, because the warm-up buys the
+   NEXT step up the ladder, and Penalty Practice is free too. He should never
+   open this game and find every door shut. */
+function needsWarmUp(idx) {
+  return S.warm.on && idx >= S.round && S.warm.ready !== idx;
+}
+function kickOff(idx) {
+  if (!ROUNDS[idx]) return go('cup');
+  if (needsWarmUp(idx)) return warmUpFor(idx);
+  startMatch(idx);
+}
+
+document.getElementById('btnreset').onclick = function () {
+  sfxTap();
+  popup('Start the World Cup again?', 'Your trophies and your goals are kept. Only the ladder resets.', [
+    { label: 'Yes, start over', style: 'gold', fn: function () { S.round = 0; S.results = []; persist(); buildLadder(); } },
+    { label: 'No', style: 'ghost' }
+  ]);
+};
+
+/* ==========================================================================
+   Jb. THE WARM UP
+   Jaxson does a short drill to earn the next match, the way a player warms up
+   before kick off. Five questions, about a minute, his pick of numbers or
+   words every time.
+
+   Three rules hold the whole thing up, and none of them is negotiable:
+
+   1. DOING it earns the match, not PASSING it. Every warm-up ends after n
+      questions and every warm-up unlocks the match, whatever he answered.
+      There is no score at the end and no way to be locked out of his own
+      game. This is the same rule as the rest of the file - losing a match
+      costs nothing - applied to the one screen that could break it.
+
+   2. He always finishes on the right answer. A wrong tap fades that button
+      out and pulses the correct one; he then taps the correct one himself.
+      No buzzer, no red, no moving on from a wrong answer. It is kinder and
+      it is also how the fact sticks.
+
+   3. A loss never re-charges the toll. Warming up unlocks a round until he
+      WINS it, so lose-and-replay is free. Making him do maths again because
+      he just lost would punish losing, which nothing else here does.
+
+   The item he is answering is in WU.item, and WU is null when no warm-up is
+   running, the same shape as M and P.
+   ========================================================================== */
+
+/* Sentences to finish, and the wrong choices are look-alikes on purpose:
+   was/saw, want/went, run/ran, to/two are the pairs a first grader actually
+   trips on. Everything is about his game, so the reading is worth doing.
+   Level 1 is pre-primer sight words, level 2 primer. Plain ASCII, no
+   apostrophes: the sentence goes through innerHTML. */
+var WORDS = [
+  { s: 'Yamal can _ fast!',        a: 'run',   d: ['red', 'ran'],       lev: 1 },
+  { s: '_ the ball go in!',        a: 'See',   d: ['She', 'Say'],       lev: 1 },
+  { s: 'I _ to play soccer.',      a: 'like',  d: ['little', 'look'],   lev: 1 },
+  { s: '_ is my ball.',            a: 'This',  d: ['The', 'They'],      lev: 1 },
+  { s: 'Run _ the goal!',          a: 'to',    d: ['two', 'for'],       lev: 1 },
+  { s: 'Look _ Yamal go!',         a: 'at',    d: ['it', 'an'],         lev: 1 },
+  { s: 'We _ win the cup!',        a: 'can',   d: ['car', 'cat'],       lev: 1 },
+  { s: 'The ball is _.',           a: 'big',   d: ['bag', 'dig'],       lev: 1 },
+  { s: '_ we go, Spain!',          a: 'Here',  d: ['He', 'Her'],        lev: 1 },
+  { s: 'Yamal has _ ball.',        a: 'the',   d: ['then', 'them'],     lev: 1 },
+  { s: 'Can you _ the ball?',      a: 'see',   d: ['say', 'so'],        lev: 1 },
+  { s: 'He _ down the field.',     a: 'ran',   d: ['run', 'rain'],      lev: 1 },
+  { s: 'It is _ turn!',            a: 'my',    d: ['me', 'by'],         lev: 1 },
+  { s: 'The fans _ happy.',        a: 'are',   d: ['at', 'and'],        lev: 1 },
+  { s: '_ me the ball!',           a: 'Give',  d: ['Gave', 'Live'],     lev: 1 },
+  { s: 'That was a _ goal!',       a: 'good',  d: ['gold', 'goat'],     lev: 1 },
+  { s: 'Spain play _ red.',        a: 'in',    d: ['is', 'it'],         lev: 1 },
+  { s: '_ you see the goal?',      a: 'Did',   d: ['Dad', 'Dig'],       lev: 1 },
+  { s: 'One, _, three, GO!',       a: 'two',   d: ['to', 'too'],        lev: 1 },
+  { s: 'We _ to the game.',        a: 'go',    d: ['got', 'get'],       lev: 1 },
+  { s: 'Yamal is _ best!',         a: 'the',   d: ['they', 'there'],    lev: 1 },
+  { s: 'Kick it _ me!',            a: 'to',    d: ['two', 'the'],       lev: 1 },
+  { s: '_ a great goal!',          a: 'What',  d: ['That', 'Want'],     lev: 1 },
+  { s: 'My _ is Jaxson.',          a: 'name',  d: ['game', 'came'],     lev: 1 },
+  { s: 'Spain _ in the final!',    a: 'play',  d: ['pray', 'plan'],     lev: 1 },
+
+  { s: 'They _ the trophy.',       a: 'saw',   d: ['was', 'say'],       lev: 2 },
+  { s: '_ was a good save!',       a: 'That',  d: ['What', 'Than'],     lev: 2 },
+  { s: 'We _ going to win.',       a: 'are',   d: ['our', 'art'],       lev: 2 },
+  { s: 'Yamal ran _ the field.',   a: 'down',  d: ['dawn', 'den'],      lev: 2 },
+  { s: 'The keeper _ not stop it!',a: 'did',   d: ['dig', 'bid'],       lev: 2 },
+  { s: '_ team is the best?',      a: 'Which', d: ['Witch', 'Wish'],    lev: 2 },
+  { s: 'He is _ good at soccer.',  a: 'very',  d: ['every', 'vary'],    lev: 2 },
+  { s: 'Please _ me play!',        a: 'let',   d: ['lot', 'led'],       lev: 2 },
+  { s: 'The crowd _ so loud.',     a: 'was',   d: ['saw', 'wax'],       lev: 2 },
+  { s: 'Yamal _ over to me.',      a: 'came',  d: ['come', 'cane'],     lev: 2 },
+  { s: 'Spain _ win the World Cup.',a:'will',  d: ['well', 'wall'],     lev: 2 },
+  { s: '_ do you want to play?',   a: 'When',  d: ['Then', 'Went'],     lev: 2 },
+  { s: 'They _ all five games.',   a: 'won',   d: ['own', 'win'],       lev: 2 },
+  { s: 'Look _ there!',            a: 'over',  d: ['ever', 'oven'],     lev: 2 },
+  { s: '_ you ready to play?',     a: 'Are',   d: ['Our', 'Ear'],       lev: 2 },
+  { s: 'He _ a goal in the final.',a: 'made',  d: ['mad', 'make'],      lev: 2 },
+  { s: 'Yamal _ the ball hard.',   a: 'hit',   d: ['hat', 'hut'],       lev: 2 },
+  { s: 'We _ to the stadium.',     a: 'went',  d: ['want', 'west'],     lev: 2 },
+  { s: 'That is _ ball, not mine.',a: 'your',  d: ['you', 'year'],      lev: 2 },
+  { s: 'Give the ball _ Yamal.',   a: 'to',    d: ['too', 'two'],       lev: 2 }
+];
+
+/* The sums are generated rather than listed, so a level is a rule and not a
+   table somebody has to keep in step with itself.
+     1  sums to 10, which is where he is now
+     2  sums to 20
+     3  the missing number, 6 + ? = 10 */
+function mathPool(lev) {
+  var out = [], a, b;
+  if (lev >= 3) {
+    for (a = 1; a <= 9; a++) { out.push({ kind: 'miss', a: a, t: 10, ans: 10 - a, key: a + '?10' }); }
+    for (a = 11; a <= 19; a++) { out.push({ kind: 'miss', a: a, t: 20, ans: 20 - a, key: a + '?20' }); }
+    return out;
+  }
+  var cap = lev >= 2 ? 20 : 10;
+  var top = lev >= 2 ? 12 : 9;
+  for (a = 1; a <= top; a++) {
+    for (b = 1; b <= top; b++) {
+      if (a + b > cap) continue;
+      if (lev >= 2 && a + b <= 10) continue;   // level 2 is the new ground, not a rerun of level 1
+      out.push({ kind: 'sum', a: a, b: b, ans: a + b, key: a + '+' + b });
+    }
+  }
+  return out;
+}
+
+function wordPool(lev) {
+  return WORDS.filter(function (w) { return w.lev <= lev; }).map(function (w) {
+    return { kind: 'word', s: w.s, ans: w.a, d: w.d, key: w.a };
+  });
+}
+
+/* What he has got right and wrong, per fact. This is the whole of the
+   adaptive part and the whole of what the grown-ups panel reads. */
+function factOf(key) {
+  var f = S.warm.facts[key];
+  return (f && typeof f === 'object') ? f : { r: 0, w: 0 };
+}
+function recordFact(key, ok) {
+  var f = S.warm.facts[key];
+  if (!f || typeof f !== 'object') f = S.warm.facts[key] = { r: 0, w: 0 };
+  if (ok) { f.r = (f.r | 0) + 1; S.warm.right++; } else { f.w = (f.w | 0) + 1; S.warm.wrong++; }
+  persist();
+}
+function weightOf(key) {
+  var f = factOf(key);
+  if (f.w > f.r) return 6;    // he is getting this one wrong. Bring it back.
+  if (!f.r) return 3;         // never seen
+  if (f.r < 3) return 2;      // seen, not solid yet
+  return 1;                   // solid. Still reviewed, just rarely.
+}
+
+/* Weighted pick without replacement, with a hard cap of two shaky items in
+   any one warm-up. Aiming at roughly four out of five right: that ratio is
+   the difference between a warm-up that builds him up and one that grinds him
+   down, and a run of five things he cannot do would do the second. */
+function pickItems(pool, n) {
+  var left = pool.slice(), out = [], hard = 0, used = {};
+  /* Several sentences share an answer on purpose - "to" is worth meeting more
+     than once - but two of them inside one warm-up reads as a repeat. */
+  function take(it) { used[it.key] = 1; left = left.filter(function (x) { return x.key !== it.key; }); }
+  while (out.length < n && left.length) {
+    var w = left.map(function (it) {
+      var wt = weightOf(it.key);
+      return (wt === 6 && hard >= 2) ? 1 : wt;
+    });
+    var tot = 0, i;
+    for (i = 0; i < w.length; i++) tot += w[i];
+    var roll = Math.random() * tot, run = 0, pick = left.length - 1;
+    for (i = 0; i < w.length; i++) { run += w[i]; if (roll <= run) { pick = i; break; } }
+    var got = left[pick];
+    if (weightOf(got.key) === 6) hard++;
+    out.push(got);
+    take(got);
+  }
+  return out;
+}
+
+function shuffled(list) {
+  var a = list.slice(), i, j, t;
+  for (i = a.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+/* Two wrong numbers near the right one, so that a right answer means he added
+   rather than picked the only plausible size of number. */
+function numberChoices(ans) {
+  /* Near misses only, and off by one before off by two. An earlier version
+     shuffled ans+10 in with the rest and offered 19 as a choice for a sum to
+     ten, which is not a wrong answer so much as a different question. */
+  var cand = shuffled([ans - 1, ans + 1]).concat(shuffled([ans - 2, ans + 2]));
+  var out = [ans], i;
+  for (i = 0; i < cand.length && out.length < 3; i++) {
+    if (cand[i] >= 1 && out.indexOf(cand[i]) < 0) out.push(cand[i]);
+  }
+  for (i = ans + 3; out.length < 3; i++) if (out.indexOf(i) < 0) out.push(i);
+  return shuffled(out).map(String);
+}
+
+/* The one browser API in here that is allowed to be missing. It reads the
+   sentence with the gap spoken as "blank", so the meaning is available to him
+   and the work left is telling run from ran in print, which is the point.
+   No audio file, nothing downloaded, and it works with the iPad offline. */
+function sayIt(text) {
+  try {
+    if (!window.speechSynthesis) return;
+    speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(text);
+    u.rate = 0.8; u.pitch = 1.05;
+    speechSynthesis.speak(u);
+  } catch (e) { /* no voice on this device. The button simply does nothing. */ }
+}
+
+var WU = null;   // the warm-up in progress. null when none is running.
+
+function warmUpFor(idx) {
+  /* Screen first, then state, for the same reason startMatch does it: go()
+     runs ROOM_LEAVE.warm, which nulls WU. */
+  go('warm');
+  WU = { idx: idx, items: [], at: 0, missed: 0, wrongThis: false, locked: false, item: null };
+  document.getElementById('warmtitle').textContent =
+    'WARM UP: ' + (ROUNDS[idx] ? ROUNDS[idx].stage.toUpperCase() : 'THE MATCH');
+  drawPips();
+  renderDrillPick();
+}
+
+function drawPips() {
+  var box = document.getElementById('warmpips');
+  var n = WU ? Math.max(WU.items.length, S.warm.n) : S.warm.n;
+  var html = '';
+  for (var i = 0; i < n; i++) {
+    html += '<div class="pip' + (WU && i < WU.at ? ' got' : '') + '"></div>';
+  }
+  box.innerHTML = html;
+}
+
+function renderDrillPick() {
+  document.getElementById('warmwrap').innerHTML =
+    '<div class="warmask">Every player warms up before kick off.<br>Pick your drill!</div>' +
+    '<div class="drills">' +
+      '<button class="drill" id="drillmath"><div class="dico">1 2 3</div>' +
+        '<div class="dname">NUMBERS</div><div class="dsub">Add them up</div></button>' +
+      '<button class="drill" id="drillword"><div class="dico">A B C</div>' +
+        '<div class="dname">WORDS</div><div class="dsub">Finish the sentence</div></button>' +
+    '</div>';
+  document.getElementById('drillmath').onclick = function () { sfxTap(); startDrill('math'); };
+  document.getElementById('drillword').onclick = function () { sfxTap(); startDrill('word'); };
+}
+
+function startDrill(kind) {
+  if (!WU) return;
+  var pool = kind === 'math' ? mathPool(S.warm.mlev) : wordPool(S.warm.wlev);
+  WU.drill = kind;
+  WU.items = pickItems(pool, Math.min(S.warm.n, pool.length));
+  WU.at = 0;
+  drawPips();
+  renderQuestion();
+}
+
+function renderQuestion() {
+  if (!WU) return;
+  if (WU.at >= WU.items.length) return finishWarmUp();
+  var it = WU.item = WU.items[WU.at];
+  WU.wrongThis = false;
+  WU.locked = false;
+
+  var head, opts;
+  if (it.kind === 'word') {
+    head = '<div class="qsent">' + it.s.replace('_', '<u>&nbsp;&nbsp;&nbsp;</u>') + '</div>';
+    opts = shuffled([it.ans].concat(it.d));
+  } else if (it.kind === 'miss') {
+    head = '<div class="qsum">' + it.a + ' &#43; ? &#61; ' + it.t + '</div>';
+    opts = numberChoices(it.ans);
+  } else {
+    /* Draw the balls for sums to 10 so counting is always available to him and
+       he can never be simply stuck. They go away at level 2, where counting
+       twelve balls stops being a help and starts being a chore. */
+    head = (S.warm.mlev === 1 ? ballRow(it.a, it.b) : '') +
+      '<div class="qsum">' + it.a + ' &#43; ' + it.b + ' &#61; ?</div>';
+    opts = numberChoices(it.ans);
+  }
+
+  var say = (it.kind === 'word' && window.speechSynthesis)
+    ? '<button class="saybtn" id="saybtn" aria-label="Say it">&#x1F50A;</button>' : '';
+
+  document.getElementById('warmwrap').innerHTML =
+    '<div class="qcard">' + head + '</div>' +
+    (say ? '<div>' + say + '</div>' : '') +
+    '<div class="qrow" id="qrow"></div>' +
+    '<div class="warmhint" id="warmhint"></div>';
+
+  var row = document.getElementById('qrow');
+  opts.forEach(function (o) {
+    var b = document.createElement('button');
+    b.className = 'ans';
+    b.textContent = o;
+    b.setAttribute('data-ans', o);
+    b.onclick = function () { answerTap(b, o); };
+    row.appendChild(b);
+  });
+  if (say) {
+    document.getElementById('saybtn').onclick = function () {
+      sayIt(it.s.replace('_', ' blank '));
+    };
+  }
+}
+
+function ballRow(a, b) {
+  function grp(n) {
+    var s = '<div class="qgrp">';
+    for (var i = 0; i < n; i++) s += '<div class="qb"></div>';
+    return s + '</div>';
+  }
+  return '<div class="qballs">' + grp(a) + '<div class="qplus">&#43;</div>' + grp(b) + '</div>';
+}
+
+function answerTap(btn, val) {
+  if (!WU || WU.locked || !WU.item) return;
+  var it = WU.item;
+  var ok = String(val) === String(it.ans);
+
+  if (!ok) {
+    /* Only the first wrong answer on an item counts against it, and the item
+       is not skipped: the button fades out and the right one starts pulsing,
+       so the last thing he does on every question is tap the correct answer. */
+    if (!WU.wrongThis) { WU.wrongThis = true; WU.missed++; recordFact(it.key, false); }
+    btn.className = 'ans gone';
+    sfxNudge();
+    var right = document.querySelector('#qrow .ans[data-ans="' + String(it.ans) + '"]');
+    if (right) right.className = 'ans show';
+    document.getElementById('warmhint').textContent = 'Tap the gold one!';
+    return;
+  }
+
+  WU.locked = true;
+  btn.className = 'ans right';
+  if (!WU.wrongThis) { recordFact(it.key, true); addBoots(1); }
+  sfxRight();
+  document.getElementById('warmhint').textContent = WU.wrongThis ? 'That is the one!' : 'YES!';
+  if (it.kind === 'word') {
+    var card = document.querySelector('.qsent');
+    if (card) card.innerHTML = it.s.replace('_', '<u>' + it.ans + '</u>');
+    sayIt(it.s.replace('_', it.ans));
+  }
+  WU.at++;
+  drawPips();
+  setTimeout(function () {
+    if (current !== 'warm' || !WU) return;
+    renderQuestion();
+  }, 900);
+}
+
+function finishWarmUp() {
+  var idx = WU.idx, perfect = WU.missed === 0, n = WU.items.length;
+  S.warm.done++;
+  if (perfect) { S.warm.perfect++; S.warm.gold = true; }
+  /* The unlock. It survives a loss and only clears when he wins the round,
+     so lose-and-replay never asks him to do this again. */
+  S.warm.ready = idx;
+  persist();
+  celebrate(perfect);
+  if (perfect) sfxGoal(); else sfxWhistle();
+  var stage = ROUNDS[idx] ? ROUNDS[idx].stage : 'the match';
+  setTimeout(function () {
+    if (current !== 'warm') return;
+    if (perfect) {
+      popup('&#x2B50; PERFECT WARM-UP!',
+        n + ' out of ' + n + ', Jaxson. Yamal plays this one with a <b>GOLD BALL</b>!',
+        [{ label: 'Kick off!', style: 'gold', fn: function () { startMatch(idx); } }]);
+    } else {
+      popup('WARMED UP!',
+        'Good work. Out onto the pitch for the <b>' + stage + '</b>!',
+        [{ label: 'Kick off!', style: 'gold', fn: function () { startMatch(idx); } }]);
+    }
+  }, 600);
+}
+
+document.getElementById('btnwarmback').onclick = function () { sfxTap(); go('cup'); };
+
+/* Leaving mid-drill throws the drill away, and costs him nothing: the unlock
+   is only written in finishWarmUp. Cancel any speech on the way out, or the
+   iPad carries on reading a sentence he has walked away from. */
+ROOM_LEAVE.warm = function () {
+  WU = null;
+  try { if (window.speechSynthesis) speechSynthesis.cancel(); } catch (e) {}
+};
+
+/* ==========================================================================
+   K. THE MATCH
+   Top-down pitch, attacking to the right. One canvas, one rAF loop.
+   The pitch is PITCH_W long and the camera scrolls in x only.
+   ========================================================================== */
+var cv = document.getElementById('pitch');
+var cx = cv.getContext('2d');
+var VIEW_W = 960, VIEW_H = 642;
+var PITCH_W = 1980, PITCH_H = 642;
+var GOAL_H = 230;                       // goal mouth height. Generous on purpose.
+var GOAL_T = (PITCH_H - GOAL_H) / 2;    // top of the mouth
+var GOAL_B = GOAL_T + GOAL_H;
+/* Top speed at a full push. It was 4.3 flat when steering meant "run at the
+   finger", and leaving it there made the stick a pure downside: flat out you
+   moved no faster than before but the ball was now loose. A risk has to buy
+   something, so the ceiling went up. Easing off is slower than the old game,
+   flat out is quicker, and choosing between them is the point. */
+var YAMAL_SPEED = 5.2;
+/* Players are drawn big. At r=20 they read as dots on an iPad held at arm's
+   length, which is how a six year old holds one. TACKLE_DIST is kept separate
+   from MAN_R rather than derived from it, so making them bigger to look at
+   does not silently make them harder to dribble past. */
+var BALL_R = 13, MAN_R = 27, TACKLE_DIST = 38;
+
+/* THE FLOATING STICK.
+
+   Touch anywhere on the pitch and that point becomes the centre of a stick;
+   drag away from it to run in that direction. The finger stays parked where it
+   landed instead of travelling to wherever Yamal is going.
+
+   This replaced "Yamal runs to your fingertip", which had a flaw no test could
+   ever have found. Brian played it and said his hand was in the way and he
+   could not see what he was shooting at. He was right, and it was structural:
+   the old scheme put the finger ON the spot Yamal was running to, which
+   attacking rightward is precisely the goalmouth. The hand covered the target.
+
+   STICK_MAX is how far you push for full speed. STICK_DEAD is the slop before
+   he moves at all, so resting a thumb does not send him wandering. */
+var STICK_MAX = 78, STICK_DEAD = 9;
+
+/* How far the ball sits from his feet, at a standstill and at a full sprint.
+   This is where the skill in running lives: shove it forward and you cover
+   ground but a defender can nick it off you without getting near you; ease off
+   and it is tucked in where he cannot reach. Close control versus running into
+   space, which is a real thing about soccer that a six year old can feel in
+   his thumb. */
+var BALL_NEAR = 22, BALL_FAR = 48;
+/* The gap between those two IS the skill, exactly: a defender takes the ball
+   when he is within TACKLE_DIST of it, so the range of defender distances
+   where walking keeps it and sprinting loses it is precisely BALL_FAR minus
+   BALL_NEAR wide. At 40 that band was 18px, about four frames of closing
+   speed, which is too narrow to feel like a decision. At 48 it is 26px.
+   tests/stick.test.js sweeps for the band rather than trusting this comment. */
+
+/* The three numbers that decide whether the game is beatable. Every one of
+   them was wrong in the first cut, and together they produced a keeper who
+   saved nineteen shots out of nineteen across all five rounds.
+
+   KEEPER_ROAM: how far in from each post he will stand before the shot. With
+   him free to track the ball right across the mouth he simply stood on the
+   shot before it was struck. Now he holds the middle and can only reach a
+   corner by diving. This has to be big: at 48 the playtest bot still could not
+   score, because running toward the corner it wanted dragged the keeper along
+   with it and it arrived to find him already there. At 88 he guards a narrow
+   strip in the centre and both corners are genuinely open, which is what the
+   aim line has been promising all along.
+
+   KEEPER_REACH: how far either side of himself he saves. At 48 he covered
+   nearly half the goal from a standing start.
+
+   KEEPER_DIVE: pixels per frame once committed. Fast enough that on a normal
+   shot he gets where he guessed, so what beats him is guessing wrong, not
+   being slow. It still matters that it is finite: a shot from close in gives
+   him only a handful of frames, so getting nearer really does help. An earlier
+   version scaled this with the round and it made the guess irrelevant, because
+   over a long flight the cap, not the guess, decided where he ended up. */
+var KEEPER_ROAM = 88;
+var KEEPER_REACH = 30;
+var KEEPER_DIVE = 12;
+/* Frames the keeper stands still after the shot is struck before he starts to
+   move. Without it the distance curve runs backwards, which a QA pass caught
+   from the outside and measurement then pinned down: shooting from point blank
+   converted 25-45%, and dead centre from point blank converted 0%, while the
+   same shots from the edge of the box converted 74-81%.
+
+   Running right up to the keeper is the most natural thing a six year old does,
+   and it was the worst thing he could do. The cause is that a short flight
+   gives the keeper no time to dive the WRONG way, while he is already standing
+   on the shooter's line - so he cannot be beaten by a bad guess, only outrun.
+
+   A reaction delay fixes the direction of the curve without touching the long
+   range game: from close in he has barely moved when the ball arrives, so a
+   corner is open and only the middle is covered. Close in, pick a corner and
+   score. That is a rule a six year old can hold in his head. */
+var KEEPER_REACT = 7;
+
+var M = null;   // the whole match state. null when no match is running.
+var raf = 0;
+
+function startMatch(idx, forceMate) {
+  var practice = (idx === 'practice');
+  /* A round past the end of the ladder is unreachable today - buildLadder stops
+     attaching handlers once the cup is won - but S.round can legitimately equal
+     ROUNDS.length, and ROUNDS[that] is undefined, so this is one line between a
+     future refactor and a blank screen on boot. */
+  if (!practice && !ROUNDS[idx]) return go('cup');
+  var r = practice ? PRACTICE : ROUNDS[idx];
+  var foe = TEAMS[r.foe];
+  /* Switch screens BEFORE building M. go() runs ROOM_LEAVE for the screen we
+     are leaving, and ROOM_LEAVE.match nulls M. "Play it again" from the full
+     time popup is already on the match screen, so building M first meant the
+     replay immediately tore down the match it had just created. */
+  go('match');
+  M = {
+    idx: idx, r: r, foe: foe, practice: practice,
+    /* A perfect warm-up puts a gold ball on the pitch for the round it was
+       earned on. Cosmetic only, on purpose: a real advantage would make the
+       tournament easier exactly when he is doing well, and would turn the
+       warm-up into something with stakes. */
+    gold: !!S.warm.gold && S.warm.ready === idx,
+    last: 0, elapsed: 0, paused: false, over: false, running: false,
+    gf: 0, ga: 0,
+    cam: 0,
+    /* who has the ball: 'us' while Yamal has it, 'them' while a defender is
+       carrying it back, 'shot' while it is flying, 'dead' during a reset */
+    phase: 'kick',
+    /* Nico, or null on the rounds he does not play. See section Kb. */
+    mate: (r.mate || forceMate) ? {
+      x: 420, y: PITCH_H / 2 - 130, hasBall: false, hold: 0
+    } : null,
+    /* the ball in flight between the two of them: null, or {to:'mate'|'us'} */
+    inPass: null,
+    /* frames since Yamal last played it to Nico. A one-two is getting it back
+       while this is still counting. */
+    sincePass: 999,
+    ones: 0,          // one-twos completed this match
+    /* the keeper moment: null unless one is on screen right now */
+    saving: null,
+    /* the stick, while a finger is down. null when it is not. */
+    stick: null,
+    /* 0..1, how hard he is running this frame. Drives both his speed and how
+       far the ball sits from his feet. */
+    push: 0,
+    /* The bot and the test suites steer by target point rather than by
+       simulating a thumb, so both input paths stay live. throttle is how they
+       ask for close control. See tests/bot.js. */
+    throttle: 1,
+    atkAt: attackTimes(r),
+    x: 300, y: PITCH_H / 2,       // Yamal
+    aimx: 1, aimy: 0,             // unit vector he is facing
+    tx: null, ty: null,           // steer target, null when the finger is up
+    ball: { x: 300, y: PITCH_H / 2, vx: 0, vy: 0, live: false },
+    keeper: { y: PITCH_H / 2, vy: 0, diving: false, react: 0, target: PITCH_H / 2 },
+    ourKeeper: { y: PITCH_H / 2 },
+    defs: [],
+    carrier: null,                // the defender running it back at us
+    freeze: 0,                    // frames to hold still after a goal
+    shotCool: 0,
+    /* Frames during which nobody can tackle. Without it the tackler is still
+       standing on top of Yamal the frame after he loses the ball, so contact
+       fires again immediately and possession flips every frame. */
+    grace: 0
+  };
+  for (var i = 0; i < r.defs; i++) {
+    var h = defenderHome(i, r.defs);
+    M.defs.push({ x: h.x, y: h.y, hx: h.x, hy: h.y, stun: 0 });
+  }
+  document.getElementById('matchstage').textContent = r.stage.toUpperCase();
+  document.getElementById('scoreflagA').innerHTML = TEAMS.spain.flag;
+  document.getElementById('scoreflagB').innerHTML = foe.flag;
+  updateScore();
+  kickoff(true);
+  M.running = true;
+  M.last = 0;
+  document.getElementById('pausewrap').classList.remove('on');
+  loop();
+  sfxWhistle();
+  toast('KICK OFF!');
+}
+
+function now() { return (window.performance && performance.now) ? performance.now() : Date.now(); }
+
+/* Pause the match whenever the game stops being on screen. The clamp in step()
+   already stops the clock running away, but coming back to a match that quietly
+   carried on without you is its own kind of wrong: he should restart it himself
+   and see the pitch before it moves. */
+function pauseMatch() {
+  /* Not while he is keeping goal: two overlays at once, and the pause card
+     would sit on top of the buttons he is being asked to tap. The keeper
+     moment runs on its own short timer and resolves itself, and a wrong guess
+     is never a certain goal, so letting it play out is the harmless option. */
+  if (M && M.saving) return;
+  if (!M || !M.running || M.over || M.paused) return;
+  M.paused = true;
+  M.stick = null; M.tx = null; M.ty = null;   // drop any half finished drag
+  document.getElementById('pausewrap').classList.add('on');
+}
+function resumeMatch() {
+  if (!M || !M.paused) return;
+  M.paused = false;
+  M.last = 0;                        // start the delta fresh, not from the gap
+  document.getElementById('pausewrap').classList.remove('on');
+}
+document.addEventListener('visibilitychange', function () {
+  if (document.hidden) pauseMatch();
+});
+document.getElementById('pausewrap').addEventListener('pointerdown', function (e) {
+  e.preventDefault(); e.stopPropagation(); resumeMatch();
+});
+
+function kickoff(first) {
+  M.x = first ? 300 : 340;
+  M.y = PITCH_H / 2;
+  M.aimx = 1; M.aimy = 0;
+  M.stick = null; M.tx = null; M.ty = null;
+  M.ball.x = M.x + 24; M.ball.y = M.y; M.ball.vx = 0; M.ball.vy = 0; M.ball.live = false;
+  M.phase = 'us';
+  M.carrier = null;
+  M.keeper.y = PITCH_H / 2; M.keeper.diving = false; M.keeper.react = 0;
+  M.defs.forEach(function (d) { d.x = d.hx; d.y = d.hy; d.stun = 0; });
+  M.shotCool = 0;
+  M.grace = 30;
+  M.inPass = null;
+  M.sincePass = 9999;
+  if (M.mate) {
+    M.mate.hasBall = false;
+    M.mate.hold = 0;
+    M.mate.x = M.x + 150;
+    M.mate.y = PITCH_H / 2 - 130;
+  }
+  syncPassBtn();
+}
+
+function updateScore() {
+  document.getElementById('scoreA').textContent = M.gf;
+  document.getElementById('scoreB').textContent = M.ga;
+}
+
+var toastTimer = 0;
+function toast(text) {
+  var el = document.getElementById('toast');
+  el.textContent = text;
+  el.classList.remove('show');
+  void el.offsetWidth;      // restart the animation
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function () { el.classList.remove('show'); }, 1600);
+}
+
+/* ==========================================================================
+   Kb. NICO, AND THE PASS
+   Nico Williams, #17, runs with Yamal from the quarter-final on.
+
+   The pass ALWAYS connects. There is no interception and no dice roll: the
+   skill is WHEN and WHERE you play it, not whether it arrives. A good pass
+   finds Nico in space and you are suddenly past two defenders. A lazy one
+   finds him marked and he gets closed down. You are rewarded with a better
+   position, never punished with a turnover, which is the same bargain the rest
+   of this game makes.
+
+   The move worth learning is the one-two: pass, run past the man you could not
+   dribble past, get it back on the other side. It is the fundamental idea in
+   soccer, it feels brilliant when it comes off, and it is the answer to being
+   cornered - which was the only genuinely frustrating position in the game.
+
+   Nico does not shoot. He gives it back. This is still Yamal's World Cup.
+   ========================================================================== */
+var MATE_SPEED = 3.6;       // slower than Yamal, who is always the quickest
+var PASS_SPEED = 13;
+var ONETWO_FRAMES = 150;    // about 2.5s to get it back and have it count
+
+/* Where Nico wants to be: ahead of Yamal, out to the side, and away from
+   whichever defender is nearest him. Getting open is the whole of his AI, and
+   it is what makes looking for the pass worth doing. */
+function mateTarget() {
+  var m = M.mate;
+  var tx = M.x + 210;
+  /* Pick the side with more room. Mirroring Yamal keeps him useful when Yamal
+     is hugging a touchline. */
+  var up = M.y > PITCH_H / 2;
+  var ty = up ? M.y - 190 : M.y + 190;
+  var near = null, nd = 1e9;
+  M.defs.forEach(function (d) {
+    var dist = Math.hypot(d.x - m.x, d.y - m.y);
+    if (dist < nd) { nd = dist; near = d; }
+  });
+  if (near && nd < 200) {
+    /* drift away from his marker rather than standing next to him */
+    ty += (near.y > m.y ? -1 : 1) * 120;
+  }
+  return {
+    x: Math.max(80, Math.min(PITCH_W - 120, tx)),
+    y: Math.max(60, Math.min(PITCH_H - 60, ty))
+  };
+}
+
+function stepMate() {
+  var m = M.mate;
+  if (!m) return;
+  if (M.sincePass < 9999) M.sincePass++;
+
+  /* the ball in flight between them */
+  if (M.inPass) {
+    var tgt = M.inPass.to === 'mate' ? m : { x: M.x, y: M.y };
+    var dx = tgt.x - M.ball.x, dy = tgt.y - M.ball.y;
+    var d = Math.hypot(dx, dy);
+    if (d <= PASS_SPEED) {
+      M.ball.x = tgt.x; M.ball.y = tgt.y;
+      if (M.inPass.to === 'mate') {
+        m.hasBall = true;
+        /* He holds it briefly, then looks for Yamal. Long enough that running
+           into space is worth doing, short enough that a six year old never
+           feels he has lost control of his own game. */
+        m.hold = 34;
+      } else {
+        M.phase = 'us';
+        M.grace = 20;
+        /* Got it back inside the window: that is a one-two, and it gets a name
+           shouted at him, because naming the move is how he learns it. */
+        if (M.sincePass <= ONETWO_FRAMES) {
+          M.ones++;
+          S.ones++;
+          persist();
+          toast('ONE-TWO!');
+          sfxRight();
+          /* Counted on its own and NOT paid in boots. A one-two can be played
+             over and over, and a playtest run turned 26 boots a tournament
+             into 68 - which quietly devalues every boot he earned scoring.
+             A new skill gets a new number rather than inflating an old one. */
+        }
+      }
+      M.inPass = null;
+      return;
+    }
+    M.ball.x += (dx / d) * PASS_SPEED;
+    M.ball.y += (dy / d) * PASS_SPEED;
+    return;
+  }
+
+  if (m.hasBall) {
+    /* He carries it forward a little, then plays it back. He never shoots. */
+    m.x += Math.min(MATE_SPEED, PITCH_W - 200 - m.x > 0 ? MATE_SPEED : 0);
+    M.ball.x = m.x + 20; M.ball.y = m.y;
+    if (m.hold > 0) { m.hold--; return; }
+    passBack();
+    return;
+  }
+
+  /* getting open */
+  var want = mateTarget();
+  var mdx = want.x - m.x, mdy = want.y - m.y;
+  var md = Math.hypot(mdx, mdy);
+  if (md > 3) {
+    var sp = Math.min(MATE_SPEED, md);
+    m.x += (mdx / md) * sp;
+    m.y += (mdy / md) * sp;
+  }
+}
+
+function canPass() {
+  return !!(M && !M.over && M.mate && M.phase === 'us' && !M.inPass && !M.mate.hasBall);
+}
+
+function pass() {
+  if (!canPass()) return;
+  M.phase = 'pass';
+  M.inPass = { to: 'mate' };
+  M.sincePass = 0;
+  M.ball.live = false;
+  M.ball.x = M.x + M.aimx * 20;
+  M.ball.y = M.y + M.aimy * 20;
+  sfxKick();
+}
+
+function passBack() {
+  if (!M || !M.mate) return;
+  M.mate.hasBall = false;
+  M.phase = 'pass';
+  M.inPass = { to: 'us' };
+  sfxKick();
+}
+
+/* Tapping PASS while Nico has it asks for it back straight away, which is what
+   turns the exchange into a one-two he controls rather than one that happens
+   on a timer. */
+function passOrRecall() {
+  if (!M || M.over || !M.mate) return;
+  if (M.mate.hasBall) return passBack();
+  pass();
+}
+
+function syncPassBtn() {
+  var b = document.getElementById('passbtn');
+  if (!b) return;
+  if (M && M.mate) b.classList.add('on'); else b.classList.remove('on');
+}
+
+document.getElementById('passbtn').addEventListener('pointerdown', function (e) {
+  e.preventDefault(); e.stopPropagation(); passOrRecall();
+});
+
+/* --- controls --- */
+/* Stick coordinates are canvas space, screen fixed: the camera scrolls in x
+   but the stick does not travel with it, so no M.cam here. The canvas sits
+   78px below the top of the board, hence the y offset. */
+function stickDown(e) {
+  if (!M || M.over || M.saving) return;
+  var p = stageXY(e);
+  M.stick = { ox: p.x, oy: p.y - 78, dx: M.aimx, dy: M.aimy, mag: 0 };
+  M.tx = null; M.ty = null;
+}
+function stickMove(e) {
+  if (!M || M.over || !M.stick) return;
+  var p = stageXY(e);
+  var dx = p.x - M.stick.ox, dy = (p.y - 78) - M.stick.oy;
+  var d = Math.hypot(dx, dy);
+  if (d < STICK_DEAD) { M.stick.mag = 0; return; }
+  M.stick.dx = dx / d;
+  M.stick.dy = dy / d;
+  M.stick.mag = Math.min(1, (d - STICK_DEAD) / (STICK_MAX - STICK_DEAD));
+  if (!S.stickSeen) { S.stickSeen = true; persist(); }
+}
+cv.addEventListener('pointerdown', function (e) {
+  e.preventDefault();
+  /* Capture the pointer for the whole drag.
+
+     The buttons live in the bottom right corner, which a steering thumb can
+     still cross. Without capture, the instant the finger slides over one the
+     canvas stops receiving pointermove and Yamal stops dead with the finger
+     still down, which reads as the game freezing. Capture keeps every move
+     coming here until the finger lifts.
+
+     It does not cost the button anything. Capture is released on pointerup, so
+     the next tap lands on the button normally, and on a touch screen a second
+     finger has its own pointerId and reaches the button while the first is
+     still steering. */
+  try { cv.setPointerCapture(e.pointerId); } catch (err) {}
+  stickDown(e);
+});
+cv.addEventListener('pointermove', function (e) {
+  if (e.buttons === 0 && e.pointerType === 'mouse') return;
+  e.preventDefault(); stickMove(e);
+});
+function endSteer(e) {
+  if (M) { M.stick = null; M.tx = null; M.ty = null; }
+  try {
+    if (e && cv.hasPointerCapture && cv.hasPointerCapture(e.pointerId)) cv.releasePointerCapture(e.pointerId);
+  } catch (err) {}
+}
+cv.addEventListener('pointerup', endSteer);
+cv.addEventListener('pointercancel', endSteer);
+
+var shootBtn = document.getElementById('shootbtn');
+shootBtn.addEventListener('pointerdown', function (e) { e.preventDefault(); e.stopPropagation(); shoot(); });
+
+document.getElementById('btnquit').onclick = function () {
+  sfxTap();
+  var wasPractice = !!(M && M.practice);
+  endMatch(true);
+  go(wasPractice ? 'home' : 'cup');
+};
+
+function shoot() {
+  if (!M || M.over || M.phase !== 'us' || M.shotCool > 0) return;
+  M.shotCool = 28;
+  /* Aim is wherever he is facing. Accuracy falls off with distance, which is
+     what makes "get closer before you shoot" the thing worth learning. */
+  var dist = PITCH_W - M.x;
+  var wobble = Math.max(0, (dist - 380) / 1500) * 0.16;
+  var a = Math.atan2(M.aimy, M.aimx) + (Math.random() * 2 - 1) * wobble;
+  var speed = 15;
+  M.ball.x = M.x + Math.cos(a) * 26;
+  M.ball.y = M.y + Math.sin(a) * 26;
+  M.ball.vx = Math.cos(a) * speed;
+  M.ball.vy = Math.sin(a) * speed;
+  M.ball.live = true;
+  M.phase = 'shot';
+  sfxKick();
+
+  /* The keeper commits now, on a prediction of where the ball crosses the line
+     plus an error set by the round. He cannot re-aim mid-flight, so a good
+     shot stays good. */
+  var flight = (PITCH_W - M.ball.x) / Math.max(1, M.ball.vx);
+  var predicted = M.ball.y + M.ball.vy * flight;
+  var err = (1 - M.r.keeper) * 170 * (Math.random() * 2 - 1);
+  /* Deliberately NOT clamped to the goal mouth. Clamping it there was a quiet
+     disaster: a shot at the top corner had its prediction pushed back down to
+     the post, so the keeper landed on the exact spot the ball was going and
+     aiming for a corner became worse than aiming down the middle. A keeper
+     who has guessed wrong dives past his post, which is also what one looks
+     like. */
+  M.keeper.target = Math.max(GOAL_T - 60, Math.min(GOAL_B + 60, predicted + err));
+  M.keeper.diving = true;
+  M.keeper.react = KEEPER_REACT;
+}
+
+/* --- the loop --- */
+function loop(ts) {
+  if (!M || !M.running) return;
+  if (!M.paused) step(ts);
+  render();
+  raf = requestAnimationFrame(loop);
+}
+
+function step(ts) {
+  if (M.over) return;
+
+  /* The keeper moment freezes everything: no clock, no movement, no defenders.
+     He did not ask for the interruption, so it must not cost him match time.
+     Zeroing last means the delta restarts fresh when play resumes rather than
+     counting the whole pause as one frame. */
+  if (M.saving) { M.last = 0; return; }
+
+  /* The clock counts frames, not the wall clock, and each frame's contribution
+     is clamped.
+
+     It used to be `(now() - M.t0) / 1000`, which is wrong on the one device
+     this game is played on. The physics are fixed step: Yamal moves 4.3px per
+     step() call whether the last frame was 16ms or a minute ago. So on wall
+     clock time, game time keeps running while the game does not. Lock the iPad,
+     take a phone call, switch apps for a minute, and you come back to a match
+     that has already finished - as a 0-0 draw, which then dumps a six year old
+     into a penalty shootout he never played for. Not an edge case: that is
+     Tuesday.
+
+     Clamping to 50ms means any suspension, hitch or breakpoint costs at most
+     one frame of match time instead of the whole gap. pauseMatch() below stops
+     it entirely, but the clamp is what makes the failure harmless even if the
+     pause never fires. */
+  var t = (typeof ts === 'number') ? ts : now();
+  if (M.last === 0) M.last = t;
+  M.elapsed += Math.min(0.05, Math.max(0, (t - M.last) / 1000));
+  M.last = t;
+
+  if (M.practice) {
+    /* No clock and no full time. He leaves when he wants to, and the ladder is
+       never touched, which is what makes this a place to try things. */
+    document.getElementById('clock').textContent = M.ones + ' \u21C4';
+  } else {
+    var mins = Math.min(90, Math.floor(M.elapsed / M.r.secs * 90));
+    document.getElementById('clock').textContent = mins + "'";
+    if (M.elapsed >= M.r.secs) { fullTime(); return; }
+  }
+
+  if (M.freeze > 0) { M.freeze--; return; }
+  if (M.shotCool > 0) M.shotCool--;
+
+  /* Their break away. Never while a shot is in the air: cutting away from a
+     ball he has just struck would feel like the game took the goal off him. */
+  if (M.atkAt.length && M.elapsed >= M.atkAt[0] && M.phase !== 'shot') {
+    M.atkAt.shift();
+    oppAttack();
+    return;
+  }
+
+  /* --- Yamal ---
+     Two input paths feed the same movement. A finger drives M.stick; the
+     playtest bot and the suites drive M.tx/M.ty, because simulating a thumb
+     to test a match is a lot of machinery for no extra confidence. Whichever
+     is active sets M.push, and push is what the rest of the frame reads. */
+  M.push = 0;
+  if (M.stick && M.stick.mag > 0) {
+    M.aimx = M.stick.dx; M.aimy = M.stick.dy;
+    M.push = M.stick.mag;
+    M.x += M.aimx * YAMAL_SPEED * M.push;
+    M.y += M.aimy * YAMAL_SPEED * M.push;
+  } else if (M.tx !== null) {
+    var dx = M.tx - M.x, dy = M.ty - M.y;
+    var d = Math.hypot(dx, dy);
+    if (d > 3) {
+      M.aimx = dx / d; M.aimy = dy / d;
+      var th = (typeof M.throttle === 'number') ? Math.max(0, Math.min(1, M.throttle)) : 1;
+      var sp = Math.min(YAMAL_SPEED * th, d);
+      M.push = YAMAL_SPEED ? sp / YAMAL_SPEED : 0;
+      M.x += M.aimx * sp;
+      M.y += M.aimy * sp;
+    }
+  }
+  M.x = Math.max(34, Math.min(PITCH_W - 40, M.x));
+  M.y = Math.max(34, Math.min(PITCH_H - 34, M.y));
+
+  /* Nico, and any pass in flight between the two of them. Before the ball is
+     glued to Yamal's feet below, because while a pass is travelling the ball
+     belongs to the pass and not to either of them. */
+  stepMate();
+
+  /* The ball sits further from his feet the harder he is running. Not
+     decoration: the tackle check below reaches for the BALL, so this is
+     exactly what makes sprinting risky and slowing down useful. */
+  if (M.phase === 'us' && !M.inPass) {
+    /* Squared, not linear. Linear meant a half push already had the ball two
+       thirds of the way out, so there was no comfortable cruising speed and
+       the only safe option was a crawl. Squared keeps it tucked in through
+       the middle of the range and only really exposes it flat out. */
+    var reach = BALL_NEAR + (BALL_FAR - BALL_NEAR) * M.push * M.push;
+    M.ball.x = M.x + M.aimx * reach;
+    M.ball.y = M.y + M.aimy * reach;
+    M.ball.live = false;
+  }
+
+  /* --- defenders ---
+     Zonal, and a beaten defender stays beaten. Both halves of that matter.
+
+     The first cut had every defender chase Yamal directly, which looked right
+     and played terribly: from three defenders upward they converge from
+     different angles and corner him, and a bot that dodges perfectly still
+     never got past x=926 on any of the last three rounds. Worse, a defender he
+     had already skinned turned round and caught him again while he lined up a
+     shot, so beating a man bought nothing.
+
+     Now each one guards a patch of grass, only leaves it when Yamal comes
+     within range, and jogs back once Yamal is past him. Yamal meets them one
+     at a time, which is the thing a six year old can actually learn: beat this
+     guy, then that guy, then shoot. */
+  var i, d2;
+  for (i = 0; i < M.defs.length; i++) {
+    var f = M.defs[i];
+    if (f.stun > 0) { f.stun--; continue; }
+
+    if (M.phase === 'them' && f === M.carrier) {
+      /* carrying it back toward our goal, and slower than he chases so the
+         chase is always winnable */
+      var a2 = Math.atan2(PITCH_H / 2 - f.y, 0 - f.x);
+      f.x += Math.cos(a2) * M.r.dspeed * 0.9;
+      f.y += Math.sin(a2) * M.r.dspeed * 0.9;
+      M.ball.x = f.x - 22; M.ball.y = f.y;
+      if (f.x < 110) { theyArrive(); return; }
+    } else {
+      var beaten = M.x > f.x + 50;
+      var near2 = Math.hypot(M.x - f.x, M.y - f.y) < M.r.range;
+      /* Nobody but the carrier gets involved in a counter attack. It keeps the
+         win-back a clean one on one instead of a scrum Yamal cannot get out
+         of, and it is why chasing the ball down is worth doing. */
+      var engage = M.phase === 'us' && near2 && !beaten;
+      var tx2, ty2, spd;
+      if (engage) {
+        tx2 = M.x + M.aimx * M.r.lead; ty2 = M.y + M.aimy * M.r.lead;
+        spd = M.r.dspeed;
+      } else {
+        tx2 = f.hx; ty2 = f.hy;
+        spd = M.r.dspeed * 0.7;              // jogging back into position
+      }
+      var dh = Math.hypot(tx2 - f.x, ty2 - f.y);
+      if (dh > 2) {
+        f.x += ((tx2 - f.x) / dh) * Math.min(spd, dh);
+        f.y += ((ty2 - f.y) / dh) * Math.min(spd, dh);
+      }
+    }
+    f.x = Math.max(24, Math.min(PITCH_W - 60, f.x));
+    f.y = Math.max(24, Math.min(PITCH_H - 24, f.y));
+  }
+
+  /* --- contact --- */
+  if (M.grace > 0) {
+    M.grace--;
+  } else {
+    for (i = 0; i < M.defs.length; i++) {
+      var g = M.defs[i];
+      if (g.stun > 0) continue;
+      /* Only ever break out of this loop when possession actually changed.
+         Breaking on mere contact meant a defender who happened to be standing
+         on Yamal shadowed the carrier behind him in the array, so running the
+         carrier down never won the ball back: the loop returned before it got
+         to him. */
+      d2 = Math.hypot(g.x - M.x, g.y - M.y);
+      /* When Yamal has it, a defender reaches for the BALL rather than for
+         Yamal. At a sprint it is pushed well ahead of his feet and can be
+         nicked without the defender ever getting near him; at a walk it is
+         tucked in where he cannot reach. That one substitution is what turns
+         the stick from a different control into a skill. Winning it BACK is
+         still measured player to player, because running into the man is the
+         move and it should not depend on where he happens to be holding it. */
+      /* Nothing to win while the ball is in the air between them. Without
+         this a defender standing near Yamal took a ball that was not at his
+         feet, and the pass looked like it had been intercepted - which is the
+         one thing a pass in this game must never be. */
+      if (M.inPass || (M.mate && M.mate.hasBall)) break;
+      var dTake = (M.phase === 'us')
+        ? Math.hypot(g.x - M.ball.x, g.y - M.ball.y)
+        : d2;
+      if (dTake < TACKLE_DIST) {
+        if (M.phase === 'us') {
+          /* tackled. He loses it, they carry it back. Never a game over. */
+          M.phase = 'them';
+          M.carrier = g;
+          M.ball.live = false;
+          M.grace = 40;
+          sfxTackle();
+          toast('LOST IT!');
+          break;
+        } else if (M.phase === 'them' && g === M.carrier) {
+          /* he won it back by running into the carrier. Everyone backs off for
+             two thirds of a second so the reward is a real chance to run. */
+          M.phase = 'us';
+          M.carrier = null;
+          M.grace = 40;
+          M.defs.forEach(function (o) { o.stun = 40; });
+          sfxTap();
+          toast('WON IT BACK!');
+          break;
+        }
+      }
+    }
+  }
+
+  /* --- their keeper drifts toward the ball while we are in play --- */
+  if (!M.keeper.diving) {
+    var want = Math.max(GOAL_T + KEEPER_ROAM, Math.min(GOAL_B - KEEPER_ROAM, M.ball.y));
+    M.keeper.y += (want - M.keeper.y) * 0.045;
+  } else {
+    /* Constant speed, not a lerp. A lerp got him within a hair of the target
+       in any flight time worth having, so where he was standing when the shot
+       was struck made no difference and the whole positioning game was fake.
+       The reaction delay in front of it is what keeps close range rewarding. */
+    if (M.keeper.react > 0) {
+      M.keeper.react--;
+    } else {
+      var dk = M.keeper.target - M.keeper.y;
+      var stepK = Math.min(Math.abs(dk), KEEPER_DIVE);
+      M.keeper.y += (dk > 0 ? 1 : -1) * stepK;
+    }
+  }
+
+  /* --- the ball in flight --- */
+  if (M.phase === 'shot') {
+    M.ball.x += M.ball.vx;
+    M.ball.y += M.ball.vy;
+    M.ball.vx *= 0.995; M.ball.vy *= 0.995;
+
+    /* bounce off the touchlines rather than vanishing */
+    if (M.ball.y < BALL_R) { M.ball.y = BALL_R; M.ball.vy *= -0.7; }
+    if (M.ball.y > PITCH_H - BALL_R) { M.ball.y = PITCH_H - BALL_R; M.ball.vy *= -0.7; }
+
+    if (M.ball.x >= PITCH_W - 26) {
+      if (M.ball.y > GOAL_T && M.ball.y < GOAL_B) {
+        if (Math.abs(M.keeper.y - M.ball.y) < KEEPER_REACH) { saved(); } else { scored(); }
+      } else {
+        missed();
+      }
+      return;
+    }
+    /* A shot that runs out of pace without reaching the line is a goal kick.
+       Teleporting Yamal onto the loose ball was the other option and it read
+       as a glitch: he vanished from where the finger was. */
+    if (Math.hypot(M.ball.vx, M.ball.vy) < 2.2) { missed(); return; }
+  }
+
+  /* --- camera --- */
+  var wantCam = M.x - 330;
+  M.cam += (Math.max(0, Math.min(PITCH_W - VIEW_W, wantCam)) - M.cam) * 0.12;
+}
+
+function scored() {
+  M.gf++;
+  S.goals++;
+  updateScore();
+  persist();
+  sfxGoal();
+  celebrate(false);
+  toast('GOOOAL!');
+  M.phase = 'dead';
+  M.freeze = 46;
+  setTimeout(function () { if (M && !M.over) kickoff(false); }, 900);
+}
+function saved() {
+  sfxSave();
+  /* Teach the rule instead of only enforcing it. From close in the keeper
+     cannot dive in time, so a corner always beats him and the middle never
+     does - which is a fine rule to learn and a miserable one to guess at.
+     Naming what went wrong is the difference between the two. */
+  var mid = (GOAL_T + GOAL_B) / 2;
+  toast(Math.abs(M.ball.y - mid) < 46 ? 'TRY A CORNER!' : 'SAVED!');
+  M.phase = 'dead';
+  M.freeze = 26;
+  setTimeout(function () { if (M && !M.over) kickoff(false); }, 700);
+}
+function missed() {
+  toast('SO CLOSE!');
+  M.phase = 'dead';
+  M.freeze = 20;
+  setTimeout(function () { if (M && !M.over) kickoff(false); }, 620);
+}
+/* ==========================================================================
+   THE KEEPER MOMENT
+   The other team breaks away and Jaxson keeps goal, using the same three
+   choices as the penalty shootout. He already knows that move, so it needs no
+   teaching in the middle of a match.
+
+   This exists because without it the scoreboard only ever moved one way.
+   Conceding required him to ignore a defender carrying the ball for ten
+   seconds AND then lose a dice roll that was zero on the first round, so in
+   practice the opposition never scored and winning 3-0 every time meant
+   nothing. Brian spotted it after one match.
+
+   It is still not a fail state. Conceding costs one goal, the match stays
+   winnable, a draw goes to the shootout where the odds are in his favour, and
+   losing costs nothing at all.
+   ========================================================================== */
+var SAVE_SECS = 4;          // how long he gets to choose
+var saveTimer = 0;
+
+/* When their attacks happen. Spread through the match, but never in the first
+   ten seconds - let him get going - and never in the last five, because a goal
+   on the whistle is a rotten way to lose a match you were winning. */
+function attackTimes(r) {
+  var out = [], lo = 10, hi = r.secs - 5, i;
+  if (hi <= lo) return out;
+  /* At least one, always. A match where their break away never comes is the
+     thing this whole mechanic exists to stop. */
+  var n = Math.max(1, Math.round((hi - lo) / r.gap));
+  for (i = 0; i < n; i++) {
+    out.push(lo + (hi - lo) * ((i + 0.5 + (Math.random() - 0.5) * 0.6) / n));
+  }
+  return out;
+}
+
+function oppAttack() {
+  if (!M || M.saving) return;
+  M.saving = { picked: null, done: false };
+  M.stick = null; M.tx = null; M.ty = null; // drop any half finished drag
+  document.getElementById('savehead').textContent = M.foe.name.toUpperCase() + ' BREAK AWAY!';
+  document.getElementById('savesub').textContent = 'Pick a side to dive!';
+  var btns = document.getElementById('savebtns');
+  btns.style.visibility = 'visible';
+  Array.prototype.forEach.call(btns.querySelectorAll('.savebtn'), function (b) {
+    b.className = 'savebtn';
+  });
+  /* Show the overlay BEFORE setting up the bar. An element inside a
+     display:none subtree cannot be reflowed, so the forced reflow below does
+     nothing and both style writes collapse into the final value: the bar
+     snapped to empty and the countdown was invisible. Caught by measuring the
+     computed transform, not by looking - at a glance an instantly empty bar
+     reads as a bar that is simply there. */
+  document.getElementById('savewrap').classList.add('on');
+
+  /* A bar running down, not a number counting down. He cannot read a clock
+     yet, but he can see a bar getting shorter. */
+  var bar = document.getElementById('savebar');
+  bar.style.transition = 'none';
+  bar.style.transform = 'scaleX(1)';
+  void bar.offsetWidth;
+  bar.style.transition = 'transform ' + SAVE_SECS + 's linear';
+  bar.style.transform = 'scaleX(0)';
+  sfxWhistle();
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(function () { resolveSave(); }, SAVE_SECS * 1000);
+}
+
+function resolveSave() {
+  if (!M || !M.saving || M.saving.done) return;
+  M.saving.done = true;
+  clearTimeout(saveTimer);
+
+  var went = Math.floor(Math.random() * 3);
+  var picked = M.saving.picked;
+  /* A right guess ALWAYS saves, so his choice really is what decides it. A
+     wrong guess still might: forgive is the per round fingertip save, and it
+     is the dial to turn if a round starts to feel harsh.
+
+     Not choosing at all counts as a wrong guess rather than a certain goal. A
+     six year old who freezes should not be punished harder than one who
+     guesses, and freezing is exactly what a six year old does the first time
+     this appears. */
+  var saved = (picked !== null && picked === went) || Math.random() < M.r.forgive;
+
+  document.getElementById('savebtns').style.visibility = 'hidden';
+  document.getElementById('savesub').textContent = '';
+  var head = document.getElementById('savehead');
+  if (saved) {
+    head.textContent = picked === went ? 'YOU GUESSED IT!' : 'WHAT A SAVE!';
+    sfxSave();
+  } else {
+    M.ga++;
+    updateScore();
+    head.textContent = 'THEY SCORED';
+    sfxSad();
+  }
+
+  setTimeout(function () {
+    if (!M) return;
+    document.getElementById('savewrap').classList.remove('on');
+    M.saving = null;
+    M.last = 0;
+    if (M.over || current !== 'match') return;
+    kickoff(false);
+    if (saved) toast('GREAT SAVE!');
+  }, 1250);
+}
+
+function clearSave() {
+  clearTimeout(saveTimer);
+  var w = document.getElementById('savewrap');
+  if (w) w.classList.remove('on');
+  if (M) M.saving = null;
+}
+
+Array.prototype.forEach.call(document.querySelectorAll('#savebtns .savebtn'), function (b) {
+  b.addEventListener('pointerdown', function (e) {
+    e.preventDefault(); e.stopPropagation();
+    if (!M || !M.saving || M.saving.done) return;
+    M.saving.picked = parseInt(b.getAttribute('data-save'), 10);
+    b.className = 'savebtn picked';
+    resolveSave();
+  });
+});
+
+function theyArrive() {
+  /* They reached our goal. On the early rounds our keeper always saves it. */
+  if (Math.random() < M.r.counter) {
+    M.ga++;
+    updateScore();
+    sfxSad();
+    toast('THEY SCORED');
+  } else {
+    sfxSave();
+    toast('GREAT SAVE!');
+  }
+  M.phase = 'dead';
+  M.freeze = 30;
+  setTimeout(function () { if (M && !M.over) kickoff(false); }, 800);
+}
+
+function fullTime() {
+  M.over = true;
+  M.running = false;
+  cancelAnimationFrame(raf);
+  sfxWhistle();
+  document.getElementById('clock').textContent = "90'";
+  if (M.gf > M.ga) return matchWon(M.idx, M.gf, M.ga, M.foe.name, false);
+  if (M.gf < M.ga) return matchLost();
+  /* The score has to be captured now: go() tears the match down and nulls M. */
+  var idx = M.idx, gf = M.gf, ga = M.ga, foeName = M.foe.name;
+  var r = ROUNDS[idx];
+
+  /* A draw in a QUALIFIER or a GROUP match is a POINT, not a shootout. Only
+     the knockouts and the playoff have to produce a winner on the day, which
+     is what the real thing does and is the whole reason those phases have a
+     table. Sending a group draw to penalties would also quietly make the
+     shootout the most played screen in the game. */
+  if (r && (r.phase === 'qual' || r.phase === 'group')) {
+    if (idx === S.round) {
+      S.results[idx] = { gf: gf, ga: ga, drew: true };
+      S.round = nextRound(idx);
+    }
+    addBoots(1 + gf);
+    persist();
+    return setTimeout(function () {
+      if (current !== 'match') return;
+      popup('A point each!', 'Spain ' + gf + ' - ' + ga + ' ' + foeName +
+        '.<br>That is <b>one point</b> on the table.',
+        [{ label: 'See the table', style: 'gold', fn: function () { go('cup'); } }]);
+    }, 500);
+  }
+
+  /* a drawn knockout goes to penalties, exactly like the real thing */
+  setTimeout(function () {
+    if (current !== 'match') return;
+    popup('It is a draw!', 'Spain ' + gf + ' - ' + ga + ' ' + foeName +
+      '.<br>It goes to <b>penalties</b>!', [
+      { label: 'Take the penalties', style: 'gold', fn: function () { startPens(idx, gf, ga); } }
+    ]);
+  }, 500);
+}
+
+function matchWon(idx, gf, ga, foeName, viaPens) {
+  S.results[idx] = { gf: gf, ga: ga, pens: !!viaPens };
+  /* nextRound, not idx + 1: finishing the last qualifier jumps straight to the
+     group stage when he is already through, and only drops into the playoff
+     when he is not. */
+  if (idx === S.round) S.round = nextRound(idx);
+  /* The unlock is spent on the round he just won, so the next one asks for its
+     own warm-up. Losing does not come through here, which is the whole reason
+     lose-and-replay stays free. */
+  if (S.warm.ready === idx) { S.warm.ready = -1; S.warm.gold = false; }
+  addBoots(3 + gf);
+  var lifted = S.round >= ROUNDS.length;
+  if (lifted) { S.cups++; }
+  persist();
+  celebrate(true);
+  sfxGoal();
+  setTimeout(function () {
+    if (lifted) {
+      popup('&#x1F3C6; SPAIN WIN THE WORLD CUP!',
+        'Yamal beats ' + foeName + ' ' + gf + ' - ' + ga + ' in the final.<br>' +
+        'You are a <b>world champion</b>, Jaxson!',
+        [{ label: 'See the trophy', style: 'gold', fn: function () { go('trophy'); } }]);
+    } else {
+      popup('WINNERS!', 'Spain beat ' + foeName + ' ' + gf + ' - ' + ga +
+        (viaPens ? ' on penalties' : '') + '.<br>Next up: <b>' + ROUNDS[S.round].stage + '</b>',
+        [{ label: 'Next match', style: 'gold', fn: function () { go('cup'); } }]);
+    }
+  }, 700);
+}
+
+function matchLost() {
+  var gf = M.gf, ga = M.ga, foeName = M.foe.name, idx = M.idx;
+  addBoots(1 + gf);
+  /* A lost QUALIFIER or GROUP match still counts and still moves him on: those
+     phases are decided on points over the whole phase, not one match at a
+     time, and standing still after a defeat would turn a table back into a
+     gate. Knockouts and the playoff are replayed until he wins, same as ever.
+
+     The result is recorded either way, so the table tells the truth. */
+  var r = ROUNDS[idx];
+  var tabled = r && (r.phase === 'qual' || r.phase === 'group');
+  if (tabled && idx === S.round) {
+    S.results[idx] = { gf: gf, ga: ga, lost: true };
+    S.round = nextRound(idx);
+  }
+  persist();
+  sfxSad();
+  setTimeout(function () {
+    if (current !== 'match') return;
+    popup('Good try!', foeName + ' won ' + ga + ' - ' + gf + '.<br>' +
+      'Nothing is lost. Have another go whenever you like.', [
+      { label: 'Play it again', style: 'gold', fn: function () { startMatch(idx); } },
+      { label: 'Back to the ladder', style: 'ghost', fn: function () { go('cup'); } }
+    ]);
+  }, 500);
+}
+
+function endMatch() {
+  if (!M) return;
+  M.over = true; M.running = false;
+  cancelAnimationFrame(raf);
+  /* Before M goes, or a keeper moment left on screen outlives the match it
+     belonged to and its timer resolves against a null M. */
+  clearSave();
+  M = null;
+}
+ROOM_LEAVE.match = function () { endMatch(); };
+
+/* --- rendering --- */
+function drawPitch() {
+  var c = M.cam;
+  /* grass, with mown stripes that scroll with the camera */
+  cx.fillStyle = '#0E8C46';
+  cx.fillRect(0, 0, VIEW_W, VIEW_H);
+  cx.fillStyle = '#12A052';
+  var stripe = 110;
+  for (var sx = -((c % (stripe * 2)) + stripe * 2) % (stripe * 2); sx < VIEW_W; sx += stripe * 2) {
+    cx.fillRect(sx, 0, stripe, VIEW_H);
+  }
+
+  cx.strokeStyle = 'rgba(255,255,255,.75)';
+  cx.lineWidth = 4;
+  /* touchlines */
+  cx.strokeRect(20 - c, 16, PITCH_W - 40, PITCH_H - 32);
+  /* halfway line and centre circle */
+  cx.beginPath();
+  cx.moveTo(PITCH_W / 2 - c, 16); cx.lineTo(PITCH_W / 2 - c, PITCH_H - 16);
+  cx.stroke();
+  cx.beginPath();
+  cx.arc(PITCH_W / 2 - c, PITCH_H / 2, 74, 0, Math.PI * 2);
+  cx.stroke();
+
+  /* both penalty boxes */
+  cx.strokeRect(20 - c, PITCH_H / 2 - 165, 190, 330);
+  cx.strokeRect(PITCH_W - 210 - c, PITCH_H / 2 - 165, 190, 330);
+  cx.strokeRect(20 - c, PITCH_H / 2 - 88, 72, 176);
+  cx.strokeRect(PITCH_W - 92 - c, PITCH_H / 2 - 88, 72, 176);
+
+  /* the goal we are shooting at, drawn as a net */
+  var gx = PITCH_W - 20 - c;
+  cx.fillStyle = 'rgba(255,255,255,.16)';
+  cx.fillRect(gx, GOAL_T, 30, GOAL_H);
+  cx.strokeStyle = 'rgba(255,255,255,.55)';
+  cx.lineWidth = 2;
+  for (var ny = GOAL_T; ny <= GOAL_B; ny += 14) {
+    cx.beginPath(); cx.moveTo(gx, ny); cx.lineTo(gx + 30, ny); cx.stroke();
+  }
+  for (var nx = gx; nx <= gx + 30; nx += 10) {
+    cx.beginPath(); cx.moveTo(nx, GOAL_T); cx.lineTo(nx, GOAL_B); cx.stroke();
+  }
+  cx.strokeStyle = '#fff'; cx.lineWidth = 7;
+  cx.beginPath(); cx.moveTo(gx, GOAL_T); cx.lineTo(gx, GOAL_B); cx.stroke();
+
+  /* our own goal at the far left, so a counter-attack has somewhere to go */
+  var ox = 20 - c;
+  cx.fillStyle = 'rgba(255,255,255,.16)';
+  cx.fillRect(ox - 30, GOAL_T, 30, GOAL_H);
+  cx.strokeStyle = '#fff'; cx.lineWidth = 7;
+  cx.beginPath(); cx.moveTo(ox, GOAL_T); cx.lineTo(ox, GOAL_B); cx.stroke();
+}
+
+function drawMan(px, py, kit, trim, shorts, num, facing, isYou, isMate) {
+  var sx2 = px - M.cam;
+  if (sx2 < -70 || sx2 > VIEW_W + 70) return;
+  cx.save();
+  cx.translate(sx2, py);
+  /* shadow */
+  cx.fillStyle = 'rgba(0,0,0,.22)';
+  cx.beginPath(); cx.ellipse(3, 20, MAN_R + 3, 11, 0, 0, Math.PI * 2); cx.fill();
+  /* A gold ring under Yamal and nobody else. Two red shirts and two blue ones
+     all look alike from above once they are moving, and "which one am I" is
+     not a puzzle worth giving a six year old. */
+  if (isYou) {
+    cx.strokeStyle = '#FFD24A'; cx.lineWidth = 5;
+    cx.beginPath(); cx.ellipse(0, 20, MAN_R + 7, 13, 0, 0, Math.PI * 2); cx.stroke();
+  }
+  /* Nico gets a ring too, in blue rather than gold. Two red shirts moving at
+     once is exactly the "which one am I" problem the gold ring was added to
+     solve, and adding a second Spain player brings it straight back. */
+  if (isMate) {
+    cx.strokeStyle = '#5B9BE8'; cx.lineWidth = 4;
+    cx.beginPath(); cx.ellipse(0, 20, MAN_R + 6, 12, 0, 0, Math.PI * 2); cx.stroke();
+  }
+  /* shorts peeking out behind the shirt */
+  cx.fillStyle = shorts;
+  cx.beginPath(); cx.arc(0, 8, MAN_R - 4, 0, Math.PI * 2); cx.fill();
+  /* shirt */
+  cx.fillStyle = kit;
+  cx.beginPath(); cx.arc(0, 0, MAN_R, 0, Math.PI * 2); cx.fill();
+  cx.strokeStyle = 'rgba(0,0,0,.3)'; cx.lineWidth = 2.5; cx.stroke();
+  if (num) {
+    cx.fillStyle = trim;
+    cx.font = '900 17px ui-rounded,system-ui,sans-serif';
+    cx.textAlign = 'center'; cx.textBaseline = 'middle';
+    cx.fillText(num, 0, 15);
+  }
+  /* head last so it sits on top of the shirt, offset toward the way he is
+     facing so his direction is readable at a glance */
+  var hx = (facing || 0) * 7;
+  cx.fillStyle = '#C9855E';
+  cx.beginPath(); cx.arc(hx, -5, 12, 0, Math.PI * 2); cx.fill();
+  cx.fillStyle = '#241610';
+  cx.beginPath(); cx.arc(hx, -7, 12, Math.PI, Math.PI * 2); cx.fill();
+  /* Yamal bleaches the top and leaves it dark underneath. From directly above
+     that reads as a blonde cap with the brown showing as a rim, so the brown
+     has to stay and be drawn over rather than replaced. Only him: everyone
+     else on the pitch keeps plain dark hair. */
+  if (isYou) {
+    cx.fillStyle = '#E3BC55';
+    cx.beginPath(); cx.arc(hx, -7, 9, Math.PI, Math.PI * 2); cx.fill();
+  }
+  cx.restore();
+}
+
+/* The stick, drawn where his thumb actually is. A control you cannot see is a
+   control a six year old will not trust, and the knob moving away from the
+   ring is the only visible explanation of why he is running faster. */
+function drawStick() {
+  var R = STICK_MAX * 0.62;
+  if (!M.stick) {
+    /* Until he has used it once, a faint ring in the bottom left saying "put
+       your thumb here". It is a hint and not a boundary: the stick still
+       starts wherever he touches. */
+    if (!S.stickSeen) {
+      cx.save();
+      cx.globalAlpha = 0.28;
+      cx.strokeStyle = '#fff'; cx.lineWidth = 4;
+      cx.setLineDash([9, 9]);
+      cx.beginPath(); cx.arc(150, VIEW_H - 130, R, 0, Math.PI * 2); cx.stroke();
+      cx.setLineDash([]);
+      cx.fillStyle = '#fff';
+      cx.font = '900 19px ui-rounded,system-ui,sans-serif';
+      cx.textAlign = 'center'; cx.textBaseline = 'middle';
+      cx.fillText('DRAG HERE', 150, VIEW_H - 130);
+      cx.restore();
+    }
+    return;
+  }
+  var s = M.stick;
+  cx.save();
+  cx.globalAlpha = 0.42;
+  cx.strokeStyle = '#fff'; cx.lineWidth = 5;
+  cx.beginPath(); cx.arc(s.ox, s.oy, R, 0, Math.PI * 2); cx.stroke();
+  cx.globalAlpha = 0.9;
+  cx.fillStyle = '#FFD24A';
+  cx.beginPath();
+  cx.arc(s.ox + s.dx * s.mag * R, s.oy + s.dy * s.mag * R, 27, 0, Math.PI * 2);
+  cx.fill();
+  cx.restore();
+}
+
+function drawBall(bx, by) {
+  var sx3 = bx - M.cam;
+  cx.fillStyle = 'rgba(0,0,0,.25)';
+  cx.beginPath(); cx.ellipse(sx3 + 2, by + 9, BALL_R, 5, 0, 0, Math.PI * 2); cx.fill();
+  cx.fillStyle = M.gold ? '#FFD24A' : '#fff';
+  cx.beginPath(); cx.arc(sx3, by, BALL_R, 0, Math.PI * 2); cx.fill();
+  cx.strokeStyle = M.gold ? '#A97400' : '#12233F'; cx.lineWidth = 2; cx.stroke();
+  cx.fillStyle = M.gold ? '#A97400' : '#12233F';
+  cx.beginPath(); cx.arc(sx3, by, 4, 0, Math.PI * 2); cx.fill();
+  /* One highlight, so a gold ball reads as gold and not as a yellow circle. */
+  if (M.gold) {
+    cx.fillStyle = 'rgba(255,255,255,.75)';
+    cx.beginPath(); cx.arc(sx3 - 4, by - 5, 3, 0, Math.PI * 2); cx.fill();
+  }
+}
+
+function render() {
+  drawPitch();
+
+  /* the aim line: where the shot will go if he presses SHOOT right now. This
+     is the whole control scheme made visible, so it is always on. */
+  if (M.phase === 'us' && !M.over) {
+    var ax = M.x, ay = M.y;
+    cx.save();
+    cx.setLineDash([9, 9]);
+    cx.strokeStyle = 'rgba(255,255,255,.75)';
+    cx.lineWidth = 3;
+    cx.beginPath();
+    cx.moveTo(ax - M.cam, ay);
+    cx.lineTo(ax - M.cam + M.aimx * 230, ay + M.aimy * 230);
+    cx.stroke();
+    cx.restore();
+    /* if that line reaches the goal, mark the spot it would hit */
+    if (M.aimx > 0.05) {
+      var hy = ay + (PITCH_W - 20 - ax) * (M.aimy / M.aimx);
+      if (hy > GOAL_T - 40 && hy < GOAL_B + 40) {
+        var inGoal = hy > GOAL_T && hy < GOAL_B;
+        cx.strokeStyle = inGoal ? '#FFD24A' : 'rgba(255,255,255,.45)';
+        cx.lineWidth = 4;
+        cx.beginPath();
+        cx.arc(PITCH_W - 20 - M.cam, Math.max(GOAL_T - 30, Math.min(GOAL_B + 30, hy)), 15, 0, Math.PI * 2);
+        cx.stroke();
+      }
+    }
+  }
+
+  /* their keeper */
+  drawMan(PITCH_W - 34, M.keeper.y, '#26D07C', '#0A3F24', '#0A3F24', 1, -1);
+  /* our keeper, only worth drawing when they are coming at us */
+  if (M.phase === 'them') drawMan(34, M.ourKeeper.y, '#F0A500', '#5A3E00', '#5A3E00', 1, 1);
+
+  /* defenders */
+  var i;
+  for (i = 0; i < M.defs.length; i++) {
+    var f = M.defs[i];
+    drawMan(f.x, f.y, M.foe.kit, M.foe.trim, M.foe.shorts, '', f.x > M.x ? -1 : 1);
+  }
+
+  /* Nico before Yamal, so Yamal is never the one hidden. */
+  if (M.mate) {
+    drawMan(M.mate.x, M.mate.y, TEAMS.spain.kit, TEAMS.spain.trim, TEAMS.spain.shorts,
+      '17', 1, false, true);
+  }
+
+  /* Yamal last, so he is never hidden behind a defender */
+  drawMan(M.x, M.y, TEAMS.spain.kit, TEAMS.spain.trim, TEAMS.spain.shorts, '19', M.aimx > 0 ? 1 : -1, true);
+  drawBall(M.ball.x, M.ball.y);
+
+  /* a nudge arrow on the edge of the screen pointing at the goal when it is
+     off camera, so he is never lost */
+  if (PITCH_W - 20 - M.cam > VIEW_W) {
+    cx.fillStyle = 'rgba(255,255,255,.8)';
+    cx.beginPath();
+    cx.moveTo(VIEW_W - 12, PITCH_H / 2);
+    cx.lineTo(VIEW_W - 44, PITCH_H / 2 - 22);
+    cx.lineTo(VIEW_W - 44, PITCH_H / 2 + 22);
+    cx.closePath(); cx.fill();
+  }
+
+  /* Last of all, so the thumb control sits over everything it needs to. */
+  drawStick();
+}
+
+/* ==========================================================================
+   L. PENALTY SHOOTOUT
+   Six big zones to shoot at, three big buttons to dive with. Best of five,
+   then sudden death. Used for a drawn knockout match and as its own practice
+   mode from the home screen.
+   ========================================================================== */
+var P = null;
+
+/* Geometry of the shootout picture, in its own SVG viewBox units. The goal
+   fills the top, the grass and the penalty spot the bottom, and the tap zones
+   are laid out from these same numbers so they cannot drift off the goal. */
+var PEN_VB_H = 380, PEN_GOAL_T = 6, PEN_GOAL_B = 292, PEN_SPOT = 340;
+
+function startPens(roundIdx, drawGf, drawGa) {
+  var r = roundIdx === null ? { keeper: 0.42, stage: 'Penalty Practice', foe: 'brazil' } : ROUNDS[roundIdx];
+  var foe = TEAMS[r.foe];
+  P = {
+    roundIdx: roundIdx, r: r, foe: foe,
+    /* the 90-minute score, carried through so the ladder can record 2-2 (pens)
+       rather than the shootout tally */
+    gf: drawGf || 0, ga: drawGa || 0,
+    gold: roundIdx !== null && !!S.warm.gold && S.warm.ready === roundIdx,
+    us: [], them: [],       // 'goal' | 'miss'
+    turn: 'us',
+    busy: false,
+    done: false
+  };
+  document.getElementById('pentitle').textContent =
+    roundIdx === null ? 'PENALTY PRACTICE' : 'PENALTIES: ' + r.stage.toUpperCase();
+  document.getElementById('penflagA').innerHTML = TEAMS.spain.flag;
+  document.getElementById('penflagB').innerHTML = foe.flag;
+  document.getElementById('pennameA').textContent = 'SPAIN';
+  document.getElementById('pennameB').textContent = foe.name.toUpperCase();
+  buildGoalbox();
+  renderPens();
+  setKeeper(null, false);
+  showPenTurn();
+  go('pens');
+}
+
+function buildGoalbox() {
+  var box = document.getElementById('goalbox');
+  /* The goal needs something solid behind it. With only the net lines the
+     crowd showed straight through the mouth and the whole thing looked like it
+     was floating in the sky rather than standing on grass. */
+  box.innerHTML =
+    '<svg viewBox="0 0 640 ' + PEN_VB_H + '" style="position:absolute;inset:0;width:100%;height:100%">' +
+    /* No fill under the goal: the screen's own grass shows through, and any
+       colour put here is a rectangle of not-quite-the-same green with two
+       visible seams down the sides. */
+    '<rect x="10" y="10" width="620" height="' + (PEN_GOAL_B - 10) + '" fill="#0A2A18" opacity=".72"/>' +
+    '<g stroke="rgba(255,255,255,.4)" stroke-width="2">' +
+    (function () { var s = '', i;
+      for (i = 10; i <= 630; i += 22) s += '<line x1="' + i + '" y1="10" x2="' + i + '" y2="' + PEN_GOAL_B + '"/>';
+      for (i = 10; i <= PEN_GOAL_B; i += 22) s += '<line x1="10" y1="' + i + '" x2="630" y2="' + i + '"/>';
+      return s; })() +
+    '</g>' +
+    '<path d="M10 ' + PEN_GOAL_B + 'V' + PEN_GOAL_T + 'h620v' + (PEN_GOAL_B - PEN_GOAL_T) + '" ' +
+      'stroke="#fff" stroke-width="12" fill="none" stroke-linejoin="round"/>' +
+    '<ellipse cx="320" cy="' + PEN_SPOT + '" rx="150" ry="24" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="3"/>' +
+    '<circle cx="320" cy="' + PEN_SPOT + '" r="4" fill="#fff"/>' +
+    '<g id="penkeeper"></g>' +
+    /* A draw carries the gold ball into the shootout, so a perfect warm-up is
+       not quietly lost by the match going to penalties. */
+    '<circle id="penball" cx="320" cy="' + PEN_SPOT + '" r="15" fill="' +
+      (P && P.gold ? '#FFD24A' : '#fff') + '" stroke="' +
+      (P && P.gold ? '#A97400' : '#12233F') + '" stroke-width="3"/>' +
+    '</svg>';
+  /* Six tap zones over the mouth only, sized off the same numbers the SVG uses
+     so the targets cannot drift away from the goal they are drawn on. */
+  var rowH = (PEN_GOAL_B - PEN_GOAL_T) / 2;
+  for (var i = 0; i < 6; i++) {
+    var z = document.createElement('div');
+    z.className = 'zone';
+    z.style.left = ((i % 3) * 33.33) + '%';
+    z.style.top = ((PEN_GOAL_T + Math.floor(i / 3) * rowH) / PEN_VB_H * 100) + '%';
+    z.style.height = (rowH / PEN_VB_H * 100) + '%';
+    z.setAttribute('data-zone', i);
+    z.onclick = (function (n) { return function () { takePen(n); }; })(i);
+    box.appendChild(z);
+  }
+}
+
+function zoneCentre(n) {
+  var rowH = (PEN_GOAL_B - PEN_GOAL_T) / 2;
+  return { x: 106 + (n % 3) * 214, y: PEN_GOAL_T + rowH * (Math.floor(n / 3) + 0.5) };
+}
+
+function renderPens() {
+  var rowA = document.getElementById('penrowA'), rowB = document.getElementById('penrowB');
+  function fill(row, arr) {
+    var h = '';
+    for (var i = 0; i < Math.max(5, arr.length); i++) {
+      h += '<div class="pendot' + (arr[i] ? ' ' + arr[i] : '') + '"></div>';
+    }
+    row.innerHTML = h;
+  }
+  fill(rowA, P.us); fill(rowB, P.them);
+  document.getElementById('penA').textContent = P.us.filter(function (x) { return x === 'goal'; }).length;
+  document.getElementById('penB').textContent = P.them.filter(function (x) { return x === 'goal'; }).length;
+}
+
+function setKeeper(zone, saved2) {
+  var g = document.getElementById('penkeeper');
+  if (!g) return;
+  var c = zone === null ? { x: 320, y: (PEN_GOAL_T + PEN_GOAL_B) / 2 } : zoneCentre(zone);
+  g.innerHTML =
+    '<g transform="translate(' + c.x + ',' + c.y + ')">' +
+    '<ellipse rx="42" ry="30" fill="#26D07C" stroke="#0A3F24" stroke-width="3"/>' +
+    '<circle cy="-30" r="16" fill="#C9855E"/>' +
+    '<path d="M-16 -34a16 16 0 0 1 32 0z" fill="#241610"/>' +
+    '<circle cx="-52" cy="-6" r="12" fill="#FFD24A"/><circle cx="52" cy="-6" r="12" fill="#FFD24A"/>' +
+    (saved2 ? '<text y="58" font-size="24" font-weight="900" fill="#fff" text-anchor="middle">SAVED</text>' : '') +
+    '</g>';
+}
+
+function takePen(zone) {
+  if (!P || P.busy || P.done || P.turn !== 'us') return;
+  P.busy = true;
+  sfxKick();
+  /* Decide the outcome first, then put the keeper where the outcome says he
+     went. The obvious way round - let the keeper guess a zone and save if it
+     matches - looked fair and was not: with the round's keeper skill as the
+     guess rate, the keeper also saves by coincidence 1 in 6 of the time he
+     guesses wrong, and the first playtest had him stopping 52% of them. A six
+     year old picking a corner and being denied every other kick gives up.
+
+     Here the numbers are what they say: 21% saved in the group stage rising to
+     32% in the final. */
+  var saveChance = 0.14 + P.r.keeper * 0.28;
+  var stopped = Math.random() < saveChance;
+  var guess = stopped ? zone : (zone + 1 + Math.floor(Math.random() * 5)) % 6;
+  var c = zoneCentre(zone);
+  var ball = document.getElementById('penball');
+  ball.style.transition = 'cx .42s ease-out, cy .42s ease-out';
+  ball.setAttribute('cx', c.x); ball.setAttribute('cy', c.y);
+  setKeeper(guess, false);
+  setTimeout(function () {
+    if (!P || current !== 'pens') return;
+    var scored2 = !stopped;
+    if (scored2) { S.penGoals++; sfxGoal(); celebrate(false); document.getElementById('penhead').textContent = 'GOAL!'; }
+    else { sfxSave(); setKeeper(guess, true); document.getElementById('penhead').textContent = 'Saved! Next one.'; }
+    P.us.push(scored2 ? 'goal' : 'miss');
+    persist();
+    renderPens();
+    setTimeout(function () { if (P && current === 'pens') nextPen(); }, 900);
+  }, 460);
+}
+
+function nextPen() {
+  var ball = document.getElementById('penball');
+  if (ball) { ball.style.transition = 'none'; ball.setAttribute('cx', 320); ball.setAttribute('cy', PEN_SPOT); }
+  setKeeper(null, false);
+  P.busy = false;
+  if (checkPensOver()) return;
+  P.turn = P.turn === 'us' ? 'them' : 'us';
+  showPenTurn();
+}
+
+function showPenTurn() {
+  var zones = document.querySelectorAll('#goalbox .zone');
+  var ours = P.turn === 'us';
+  Array.prototype.forEach.call(zones, function (z) { z.classList.toggle('dim', !ours); });
+  document.getElementById('divebtns').style.display = ours ? 'none' : 'flex';
+  document.getElementById('penhead').textContent = ours
+    ? 'Your kick. Pick a corner!'
+    : 'Their kick. Which way do you dive?';
+}
+
+function theirPen(dive) {
+  if (!P || P.busy || P.done || P.turn !== 'them') return;
+  P.busy = true;
+  /* They pick a third of the goal and you saved it if you dove the same way,
+     so a straight guess is right 1 in 3. On top of that they blaze one over
+     the bar now and then, which is both true to life and the thing that tips
+     a shootout the player's way more often than not. */
+  var skied = Math.random() < 0.12;
+  var side = Math.floor(Math.random() * 3);
+  var zone = side + (Math.random() < 0.5 ? 0 : 3);
+  var c = zoneCentre(zone);
+  var ball = document.getElementById('penball');
+  ball.style.transition = 'cx .42s ease-out, cy .42s ease-out';
+  ball.setAttribute('cx', c.x); ball.setAttribute('cy', skied ? -40 : c.y);
+  /* The keeper goes where the player sent him, not where the ball went. Anything
+     else and the picture contradicts the result. */
+  setKeeper(dive + (zone >= 3 ? 3 : 0), false);
+  sfxKick();
+  setTimeout(function () {
+    if (!P || current !== 'pens') return;
+    var saved3 = !skied && dive === side;
+    if (saved3) { S.penSaves++; sfxSave(); celebrate(false); document.getElementById('penhead').textContent = 'YOU SAVED IT!'; }
+    else if (skied) { sfxSave(); document.getElementById('penhead').textContent = 'OVER THE BAR!'; }
+    else { sfxSad(); document.getElementById('penhead').textContent = 'They scored. Your turn.'; }
+    P.them.push((saved3 || skied) ? 'miss' : 'goal');
+    persist();
+    renderPens();
+    setTimeout(function () { if (P && current === 'pens') nextPen(); }, 900);
+  }, 460);
+}
+
+Array.prototype.forEach.call(document.querySelectorAll('[data-dive]'), function (b) {
+  b.onclick = function () { theirPen(parseInt(b.getAttribute('data-dive'), 10)); };
+});
+
+/* Best of five, then sudden death once both have taken the same number. */
+function checkPensOver() {
+  var a = P.us.filter(function (x) { return x === 'goal'; }).length;
+  var b = P.them.filter(function (x) { return x === 'goal'; }).length;
+  var na = P.us.length, nb = P.them.length;
+  var leftA = Math.max(0, 5 - na), leftB = Math.max(0, 5 - nb);
+  var decided = false;
+  /* Best of five: it is over as soon as one of them cannot be caught. Only
+     while both are still inside their first five, or na=6 nb=5 in sudden death
+     would read as an unassailable lead when they simply have not kicked yet. */
+  if (na <= 5 && nb <= 5) {
+    if (a > b + leftB) decided = true;
+    if (b > a + leftA) decided = true;
+  }
+  /* Sudden death: both have had the same number of kicks and one is ahead. */
+  if (na >= 5 && nb >= 5 && na === nb && a !== b) decided = true;
+  if (!decided) return false;
+  P.done = true;
+  finishPens(a > b, a, b);
+  return true;
+}
+
+function finishPens(won, a, b) {
+  Array.prototype.forEach.call(document.querySelectorAll('#goalbox .zone'), function (z) { z.classList.add('dim'); });
+  document.getElementById('divebtns').style.display = 'none';
+  var idx = P.roundIdx, gf90 = P.gf, ga90 = P.ga, foeName = P.foe.name;
+  setTimeout(function () {
+    if (current !== 'pens') return;
+    if (idx === null) {
+      /* practice: no ladder consequences either way */
+      addBoots(a);
+      popup(won ? 'You win the shootout!' : 'So close!',
+        'Spain ' + a + ' - ' + b + '.<br>' + (won ? 'Great nerve.' : 'Have another go?'), [
+        { label: 'Again', style: 'gold', fn: function () { startPens(null); } },
+        { label: 'Home', style: 'ghost', fn: function () { go('home'); } }
+      ]);
+      return;
+    }
+    if (won) {
+      celebrate(true);
+      matchWon(idx, gf90, ga90, foeName, true);
+    } else {
+      sfxSad();
+      popup('Good try!', foeName + ' win the shootout ' + b + ' - ' + a + '.<br>' +
+        'Nothing is lost. Play the match again whenever you like.', [
+        { label: 'Play the match again', style: 'gold', fn: function () { startMatch(idx); } },
+        { label: 'Back to the ladder', style: 'ghost', fn: function () { go('cup'); } }
+      ]);
+    }
+  }, 800);
+}
+
+document.getElementById('btnpenback').onclick = function () {
+  sfxTap();
+  /* A tournament shootout belongs to a match, so backing out of it lands on
+     the ladder. Practice came from the home screen, so it goes home. */
+  var dest = (P && P.roundIdx !== null) ? 'cup' : 'home';
+  P = null;
+  go(dest);
+};
+ROOM_LEAVE.pens = function () { /* nothing to tear down: the shootout is all DOM */ };
+
+/* ---------- M. TROPHY ROOM ---------- */
+function buildTrophyRoom() {
+  document.getElementById('trophyart').innerHTML = S.cups > 0 ? trophySVG() :
+    '<div style="display:flex;align-items:center;justify-content:center;height:100%;' +
+    'font-size:22px;font-weight:900;color:#CFE9DA;text-align:center;padding:20px">' +
+    'Win the final<br>to put the trophy<br>in here</div>';
+  var rows = [
+    [S.cups, 'World Cups lifted'],
+    [S.goals, 'Career goals for Spain'],
+    [S.boots, 'Golden boots earned'],
+    [S.penGoals, 'Penalties scored'],
+    [S.penSaves, 'Penalties saved'],
+    [S.warm.perfect, 'Perfect warm-ups'],
+    [S.ones, 'One-twos with Nico'],
+    [Math.min(S.round, ROUNDS.length) + ' / ' + ROUNDS.length, 'Rounds won this cup']
+  ];
+  document.getElementById('statgrid').innerHTML = rows.map(function (r) {
+    return '<div class="stat"><div class="n">' + r[0] + '</div><div class="l">' + r[1] + '</div></div>';
+  }).join('');
+}
+
+/* ==========================================================================
+   Mb. THE GROWN-UPS PANEL
+   For Brian, not for Jaxson. Warm-up settings, and a readout of what Jaxson
+   is actually missing so it can be practised away from the iPad.
+
+   Getting in is a two second press on the boots badge and then a times table
+   question. Neither is security. The point is only that a six year old who
+   discovers a long press cannot switch his own homework off, and 7 x 8 is a
+   wall he will not climb this year.
+   ========================================================================== */
+function openGrownUps() {
+  /* Four wrong answers, reshuffled every time, so guessing past it is tedious
+     rather than a one in three coin flip. */
+  var opts = shuffled(['56', '48', '54', '63']);
+  popup('Grown-ups only', 'Tap <b>7 &#215; 8</b>',
+    opts.map(function (o) {
+      return {
+        label: o, style: o === '56' ? 'navy' : 'navy',
+        fn: function () { if (o === '56') go('grown'); }
+      };
+    }).concat([{ label: 'Back', style: 'ghost' }]));
+}
+
+/* A long press, because a tap here belongs to nothing and a kid mashing the
+   badge should not find this. Moving a finger off cancels it. */
+(function () {
+  var badge = document.querySelector('#home .boots');
+  if (!badge) return;
+  var timer = 0;
+  function start() { clearTimeout(timer); timer = setTimeout(openGrownUps, 2000); }
+  function stop() { clearTimeout(timer); }
+  badge.addEventListener('pointerdown', start);
+  ['pointerup', 'pointerleave', 'pointercancel'].forEach(function (e) {
+    badge.addEventListener(e, stop);
+  });
+})();
+
+function buildGrownUps() {
+  var W = S.warm;
+  function opts(name, list, cur) {
+    return list.map(function (o) {
+      return '<button class="gopt' + (o[0] === cur ? ' sel' : '') + '" data-set="' + name +
+        '" data-val="' + o[0] + '">' + o[1] + '</button>';
+    }).join('');
+  }
+
+  /* Anything he has got wrong more often than right, worst first. This is the
+     line worth reading: it says what to practise in the car. */
+  var shaky = Object.keys(W.facts).map(function (k) {
+    var f = W.facts[k];
+    return { k: k, r: f.r | 0, w: f.w | 0 };
+  }).filter(function (f) { return f.w > 0 && f.w >= f.r; })
+    .sort(function (a, b) { return (b.w - b.r) - (a.w - a.r); })
+    .slice(0, 12);
+
+  var seen = Object.keys(W.facts).length;
+  var total = W.right + W.wrong;
+  var pct = total ? Math.round(W.right / total * 100) : 0;
+
+  document.getElementById('gwrap').innerHTML =
+    '<div class="gsec"><h3>Warm up before a new match</h3><div class="gopts">' +
+      opts('on', [[1, 'On'], [0, 'Off']], W.on ? 1 : 0) +
+    '</div></div>' +
+
+    '<div class="gsec"><h3>Questions each time</h3><div class="gopts">' +
+      opts('n', [[3, '3'], [5, '5'], [7, '7']], W.n) +
+    '</div></div>' +
+
+    '<div class="gsec"><h3>Numbers level</h3><div class="gopts">' +
+      opts('mlev', [[1, 'Sums to 10'], [2, 'Sums to 20'], [3, 'Missing number']], W.mlev) +
+    '</div></div>' +
+
+    '<div class="gsec"><h3>Words level</h3><div class="gopts">' +
+      opts('wlev', [[1, 'First words'], [2, 'Trickier words']], W.wlev) +
+    '</div></div>' +
+
+    '<div class="gsec"><h3>How he is doing</h3><div class="gread">' +
+      '<b>' + W.done + '</b> warm-up' + (W.done === 1 ? '' : 's') +
+        ', <b>' + W.perfect + '</b> of them perfect.<br>' +
+      '<b>' + W.right + '</b> right and <b>' + W.wrong + '</b> wrong, which is <b>' +
+      pct + '%</b>, over <b>' + seen + '</b> different questions.' +
+      (total < 10 ? '<br>Too early to read much into this yet.' :
+        (pct >= 90 ? '<br>Comfortably on top of this level. Worth moving him up.' :
+         pct >= 70 ? '<br>About right. This is the ratio to aim for.' :
+                     '<br>On the hard side. Worth dropping a level for a while.')) +
+    '</div></div>' +
+
+    '<div class="gsec"><h3>Worth practising</h3><div class="gread">' +
+      (shaky.length
+        ? shaky.map(function (f) {
+            return '<span class="gtag">' + f.k.replace('?', ' + ? = ') + '</span>';
+          }).join('')
+        : 'Nothing he is getting wrong more often than right.') +
+    '</div></div>';
+
+  Array.prototype.forEach.call(document.querySelectorAll('#gwrap .gopt'), function (b) {
+    b.onclick = function () {
+      var key = b.getAttribute('data-set'), val = parseInt(b.getAttribute('data-val'), 10);
+      if (key === 'on') S.warm.on = !!val; else S.warm[key] = val;
+      persist();
+      sfxTap();
+      buildGrownUps();
+    };
+  });
+}
+
+/* ---------- N. BOOT ---------- */
+load();
+fitStage();
+ROOM_ENTER.home();
+
+/* Offline support. This is the only thing the game loads that is not inside
+   this file, and it has to be: a service worker cannot be registered from an
+   inline script, a data: URI or a blob. Everything the one-file rule is
+   actually for still holds - no CDN, no framework, no fonts, no images, and
+   zero network requests once it is cached.
+
+   It is optional by design. On file://, or in a browser without service
+   workers, registration is skipped and the game behaves exactly as before. */
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

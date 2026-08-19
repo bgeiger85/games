@@ -1,0 +1,6 @@
+node_modules/
+build/
+docs/screenshots/run-*.png
+*.log
+.DS_Store
+dist/wildcat-chess-site.zip

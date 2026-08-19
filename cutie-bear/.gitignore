@@ -1,0 +1,8 @@
+node_modules/
+shots/
+tests/shots/
+dist/cutie-bear-site.zip
+tools/character-options.png
+.DS_Store
+*.log
+.env

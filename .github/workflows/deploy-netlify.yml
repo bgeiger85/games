@@ -1,0 +1,188 @@
+name: Deploy to Netlify
+
+# Publishing the games has been a manual drag of index.html onto the Netlify
+# Deploys tab. This does the same thing from a known commit, for all three.
+#
+# Games only. Work tooling ships from a separate private repository and must
+# never be added here: this repository is public, and public is permanent —
+# deleting a file later does not remove it from history.
+#
+# It deliberately targets the EXISTING sites rather than creating new ones.
+# localStorage is scoped per origin, so a new URL would mean a new empty save:
+# no stars, no outfits, no chess level, no puzzles built from her own games.
+# The origin must never change.
+#
+# It runs only after CI has gone green on main, so a red build cannot reach the
+# iPad, and it publishes the same dist/ that CI verified was rebuilt from src/.
+
+on:
+  workflow_run:
+    workflows: ['CI']
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Two deploys racing would leave whichever finished last live, which may not be
+# the newer commit. Queue instead of cancelling.
+concurrency:
+  group: netlify-deploy
+  cancel-in-progress: false
+
+env:
+  # Site names, taken from the existing URLs. Override with repository
+  # variables if a site is ever renamed; the Site ID from Netlify's
+  # Site configuration page also works here.
+  CHESS_SITE: ${{ vars.NETLIFY_SITE_CHESS || 'timely-kringle-f0a2df' }}
+  BEAR_SITE: ${{ vars.NETLIFY_SITE_BEAR || 'melodious-sunshine-3f8692' }}
+  # No default for the soccer site: a wrong guess would publish a kid's game
+  # over somebody else's URL. It lives in the repository variable
+  # NETLIFY_SITE_SOCCER (yamals-world-cup). If that is ever unset the step
+  # below skips with a warning instead of failing the run.
+  SOCCER_SITE: ${{ vars.NETLIFY_SITE_SOCCER }}
+
+jobs:
+  deploy:
+    name: Build and publish all three games
+    runs-on: ubuntu-latest
+    # workflow_run fires whether CI passed or failed. Only ship what passed.
+    if: >-
+      ${{ github.event_name == 'workflow_dispatch' ||
+          github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # On workflow_run the default checkout is the branch tip, which is not
+          # necessarily the commit CI actually verified. Pin to that commit.
+          ref: ${{ github.event.workflow_run.head_sha || github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Without a token this cannot work. Skip with a visible warning rather
+      # than failing red, so the absence of a secret is not mistaken for a
+      # broken build.
+      - name: Check the deploy token is present
+        id: gate
+        env:
+          TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          if [ -z "$TOKEN" ]; then
+            echo "::warning::NETLIFY_AUTH_TOKEN is not set. Skipping the deploy."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build Chess Quest
+        if: steps.gate.outputs.ready == 'true'
+        working-directory: chess-quest
+        run: npm ci && npm run build
+
+      - name: Build Cutie Bear
+        if: steps.gate.outputs.ready == 'true'
+        working-directory: cutie-bear
+        run: npm ci && npm run build
+
+      - name: Build Yamal's World Cup
+        if: steps.gate.outputs.ready == 'true'
+        working-directory: world-cup
+        run: npm ci && npm run build
+
+      - name: The committed build matches source
+        if: steps.gate.outputs.ready == 'true'
+        run: |
+          git diff --exit-code -- chess-quest/dist cutie-bear/dist world-cup/dist \
+            || (echo "::error::dist is stale, refusing to publish" && exit 1)
+
+      # Publish only what each site needs. chess-quest/dist also holds the
+      # readable 116KB build, which is for reading, not serving. sw.js must sit
+      # beside its index.html or the game silently loses offline support.
+      - name: Assemble
+        if: steps.gate.outputs.ready == 'true'
+        run: |
+          mkdir -p publish/chess-quest publish/cutie-bear publish/world-cup
+          cp chess-quest/dist/index.html chess-quest/dist/sw.js publish/chess-quest/
+          cp cutie-bear/dist/index.html  cutie-bear/dist/sw.js  publish/cutie-bear/
+          cp world-cup/dist/index.html   world-cup/dist/sw.js   publish/world-cup/
+          ls -la publish/chess-quest publish/cutie-bear publish/world-cup
+
+      # Each site publishes independently.
+      #
+      # These used to be three plain steps, so the first failure killed the job
+      # and skipped the rest. That is not hypothetical: on 2026-08-17 Netlify
+      # answered Forbidden for Chess Quest and both Cutie Bear and Yamal's World
+      # Cup were skipped without ever being attempted, even though nothing was
+      # wrong with either of them. One game's bad day should not keep the other
+      # two off the iPad.
+      #
+      # continue-on-error lets all three run; the summary step at the end still
+      # fails the job, and says which ones went and which did not.
+      - name: Publish Wildcat Chess
+        id: pub_chess
+        continue-on-error: true
+        if: steps.gate.outputs.ready == 'true'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          npx --yes netlify-cli deploy --prod \
+            --dir=publish/chess-quest \
+            --site="$CHESS_SITE" \
+            --message="CI ${GITHUB_SHA::7}"
+
+      - name: Publish Cutie Bear
+        id: pub_bear
+        continue-on-error: true
+        if: steps.gate.outputs.ready == 'true'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          npx --yes netlify-cli deploy --prod \
+            --dir=publish/cutie-bear \
+            --site="$BEAR_SITE" \
+            --message="CI ${GITHUB_SHA::7}"
+
+      - name: Publish Yamal's World Cup
+        id: pub_soccer
+        continue-on-error: true
+        if: steps.gate.outputs.ready == 'true'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          if [ -z "$SOCCER_SITE" ]; then
+            echo "::warning::NETLIFY_SITE_SOCCER is not set, so Yamal's World Cup was not published."
+            echo "Create the site in Netlify, then add its name or Site ID as a repository"
+            echo "variable called NETLIFY_SITE_SOCCER. The build above already produced"
+            echo "world-cup/dist, which can be dragged onto netlify.com/drop in the meantime."
+            exit 0
+          fi
+          npx --yes netlify-cli deploy --prod \
+            --dir=publish/world-cup \
+            --site="$SOCCER_SITE" \
+            --message="CI ${GITHUB_SHA::7}"
+
+      # Report every site, then fail if any of them did not publish. Without
+      # this the job would go green on a partial deploy, which is worse than
+      # failing: it looks like everything shipped.
+      - name: Did every site publish?
+        if: steps.gate.outputs.ready == 'true'
+        env:
+          CHESS: ${{ steps.pub_chess.outcome }}
+          BEAR: ${{ steps.pub_bear.outcome }}
+          SOCCER: ${{ steps.pub_soccer.outcome }}
+        run: |
+          echo "Wildcat Chess:      $CHESS"
+          echo "Cutie Bear:         $BEAR"
+          echo "Yamal's World Cup:  $SOCCER"
+          bad=0
+          for r in "$CHESS" "$BEAR" "$SOCCER"; do
+            [ "$r" = "success" ] || bad=1
+          done
+          if [ "$bad" = "1" ]; then
+            echo "::error::At least one site did not publish. The ones marked success above are live and current."
+            exit 1
+          fi
+          echo "All three games published."

@@ -1,0 +1,157 @@
+name: CI
+
+on:
+  push:
+    branches: [main, 'claude/**']
+  pull_request:
+  workflow_dispatch:
+
+# A newer push to the same branch makes the older run irrelevant.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Pure logic: no browser, so this is the fast signal. If move generation is
+  # wrong nothing else is worth running.
+  logic:
+    name: Engine, perft and contrast
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: chess-quest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: chess-quest/package-lock.json
+      - run: npm ci
+      - name: Build
+        run: npm run build
+      - name: The build is reproducible
+        # dist/ is committed. If a source change did not get rebuilt, or the
+        # build is not deterministic, the tree is dirty here and we want to know.
+        run: git diff --exit-code -- dist/ || (echo "::error::dist/ is stale - run npm run build and commit" && exit 1)
+      - name: Move generation (perft)
+        run: npm run test:perft
+      - name: Theme contrast
+        run: npm run test:contrast
+      - name: Engine, coach and puzzles
+        run: npm run test:quick
+
+  # The browser matrix. WebKit is the one that matters: it is the closest thing
+  # CI has to iPad Safari, which is where this game is actually played, and the
+  # engine whose font stack, storage rules and audio policy differ most from the
+  # Chromium the suite was originally written against.
+  browser:
+    name: Browser (${{ matrix.engine }})
+    runs-on: ubuntu-latest
+    needs: logic
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, webkit]
+    defaults:
+      run:
+        working-directory: chess-quest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: chess-quest/package-lock.json
+      - run: npm ci
+      - name: Install ${{ matrix.engine }}
+        run: npx playwright install --with-deps ${{ matrix.engine }}
+      - name: Build
+        run: npm run build
+      - name: Interface suite
+        run: ENGINE=${{ matrix.engine }} node tests/browser.test.js
+      - name: Safari behaviour suite (storage, audio, workers, fonts)
+        run: ENGINE=${{ matrix.engine }} node tests/safari.test.js
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-${{ matrix.engine }}
+          path: chess-quest/docs/screenshots/run-*.png
+          if-no-files-found: ignore
+
+  # Cutie Bear runs on an iPad and nowhere else, so WebKit is not a nice-to-have
+  # here. CLAUDE.md lists four iOS behaviours that had never been checked; the
+  # webkit leg of this matrix is what checks three of them, and care.test.js
+  # covers the fourth (pointermove drag).
+  cutie-bear:
+    name: Cutie Bear (${{ matrix.engine }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, webkit]
+    defaults:
+      run:
+        working-directory: cutie-bear
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: cutie-bear/package-lock.json
+      - run: npm ci
+      - name: Install ${{ matrix.engine }}
+        run: npx playwright install --with-deps ${{ matrix.engine }}
+      - name: Build
+        run: npm run build
+      - name: The build is reproducible
+        run: git diff --exit-code -- dist/index.html || (echo "::error::dist/index.html is stale - run npm run build and commit" && exit 1)
+      - name: All suites
+        run: ENGINE=${{ matrix.engine }} npm test
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cutie-bear-shots-${{ matrix.engine }}
+          path: cutie-bear/tests/shots/*.png
+          if-no-files-found: ignore
+
+  # Yamal's World Cup is played on an iPad, so WebKit is the leg that matters:
+  # it is the closest thing CI has to iPad Safari. The match is a canvas and a
+  # rAF loop, the shootout is SVG, and the save is localStorage - all four of
+  # those behave differently there, and tests/safari.test.js checks each one.
+  world-cup:
+    name: World Cup (${{ matrix.engine }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, webkit]
+    defaults:
+      run:
+        working-directory: world-cup
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: world-cup/package-lock.json
+      - run: npm ci
+      - name: Install ${{ matrix.engine }}
+        run: npx playwright install --with-deps ${{ matrix.engine }}
+      - name: Build
+        run: npm run build
+      - name: The build is reproducible
+        run: git diff --exit-code -- dist/index.html || (echo "::error::dist/index.html is stale - run npm run build and commit" && exit 1)
+      - name: All suites
+        run: ENGINE=${{ matrix.engine }} npm test
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: world-cup-shots-${{ matrix.engine }}
+          path: world-cup/tests/shots/*.png
+          if-no-files-found: ignore

@@ -1,0 +1,26 @@
+{
+  "name": "world-cup",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Yamal's World Cup, an iPad soccer game for Jaxson (age 6). One self-contained HTML file.",
+  "scripts": {
+    "build": "node tools/build.js",
+    "test": "npm run test:screens && npm run test:stick && npm run test:warmup && npm run test:match && npm run test:keeper && npm run test:passing && npm run test:campaign && npm run test:penalties && npm run test:tournament && npm run test:safari",
+    "test:screens": "node tests/screens.test.js",
+    "test:stick": "node tests/stick.test.js",
+    "test:warmup": "node tests/warmup.test.js",
+    "test:match": "node tests/match.test.js",
+    "test:keeper": "node tests/keeper.test.js",
+    "test:passing": "node tests/passing.test.js",
+    "test:campaign": "node tests/campaign.test.js",
+    "test:penalties": "node tests/penalties.test.js",
+    "test:tournament": "node tests/tournament.test.js",
+    "test:safari": "node tests/safari.test.js",
+    "test:webkit": "ENGINE=webkit npm run test",
+    "icon": "node tools/make-icon.js",
+    "serve": "node tools/serve.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
+  }
+}

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#1b1233">
+<meta name="description" content="Wildcat Chess - climb ten levels to grandmaster, with a coach that shows you every mistake.">
+<!-- iPhone / iPad: Add to Home Screen -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Wildcat Chess">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="__ICON__">
+<link rel="icon" href="__FAVICON__">
+<link rel="manifest" href="__MANIFEST__">
+<title>Wildcat Chess - Woodland Springs Wildcats</title>
+<style>
+:root{
+  /* Every colour below is overwritten at boot by applyTheme() in theme.js.
+     These defaults only matter for the split second before it runs. */
+  --bg:#1b1233; --bg-glow:#2e1a52; --panel:#2a1b4d; --panel-2:#22143f;
+  --ink:#f6f2ff; --muted:#b8a9d9;
+  --light:#e6f0df; --dark:#009a44;
+  --coord-on-light:#2f5e3e; --coord-on-dark:#e6f0df;
+  --sel:#ffffff; --last:rgba(255,255,255,.42); --dot:rgba(51,0,114,.50);
+  --danger:#ff6b6b; --good:#38d97a; --warn:#ffc845; --accent:#00c25a;
+  --btn:#3c2a68; --btn-ghost:#31215a;
+  --pc-w:#ffffff; --pc-w-line:#2a1550; --pc-b:#330072; --pc-b-line:#ffffff;
+  --radius:16px;
+  --safeT:env(safe-area-inset-top,0px);
+  --safeB:env(safe-area-inset-bottom,0px);
+}
+*{
+  box-sizing:border-box; -webkit-tap-highlight-color:transparent;
+  -webkit-touch-callout:none; -webkit-user-select:none; user-select:none;
+}
+html,body{
+  margin:0; padding:0; height:100%; width:100%;
+  position:fixed; inset:0; overflow:hidden;          /* kills iOS rubber-band scrolling */
+  overscroll-behavior:none;
+}
+body{
+  background:radial-gradient(1200px 600px at 50% -10%, var(--bg-glow) 0%, var(--bg) 60%), var(--bg);
+  color:var(--ink);
+  font-family:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Segoe UI",Nunito,system-ui,sans-serif;
+  touch-action:manipulation;                          /* no double-tap zoom */
+}
+#app{
+  position:absolute; inset:0;
+  padding:calc(8px + var(--safeT)) 10px calc(10px + var(--safeB));
+  overflow-y:auto; -webkit-overflow-scrolling:touch;
+  display:grid; gap:8px; align-content:start;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-areas:"top" "lad" "brd" "coach" "ctrl";
+  max-width:560px; margin:0 auto;
+}
+/* iPad and landscape phones: board on the left, everything else beside it.
+   The board is also capped by viewport height, or a wide-but-short phone in
+   landscape produces a board taller than the screen. */
+@media (min-aspect-ratio:1/1) and (min-width:640px){
+  #app{
+    max-width:1040px;
+    grid-template-columns:minmax(0,1fr) clamp(238px,32%,340px);
+    grid-template-areas:"brd top" "brd lad" "brd coach" "brd ctrl" "brd .";
+    align-content:center; gap:8px 16px; padding-left:16px; padding-right:16px;
+  }
+  #boardArea{
+    align-self:center; margin-left:auto; margin-right:auto;
+    width:min(100%, calc(100vh - 88px));
+    width:min(100%, calc(100dvh - 88px));
+  }
+}
+@media (min-aspect-ratio:1/1) and (max-width:639px){
+  #boardArea{
+    margin-left:auto; margin-right:auto;
+    width:min(100%, calc(100vh - 88px));
+    width:min(100%, calc(100dvh - 88px));
+  }
+}
+@media (max-width:759px) and (max-aspect-ratio:9/10) and (min-height:900px){
+  #app{align-content:center;}
+}
+
+#topbar{grid-area:top; display:flex; align-items:center; gap:8px;}
+.botchip{
+  flex:1; display:flex; align-items:center; gap:9px;
+  background:var(--panel); border-radius:var(--radius); padding:8px 11px; min-width:0;
+}
+.botchip .face{font-size:26px;line-height:1;}
+.botchip .who{min-width:0;}
+.botchip .name{font-weight:800;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.botchip .lvl{font-size:11.5px;color:var(--muted);}
+.iconbtn{
+  background:var(--panel); border:0; color:var(--ink); font-size:18px;
+  width:44px;height:44px;border-radius:13px;cursor:pointer;display:grid;place-items:center;
+  font-family:inherit;
+}
+.iconbtn:active{transform:scale(.94);}
+.iconbtn.off{opacity:.42;}
+
+#ladder{grid-area:lad; display:flex; gap:4px; align-items:center;}
+#ladder .rung{flex:1;height:7px;border-radius:99px;background:var(--btn);transition:background .3s;}
+#ladder .rung.done{background:var(--good);}
+#ladder .rung.now{background:var(--sel);box-shadow:0 0 10px var(--sel);}
+#app.mode-puzzle #ladder{display:none;}
+
+#boardArea{grid-area:brd; display:flex; flex-direction:column; gap:5px; min-width:0;}
+.tray{display:flex;align-items:center;gap:2px;min-height:22px;padding:0 3px;flex-wrap:wrap;}
+.tray svg.pc{width:19px;height:19px;}
+.tray .pts{margin-left:5px;font-size:12px;font-weight:800;color:var(--muted);}
+
+#app.mode-puzzle .tray{display:none;}
+
+#board{
+  width:100%; aspect-ratio:1/1; display:grid;
+  grid-template-columns:repeat(8,1fr); grid-template-rows:repeat(8,1fr);
+  border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.45);
+  touch-action:none;
+}
+.sq{position:relative;display:grid;place-items:center;}
+.sq.l{background:var(--light);} .sq.d{background:var(--dark);}
+.sq .coord{position:absolute;font-size:9px;font-weight:800;opacity:.6;color:var(--coord-on-light);pointer-events:none;}
+.sq .coord.f{right:2px;bottom:1px;} .sq .coord.r{left:2px;top:1px;}
+.sq.d .coord{color:var(--coord-on-dark);}
+
+/* Pieces are drawn as SVG, not as Unicode glyphs. U+265F (BLACK CHESS PAWN)
+   carries Emoji_Presentation=Yes, so iOS renders it as a colour emoji that
+   ignores CSS colour and turns White's pawns black. Vectors cannot be
+   reinterpreted by a device font. */
+.pcwrap{width:80%;height:80%;display:grid;place-items:center;pointer-events:none;}
+svg.pc{width:100%;height:100%;display:block;overflow:visible;pointer-events:none;
+  filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.32));}
+svg.pc.w circle,svg.pc.w path,svg.pc.w rect{fill:var(--pc-w);stroke:var(--pc-w-line);stroke-width:1.5;stroke-linejoin:round;}
+svg.pc.b circle,svg.pc.b path,svg.pc.b rect{fill:var(--pc-b);stroke:var(--pc-b-line);stroke-width:1.2;stroke-linejoin:round;}
+svg.pc.w .eye{fill:var(--pc-w-line);stroke:none;}
+svg.pc.b .eye{fill:var(--pc-b-line);stroke:none;}
+svg.pc .slit{fill:none;stroke-width:1.7;stroke-linecap:round;}
+svg.pc.w .slit{stroke:var(--pc-w-line);}
+svg.pc.b .slit{stroke:var(--pc-b-line);}
+
+.sq.last{box-shadow:inset 0 0 0 100px var(--last);}
+.sq.sel{box-shadow:inset 0 0 0 4px var(--sel);}
+.sq.right{box-shadow:inset 0 0 0 100px rgba(95,208,140,.45);}
+.sq.wrong{box-shadow:inset 0 0 0 100px rgba(255,107,107,.45);}
+.sq .dot{position:absolute;width:30%;height:30%;border-radius:50%;background:var(--dot);pointer-events:none;}
+.sq .ring{position:absolute;inset:6%;border-radius:50%;border:5px solid var(--dot);pointer-events:none;}
+.sq.check::after{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(255,60,60,.85) 0%,rgba(255,60,60,0) 72%);pointer-events:none;}
+.sq.danger::before{content:"";position:absolute;inset:4%;border-radius:10px;border:3px dashed var(--danger);pointer-events:none;animation:pulse 1.4s infinite;}
+@keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+#ghost{position:fixed;pointer-events:none;z-index:60;transform:translate(-50%,-50%);display:none;}
+#ghost svg.pc{width:100%;height:100%;}
+svg.crest{width:1em;height:1em;display:block;fill:currentColor;}
+.botchip .face svg.crest{width:26px;height:26px;color:var(--accent);}
+.big svg.crest{width:56px;height:56px;margin:0 auto;color:var(--accent);}
+
+#coach{
+  grid-area:coach; background:var(--panel); border-radius:var(--radius); padding:10px 12px;
+  display:flex;gap:10px;align-items:flex-start;min-height:62px;
+}
+#coach .face{font-size:24px;line-height:1.1;}
+#coach .body{flex:1;min-width:0;}
+#coach .head{font-weight:800;font-size:14.5px;line-height:1.3;}
+#coach .sub{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.4;}
+#coach.good .head{color:var(--good);}
+#coach.bad .head{color:var(--warn);}
+#coach.alert{background:color-mix(in srgb, var(--danger) 22%, var(--panel));}
+#coach .acts{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap;}
+
+.btn{
+  border:0;border-radius:12px;padding:11px 13px;font-weight:800;font-size:13.5px;
+  background:var(--btn);color:var(--ink);cursor:pointer;font-family:inherit;
+}
+.btn:active{transform:scale(.96);}
+.btn.primary{background:linear-gradient(180deg,#5ac07d,#3fa262);color:#08210f;}
+.btn.warn{background:linear-gradient(180deg,#ffcf6a,#e9a637);color:#331f00;}
+.btn.ghost{background:var(--btn-ghost);color:var(--muted);}
+.btn[disabled]{opacity:.4;pointer-events:none;}
+
+#controls{grid-area:ctrl;display:grid;grid-template-columns:repeat(4,1fr);gap:7px;}
+#controls .btn{padding:11px 4px;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:3px;min-height:60px;justify-content:center;}
+#controls .btn .ic{font-size:17px;}
+#controls .btn .hearts{font-size:10px;color:var(--warn);}
+#app.mode-puzzle .playonly{display:none;}
+#app.mode-play  .puzzonly{display:none;}
+#app.mode-puzzle #controls{grid-template-columns:repeat(3,1fr);}
+
+#overlay{
+  position:fixed;inset:0;background:rgba(8,11,18,.86);
+  display:none;align-items:center;justify-content:center;z-index:50;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:calc(16px + var(--safeT)) 16px calc(16px + var(--safeB));
+}
+#overlay.on{display:flex;}
+.card{background:var(--panel);border-radius:22px;padding:20px;width:100%;max-width:440px;box-shadow:0 24px 60px rgba(0,0,0,.6);margin:auto;}
+.card h1{margin:0 0 4px;font-size:23px;line-height:1.15;}
+.card h2{margin:0 0 8px;font-size:19px;}
+.card p{margin:6px 0;font-size:14px;color:var(--muted);line-height:1.5;}
+.card .row{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.card .row .btn{flex:1;min-width:120px;padding:14px;font-size:14.5px;}
+.big{font-size:52px;text-align:center;line-height:1;margin:6px 0 10px;}
+.promo{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px;}
+.promo button{padding:10px 0;border:0;border-radius:14px;background:var(--light);cursor:pointer;display:grid;place-items:center;}
+.promo button svg.pc{width:44px;height:44px;}
+.promo button:active{transform:scale(.94);}
+
+.moment{background:var(--panel-2);border-radius:14px;padding:11px;margin-top:10px;}
+.moment .t{font-weight:800;font-size:14px;}
+.moment .d{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45;}
+.moment .btn{margin-top:8px;padding:9px 11px;font-size:12.5px;}
+#mini{width:100%;max-width:300px;margin:10px auto 0;position:relative;}
+#miniBoard{width:100%;aspect-ratio:1/1;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);border-radius:10px;overflow:hidden;}
+#miniSvg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.legend{display:flex;gap:14px;justify-content:center;font-size:11.5px;color:var(--muted);margin-top:7px;}
+.legend i{display:inline-block;width:11px;height:4px;border-radius:2px;vertical-align:middle;margin-right:4px;}
+
+.stat{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid var(--btn-ghost);}
+.stat:last-child{border:0;}
+.stat b{color:var(--ink);}
+.tip{background:var(--panel-2);border-left:4px solid var(--accent);border-radius:10px;padding:10px 12px;margin-top:12px;font-size:13px;line-height:1.5;}
+.small{font-size:11.5px;color:var(--muted);}
+.toggles{margin-top:12px;display:flex;flex-direction:column;gap:8px;}
+.tg{display:flex;align-items:center;justify-content:space-between;background:var(--panel-2);border-radius:12px;padding:10px 12px;font-size:13.5px;gap:10px;}
+.tg button.sw{border:0;border-radius:99px;width:54px;height:30px;background:var(--btn);position:relative;cursor:pointer;flex:0 0 auto;}
+.tg button.sw::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:left .18s;}
+.tg button.sw.on{background:var(--good);} .tg button.sw.on::after{left:27px;}
+.pill{display:inline-block;background:var(--btn);border-radius:99px;padding:3px 10px;font-size:11.5px;font-weight:800;margin-right:6px;}
+.pill.good{background:#2c5a41;color:#bff5d6;}
+.pill.warn{background:#5a4526;color:#ffe3ae;}
+select{width:100%;padding:12px;border-radius:12px;border:0;font-size:14px;font-family:inherit;background:var(--panel-2);color:var(--ink);}
+</style>
+</head>
+<body>
+<div id="app" class="mode-play">
+  <div id="topbar">
+    <div class="botchip">
+      <div class="face" id="botFace">🐣</div>
+      <div class="who">
+        <div class="name" id="botName">Pip the Pawn</div>
+        <div class="lvl" id="botLvl">Level 1 of 10</div>
+      </div>
+    </div>
+    <button class="iconbtn" id="btnMode" title="Switch between playing and puzzles">🧩</button>
+    <button class="iconbtn" id="btnMenu" title="Menu">☰</button>
+  </div>
+
+  <div id="ladder"></div>
+
+  <div id="boardArea">
+    <div class="tray theirs" id="trayTheirs"></div>
+    <div id="board"></div>
+    <div class="tray mine" id="trayMine"></div>
+  </div>
+
+  <div id="coach">
+    <div class="face" id="coachFace">🦉</div>
+    <div class="body">
+      <div class="head" id="coachHead">Tap Play to start your quest!</div>
+      <div class="sub" id="coachSub"></div>
+      <div class="acts" id="coachActs"></div>
+    </div>
+  </div>
+
+  <div id="controls">
+    <button class="btn playonly" id="btnHint"><span class="ic">💡</span><span>Hint</span></button>
+    <button class="btn playonly" id="btnUndo"><span class="ic">↩️</span><span>Do-over</span><span class="hearts" id="hearts">♥♥♥</span></button>
+    <button class="btn playonly" id="btnGoggles"><span class="ic">🥽</span><span>Danger</span></button>
+    <button class="btn playonly" id="btnNew"><span class="ic">🔄</span><span>New game</span></button>
+    <button class="btn puzzonly" id="btnPzHint"><span class="ic">💡</span><span>Hint</span></button>
+    <button class="btn puzzonly" id="btnPzSkip"><span class="ic">⏭️</span><span>Skip</span></button>
+    <button class="btn puzzonly" id="btnPzQuit"><span class="ic">♟️</span><span>Back to game</span></button>
+  </div>
+</div>
+
+<div id="ghost"></div>
+<div id="overlay"><div class="card" id="card"></div></div>
+
+<script id="chess-core">
+/*__CORE__*/
+</script>
+<script id="chess-theme">
+/*__THEME__*/
+</script>
+<script id="chess-pieces">
+/*__PIECES__*/
+</script>
+<script id="chess-puzzles">
+/*__PUZZLES__*/
+</script>
+<script>
+/*__UI__*/
+</script>
+<script>
+/* Offline support. A service worker has to be a real same-origin file, so
+   this is the one thing the game loads that is not inside this HTML. It is
+   optional by design: on file://, or in a browser without service workers,
+   registration is skipped and the game behaves exactly as it always has. */
+if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:linear-gradient(#CFEBFF,#FFE9F5);font-family:ui-rounded,"Avenir Next Rounded",system-ui,sans-serif;padding:24px}
+h1{text-align:center;font-size:38px;color:#5B4468}
+.sub{text-align:center;font-size:19px;color:#8A7599;margin:4px 0 16px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1250px;margin:0 auto}
+.card{background:rgba(255,255,255,.92);border-radius:26px;padding:8px 6px 12px;text-align:center;
+  box-shadow:0 6px 0 rgba(155,123,232,.28)}
+.num{display:inline-block;background:#FF8FC0;color:#fff;font-size:25px;font-weight:900;
+  width:44px;height:44px;line-height:44px;border-radius:50%}
+.nm{font-size:20px;font-weight:900;color:#6B4A85;margin-top:2px;line-height:1.15;min-height:46px}
+svg{width:100%;height:310px;display:block}
+</style></head><body>
+<h1>Cutie Bear: which one?</h1>
+<div class="sub">Arms back to normal. Feet are all one color now. Same ears you liked. Only the head size and the feet shape change.</div>
+<div class="grid" id="g"></div>
+<script>
+var C={fur:'#F0837C',shade:'#E0685F',out:'#D3625C',cream:'#F9D8C0',creamLine:'#E9BFA0',
+       nose:'#CB7F86',eye:'#2E1B0A',iris:'#8A5417',irisL:'#C08B32',cheek:'#E8635C',
+       collar:'#F8E4D5',collarO:'#DFC0A9',gold:'#E3AC3E',goldD:'#A8761A',tag:'#6E4A0E'};
+var S='stroke="'+C.out+'" stroke-width="2.6" stroke-linejoin="round"';
+
+/* EAR: the tall shape she approved. Cream cup inside. */
+function ear(x,y,rot){
+  return '<g transform="translate('+x+','+y+') rotate('+rot+') scale(0.85)">'
+   +'<path d="M0 -30C16 -30 25 -15 25 2C25 17 14 26 0 26C-14 26 -25 17 -25 2C-25 -15 -16 -30 0 -30Z" fill="'+C.fur+'" '+S+'/>'
+   +'<path d="M0 -13C9 -13 15 -4 15 6C15 14 8 19 0 19C-8 19 -15 14 -15 6C-15 -4 -9 -13 0 -13Z" fill="'+C.cream+'" stroke="'+C.creamLine+'" stroke-width="1.6"/></g>';
+}
+/* ARM: plain rounded arm, the way it was before. No pads, no thumb. */
+function arm(x,y,rot){
+  return '<ellipse cx="'+x+'" cy="'+y+'" rx="16" ry="28" fill="'+C.fur+'" '+S+' transform="rotate('+rot+' '+x+' '+y+')"/>';
+}
+/* FEET: one solid colour, no pads and no toe beans. */
+function footRound(x,y){ return '<ellipse cx="'+x+'" cy="'+y+'" rx="22" ry="19" fill="'+C.fur+'" '+S+'/>'; }
+function footOval(x,y,rot){ return '<ellipse cx="'+x+'" cy="'+y+'" rx="28" ry="16" fill="'+C.fur+'" '+S+' transform="rotate('+rot+' '+x+' '+y+')"/>'; }
+
+function eyeAt(cx,cy){
+  return '<g transform="translate('+cx+','+cy+')">'
+   +'<ellipse rx="12.5" ry="14.5" fill="#4A2A0C"/><ellipse cy="1" rx="10.5" ry="12.5" fill="'+C.iris+'"/>'
+   +'<ellipse cy="4.5" rx="9" ry="8.5" fill="'+C.irisL+'"/><ellipse rx="5.6" ry="7.8" fill="'+C.eye+'"/>'
+   +'<circle cx="-3.8" cy="-6" r="3.8" fill="#fff"/><circle cx="4" cy="6.5" r="1.9" fill="#fff" opacity=".85"/></g>';
+}
+function head(x,y,sc){
+  return '<g transform="translate('+x+','+y+') scale('+sc+')">'
+   + ear(-52,-43,-14) + ear(52,-43,14)
+   +'<g><path d="M-15 -46C-19 -60 -14 -70 -5 -73C-10 -64 -8 -55 -3 -48Z" fill="'+C.fur+'" '+S+'/>'
+   +'<path d="M-1 -46C-4 -63 2 -74 12 -77C6 -67 7 -57 11 -49Z" fill="'+C.fur+'" '+S+'/>'
+   +'<path d="M11 -46C13 -58 20 -65 27 -64C20 -58 19 -51 20 -44Z" fill="'+C.fur+'" '+S+'/></g>'
+   +'<ellipse rx="60" ry="55" fill="'+C.fur+'" '+S+'/>'
+   +'<ellipse cy="19" rx="36" ry="27" fill="'+C.cream+'"/>'
+   +'<ellipse cx="-43" cy="16" rx="11" ry="8" fill="'+C.cheek+'" opacity=".26"/>'
+   +'<ellipse cx="43" cy="16" rx="11" ry="8" fill="'+C.cheek+'" opacity=".26"/>'
+   +'<path d="M-38 -30q9-6 19-2M38 -30q-9-6-19-2" stroke="'+C.shade+'" stroke-width="3.3" fill="none" stroke-linecap="round"/>'
+   + eyeAt(-25,-7) + eyeAt(25,-7)
+   +'<path d="M-11 7q0-6 11-6t11 6q0 7-11 9-11-2-11-9Z" fill="'+C.nose+'"/>'
+   +'<ellipse cx="-4.5" cy="5" rx="3.6" ry="2.4" fill="#fff" opacity=".6"/>'
+   +'<path d="M0 18v4" stroke="'+C.nose+'" stroke-width="3.4" stroke-linecap="round" fill="none"/>'
+   +'<path d="M-22 22q10 6 22 6 12 0 22-6" stroke="'+C.nose+'" stroke-width="3.2" fill="none" stroke-linecap="round"/>'
+   +'<path d="M-12 24Q0 22 12 24Q10 38 0 38Q-10 38 -12 24Z" fill="#8E4A50"/>'
+   +'<path d="M-12 24Q0 22 12 24Q6 27 0 27Q-6 27 -12 24Z" fill="#fff" opacity=".9"/>'
+   +'<ellipse cy="34" rx="6.5" ry="4" fill="#EE8C92"/></g>';
+}
+function collar(x,y,sc){
+  return '<g transform="translate('+x+','+y+') scale('+sc+')">'
+   +'<path d="M-36 -8Q0 10 36 -8L38 4Q0 24 -38 4Z" fill="'+C.collar+'" stroke="'+C.collarO+'" stroke-width="2" stroke-linejoin="round"/>'
+   +'<circle cy="13" r="3.4" fill="none" stroke="'+C.gold+'" stroke-width="2.6"/>'
+   +'<path d="M0 42C-16 30 -16 18 -7 18C-3 18 0 22 0 25C0 22 3 18 7 18C16 18 16 30 0 42Z" fill="'+C.gold+'" stroke="'+C.goldD+'" stroke-width="2" stroke-linejoin="round"/>'
+   +'<g fill="'+C.tag+'" font-weight="800" text-anchor="middle" font-family="ui-rounded,system-ui,sans-serif">'
+   +'<text y="28.5" font-size="6.2">CUTIE</text><text y="35.5" font-size="6.2">BEAR</text></g></g>';
+}
+
+/* head: 'normal' or 'big'.  feet: 'round' or 'oval'. */
+function bear(headSize, feet){
+  var big = headSize === 'big';
+  var hs   = big ? 1.20 : 1.00;
+  var hy   = big ? 92   : 96;
+  var brx  = big ? 47   : 56,  bry = big ? 44 : 52,  by = big ? 200 : 190;
+  var ax   = big ? 62   : 58,  ay  = big ? 194 : 178;
+  var fy   = big ? 242  : 246, fx  = big ? 32 : 34;
+  var f = (feet === 'oval')
+        ? footOval(120-fx, fy, -9) + footOval(120+fx, fy, 9)
+        : footRound(120-fx, fy)    + footRound(120+fx, fy);
+  return f
+   + '<ellipse cx="120" cy="'+by+'" rx="'+brx+'" ry="'+bry+'" fill="'+C.fur+'" '+S+'/>'
+   + '<ellipse cx="120" cy="'+(by+7)+'" rx="'+(brx*0.64)+'" ry="'+(bry*0.71)+'" fill="'+C.cream+'"/>'
+   + arm(ax,ay,-13) + arm(240-ax,ay,13)
+   + head(120,hy,hs) + collar(120, big?142:140, big?0.86:1);
+}
+
+var V=[
+ {n:'Normal head<br>Round feet', h:'normal', f:'round'},
+ {n:'Normal head<br>Long feet',  h:'normal', f:'oval'},
+ {n:'Big head<br>Round feet',    h:'big',    f:'round'},
+ {n:'Big head<br>Long feet',     h:'big',    f:'oval'}
+];
+document.getElementById('g').innerHTML = V.map(function(v,i){
+  return '<div class="card"><div class="num">'+(i+1)+'</div><div class="nm">'+v.n+'</div>'
+       + '<svg viewBox="0 0 240 300">'+bear(v.h,v.f)+'</svg></div>';
+}).join('');
+</script>
+</body></html>
