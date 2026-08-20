@@ -295,6 +295,18 @@ Two numbers per round control it:
   that made the final much harder under test than in the real game, because
   `tournament.test` compresses every match to 25 seconds and a fixed two
   arrived inside 38% of the playing time.
+
+  Because it is a rate, **the knockout lengths decide the counts** and nobody
+  chose them directly. At the lengths set after Brian asked for longer upper
+  tier matches - R16 70s, QF 75s, SF 85s, THE FINAL 90s - that works out as
+  2, 2, 3 and 3. The Round of 16 gained one and the last two rounds gained one
+  each. If you change `secs`, print the table again before assuming anything:
+  `n = max(1, round((secs - 15) / gap))`.
+
+  THE FINAL's `forgive` went 0.35 to 0.38 with that change. 0.35 was the
+  harshest number in the game and it now applies three times in the one match
+  that matters most; 0.38 keeps `forgive` falling round by round, so the final
+  is still the least forgiving, just not punishing.
 - **`forgive`** is the chance of a fingertip save when he dives the *wrong*
   way. A right guess **always** saves, so his choice is what decides it;
   forgive is what stops a wrong guess being a certain goal. Effective save rate
