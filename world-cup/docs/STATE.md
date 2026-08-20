@@ -1,6 +1,6 @@
 # Where this project stands
 
-Last updated 2026-08-19, after the standings fix.
+Last updated 2026-08-20, after the standings fix went live.
 
 This is the orientation page. It says what exists, what is live, and what is
 open. It does not explain *why* anything was built the way it was - that is
@@ -24,14 +24,20 @@ about him.
 There is no project container outside git. The repository **is** the project.
 
 ```
-github.com/bgeiger85/bgeiger
+github.com/bgeiger85/games      public, and the only thing that publishes
 ├── world-cup/        this game
 ├── cutie-bear/       an earlier game, same architecture
 └── chess-quest/      a third, same architecture
 ```
 
+It used to live in `bgeiger85/bgeiger`, alongside work tooling. The games were
+split out into their own public repo so the work code could go private, and
+`bgeiger` no longer deploys anything. If you find that repo, it is the old
+address.
+
 Each is an independent npm package with its own tests and its own CI job. CI
-publishes all three to Netlify after a green run on `main`.
+runs only the games a commit actually touched, then publishes all three to
+Netlify after a green run on `main`.
 
 ## Reading order
 
@@ -65,7 +71,8 @@ WebKit proof.
 
 ## Current state
 
-- `main` is green and deployed.
+- `main` is green and deployed. The standings fix is live: the table now
+  mirrors the match he actually played.
 - Nothing of this project's is open or in flight.
 - The save schema is at **v2**. A v1 save migrates on load: everything *earned*
   survives (cups, career goals, boots, penalties, one-twos, and everything the
