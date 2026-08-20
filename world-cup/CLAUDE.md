@@ -11,6 +11,12 @@ that, everything here will be familiar.
 
 ---
 
+## Orient first
+
+`docs/STATE.md` is one page: what exists, what is live, what is open, and what
+must stay true. Read it before this file if you are arriving cold - it will
+tell you which of the twelve ideas below you actually need.
+
 ## The single hardest rule
 
 **`src/index.html` is the entire game. One file. No exceptions.**
@@ -377,11 +383,28 @@ Three rules follow from that and each has a test:
 `nextRound(idx)` is the only thing that knows the playoff can be skipped. Use
 it rather than `idx + 1`.
 
+**A table must never disagree with a match he played.** Four teams, so every
+matchday is two matches: Spain against one rival, and the other two against
+each other. `rivalRecords` walks the matchdays and gives Spain's opponent the
+**real scoreline inverted, off `S.results`**. Only the match Spain was not in
+is invented. This is the whole reason that function exists in its current form:
+it used to fabricate every rival result from a hash that had never heard of
+`S.results`, so Jaxson beat Norway 2-1 in his first qualifier and the table
+handed Norway the win too. Brian caught it on the live site.
+
+The cheap general test for this class of bug is arithmetic, and `test:campaign`
+runs it on every table: each match has two teams, so across a table **goals for
+must equal goals against, wins must equal losses, draws must be even, and
+points must be 3W+D**. A table that invents one side of a match cannot satisfy
+those. It is a much better assertion than checking any particular row.
+
 **The rivals are not equally good.** The first listed is strong, the last is
-weak, via a strength offset in `rivalRecords`. Without it every rival lands on
-the same points and the table reads as decoration - a playtest had all three on
-5 points with identical W-D-L. Their results come from a hash of the match
-index, not `Math.random`, so the standings do not reshuffle when he looks away.
+weak, via the `edge` term in `rivalGame`. Without it every rival lands on the
+same points and the table reads as decoration - a playtest had all three on 5
+points with identical W-D-L. The invented results come from a hash of the pair
+and the matchday, not `Math.random`, so the standings do not reshuffle when he
+looks away. Call `rivalGame` with the lower index first or the two teams read
+different versions of the same match.
 
 **Memory is nowhere near a constraint** and this was measured rather than
 assumed: a full campaign save is about 3.6 KB against Safari's ~5 MB, and a

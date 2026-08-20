@@ -29,6 +29,10 @@ And for the campaign:
 - Does the table mean anything to him, or is it grown-up furniture? If he
   ignores it, the phase strip and the next-match button are doing all the work.
 - Does losing a qualifier and still going through land as fair, or as confusing?
+- Does the table now match the matches he played? It did not at first: he beat
+  Norway 2-1 and the table gave Norway the win as well, because rival records
+  were invented rather than read off his results. Fixed, and `test:campaign`
+  audits every table for it, but it is worth a glance.
 
 And for Nico and the pass:
 
@@ -61,6 +65,19 @@ Expect to have to make it easier.
 - **His own name on the shirt.** A choice at first launch between playing as
   Yamal and playing as himself, with the number he picks. Costs one entry in
   `TEAMS` and a text field.
+- **A sliding stick origin.** Brian watched Jaxson play and reported that he
+  touches the player itself and drags, rather than parking a thumb in a corner:
+  "he tends to fall back to using the player, but it works because as soon as
+  the player moves, the joystick is still pretty far left." It does work, which
+  is why this is a maybe and not a fix. The change would be four lines in
+  `stickMove`: once the thumb passes `STICK_MAX`, drag the origin along behind
+  it so it stays exactly `STICK_MAX` away, which is what every mobile game with
+  a floating stick does. It costs one thing, and the cost is why it was not
+  just done: the centre moves, so putting the thumb back where it started no
+  longer means stop. Lifting the finger already stops him dead, so a six year
+  old probably never notices - but `test:stick` section 3 would have to be
+  rewritten around the moved origin rather than the original touch point, and
+  that test is the honest signal here. Watch him once more before deciding.
 - **A pass nudge.** If he is cornered with Nico free and has not passed in a
   while, flash the PASS button once. A control he forgets about is a control he
   does not have.

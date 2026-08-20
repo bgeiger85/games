@@ -793,10 +793,16 @@ var PRACTICE = {
    lose a match and still go through. That fits the no-fail-states rule better
    than the old ladder ever did.
 
-   The three rivals play each other too. Their results are generated from the
+   The three rivals play each other too. Those results are generated from the
    match index rather than from Math.random, so the table does not reshuffle
    itself every time he opens the screen - a standings table that changes when
    you look away is worse than no standings table.
+
+   What is NOT generated is any match Spain played. The rival Jaxson just beat
+   takes that scoreline on the chin, mirrored. This used to be invented too,
+   which meant he could win 2-1 and watch the table hand Norway the win as
+   well. A table that disagrees with the match he just finished is worse than
+   no table at all.
    ========================================================================== */
 
 /* A small deterministic hash, so rival results are stable across reloads but
@@ -823,35 +829,60 @@ function ourRecord(from, to) {
   return rec;
 }
 
-/* The rivals' table, generated from how many matches Spain has played so far,
-   so the standings fill in alongside his own. */
-function rivalRecords(rivals, played, perTeam, salt) {
-  return rivals.map(function (key, idx) {
-    var rec = { key: key, name: TEAMS[key].name, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 };
-    /* They play the same number of matches he has, capped at their fixture
-       count, so nobody is ever mysteriously ahead on games played. */
-    var n = Math.min(played, perTeam);
-    /* Rivals are not equally good. The first listed is the strong one and the
-       last is the weak one, which is what gives the table a shape worth
-       looking at - without it every rival lands on the same points and the
-       standings read as decoration. A playtest had all three on 5 points with
-       identical W-D-L, which is what prompted this. */
-    var strength = 0.12 - idx * 0.12;
-    for (var m = 0; m < n; m++) {
-      var roll = Math.max(0, Math.min(0.999, rivalRoll(idx + 1, m + 1, salt) - strength));
-      var gf, ga;
-      /* Draws are a narrower band than they were. At 26% wide, six match
-         records clustered on the same line far too often. */
-      if (roll < 0.45) { gf = 1 + Math.floor(roll * 7); ga = Math.floor(roll * 3); }
-      else if (roll < 0.60) { gf = Math.floor(roll * 4); ga = gf; }
-      else { gf = Math.floor((1 - roll) * 4); ga = 1 + Math.floor(roll * 4); }
-      rec.p++; rec.gf += gf; rec.ga += ga;
-      if (gf > ga) { rec.w++; rec.pts += 3; }
-      else if (gf === ga) { rec.d++; rec.pts += 1; }
-      else { rec.l++; }
-    }
-    return rec;
+/* One result between two rivals, deterministic in the pair and the matchday so
+   it never changes under him, and skewed by how far apart the two sit in the
+   pecking order so the strong one tends to win. Always called with the lower
+   index first, so both teams read the same match. */
+function rivalGame(ai, bi, md, salt) {
+  /* Rivals are not equally good. The first listed is the strong one and the
+     last is the weak one, which is what gives the table a shape worth looking
+     at - without it every rival lands on the same points and the standings
+     read as decoration. A playtest had all three on 5 points with identical
+     W-D-L, which is what prompted this. */
+  var edge = (bi - ai) * 0.14;
+  var r = Math.max(0, Math.min(0.999, rivalRoll(ai + 1, bi + 1 + md * 7, salt) - edge));
+  /* Draws are a narrow band. At 26% wide, six match records clustered on the
+     same line far too often. */
+  if (r < 0.45) return { gf: 1 + Math.floor(r * 7), ga: Math.floor(r * 3) };
+  if (r < 0.60) { var e = Math.floor(r * 4); return { gf: e, ga: e }; }
+  return { gf: Math.floor((1 - r) * 4), ga: 1 + Math.floor(r * 4) };
+}
+
+function addResult(rec, gf, ga) {
+  rec.p++; rec.gf += gf; rec.ga += ga;
+  if (gf > ga) { rec.w++; rec.pts += 3; }
+  else if (gf === ga) { rec.d++; rec.pts += 1; }
+  else { rec.l++; }
+}
+
+/* The rivals' rows, built matchday by matchday alongside Spain's own.
+
+   Four teams, so every matchday has two matches: Spain against one rival, and
+   the other two against each other. Spain's opponent gets the real scoreline
+   inverted - that is the whole point of this function - and only the match
+   Spain was not in is invented. Over six qualifiers each rival therefore plays
+   Spain twice and the other two four times, which is a proper home-and-away
+   round robin, and nobody is ever mysteriously ahead on games played. */
+function rivalRecords(rivals, from, played, salt) {
+  var recs = rivals.map(function (key) {
+    return { key: key, name: TEAMS[key].name, p: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, pts: 0 };
   });
+  for (var m = 0; m < played; m++) {
+    var r = S.results[from + m];
+    if (!r) continue;
+    var fi = rivals.indexOf(ROUNDS[from + m].foe);
+    if (fi < 0) continue;
+    /* The same match Jaxson played, seen from the other bench. */
+    addResult(recs[fi], r.ga | 0, r.gf | 0);
+    var rest = [];
+    for (var i = 0; i < rivals.length; i++) if (i !== fi) rest.push(i);
+    if (rest.length === 2) {
+      var g = rivalGame(rest[0], rest[1], m, salt);
+      addResult(recs[rest[0]], g.gf, g.ga);
+      addResult(recs[rest[1]], g.ga, g.gf);
+    }
+  }
+  return recs;
 }
 
 function sortTable(rows) {
@@ -866,13 +897,13 @@ function sortTable(rows) {
 /* The qualifying table: Spain plus three rivals, six matches each. */
 function qualTable() {
   var played = Math.min(S.round, QUAL_END);
-  return sortTable([ourRecord(0, QUAL_END - 1)].concat(rivalRecords(QUAL_RIVALS, played, 6, 11)));
+  return sortTable([ourRecord(0, QUAL_END - 1)].concat(rivalRecords(QUAL_RIVALS, 0, played, 11)));
 }
 
 /* The World Cup group: Spain plus three, three matches each. */
 function groupTable() {
   var played = Math.max(0, Math.min(S.round - GROUP_START, 3));
-  return sortTable([ourRecord(GROUP_START, GROUP_START + 2)].concat(rivalRecords(GROUP_RIVALS, played, 3, 29)));
+  return sortTable([ourRecord(GROUP_START, GROUP_START + 2)].concat(rivalRecords(GROUP_RIVALS, GROUP_START, played, 29)));
 }
 
 function ourPlace(rows) {

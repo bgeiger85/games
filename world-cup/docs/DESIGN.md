@@ -292,6 +292,25 @@ and if you lose that one, you play it again. There is no arrangement of results
 that stops him reaching the World Cup - only arrangements that make him take
 the long way round. `test:campaign` loses every single match to prove it.
 
+A table only does that job if he believes it, and the first version did not
+earn that. Rival records were generated wholesale from a hash, so the standings
+had no idea what Jaxson had actually done: he beat Norway 2-1 in his opening
+qualifier and the table showed Norway unbeaten on six points alongside him.
+Brian spotted it within two matches, which is about how long it takes a table
+to lose its authority.
+
+The fix was to stop treating the rivals as scenery. Four teams means every
+matchday has two matches - Spain against one rival, the other two against each
+other - so the rivals' rows are now built matchday by matchday, and the team
+Spain played gets the real scoreline inverted. Only the match Spain was not in
+is still invented, which is the only part that can be invented without lying.
+
+The assertion that catches this whole class of mistake is arithmetic rather
+than any particular row: a match has two teams, so goals for must equal goals
+against across a table, wins must equal losses, draws must be even, and points
+must be 3W+D. A generated result that only exists for one side breaks all four
+at once.
+
 ## The ladder
 
 Five rounds, hand tuned rather than random, so a round plays the same way every

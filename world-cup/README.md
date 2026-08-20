@@ -13,7 +13,9 @@ You are **#19 Lamine Yamal**, playing for Spain, through a whole campaign:
 
 Qualifying and the group are decided on **points** - three for a win, one for a
 draw - so you can lose a match and still go through. A drawn knockout goes to
-penalties, same as the real thing.
+penalties, same as the real thing. The rivals play each other on the same
+matchdays, and the team you just played takes your real scoreline on the chin,
+so the table always agrees with the match you finished.
 
 **Nothing can end the campaign.** Lose every qualifier and the playoff is
 waiting; lose that and you play it again. The road to the World Cup only ever
@@ -123,8 +125,9 @@ tools/build.js      validate + copy. refuses to ship a file with a dependency
 tools/make-sw.js    generates the offline cache worker
 tools/make-icon.js  regenerates the home screen PNG (iOS refuses SVG for this)
 tools/serve.js      dependency-free static server for testing on a real device
+docs/STATE.md       where the project stands right now. start here to orient
 docs/               design notes and what is worth doing next
-CLAUDE.md           read this first
+CLAUDE.md           read this before changing code
 ```
 
 ---
@@ -141,7 +144,7 @@ Ten suites, testing different things on purpose.
 | `test:match` | a bot plays a full Group Match and has to **win** it, and losing the ball then chasing it down has to work |
 | `test:keeper` | the other team's break away: a right guess always saves, a wrong one and freezing are never certain goals, the clock freezes while he chooses, and it cannot outlive its match |
 | `test:passing` | Nico and the give-and-go: a pass fired through a wall of defenders has to connect every time, the one-two is counted and named, and Passing Practice never touches the ladder |
-| `test:campaign` | the season: qualifying on points, the playoff skipped when he goes through on the table, a league draw scoring a point instead of a shootout, and a v1 save migrating without losing a single trophy. It also loses **every match** and asserts the campaign still reaches the knockouts |
+| `test:campaign` | the season: qualifying on points, the playoff skipped when he goes through on the table, a league draw scoring a point instead of a shootout, and a v1 save migrating without losing a single trophy. It audits every standings table for the arithmetic that says **each match was counted once from each side**, and it loses **every match** and asserts the campaign still reaches the knockouts |
 | `test:penalties` | the shootout is played with real taps, always terminates, and is in the player's favour on every round |
 | `test:tournament` | the bot plays the **whole campaign** and has to lift the trophy, printing a score table that is the difficulty tuning signal |
 | `test:safari` | localStorage across a reload and after corruption, Web Audio only after a gesture, canvas 2d actually painting, service worker and an offline reload |

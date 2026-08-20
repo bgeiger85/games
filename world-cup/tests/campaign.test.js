@@ -140,6 +140,50 @@ const shot = n => path.join(shotDir, n);
              stage: ROUNDS[S.round] && ROUNDS[S.round].stage };
   });
 
+  // --- 8b. the table has to agree with the match he just played.
+  //
+  //   Brian: "he beat Norway in his first game and it gave both him and Norway
+  //   the win." Rival records were invented from a hash that had never heard of
+  //   S.results, so the team he beat could go unbeaten. Every rival row is now
+  //   built matchday by matchday, and the match Spain was in is the real one,
+  //   mirrored. The audit below is the general form of that: every match has
+  //   two teams, so across a table goals for must equal goals against, wins
+  //   must equal losses, draws must be even, and points must be 3W+D. A table
+  //   that invents a result for one side only cannot satisfy those.
+  const standings = await page.evaluate(() => {
+    const audit = rows => {
+      const t = k => rows.reduce((a, r) => a + r[k], 0);
+      return {
+        rows: rows.map(r => r.name + ' P' + r.p + ' W' + r.w + ' D' + r.d + ' L' + r.l +
+          ' ' + r.gf + ':' + r.ga + ' ' + r.pts + 'pts'),
+        gf: t('gf'), ga: t('ga'), w: t('w'), l: t('l'), d: t('d'), pts: t('pts'),
+        played: rows.map(r => r.p),
+        by: rows.reduce((a, r) => { a[r.key] = r; return a; }, {})
+      };
+    };
+    S.v = 2; S.round = 2;
+    S.results = [{ gf: 2, ga: 1 }, { gf: 3, ga: 0 }];   // beat Norway 2-1, Scotland 3-0
+    persist();
+    const early = audit(qualTable());
+
+    S.round = 6;
+    S.results = [{ gf: 2, ga: 1 }, { gf: 3, ga: 0 }, { gf: 1, ga: 1, drew: true },
+                 { gf: 0, ga: 2, lost: true }, { gf: 4, ga: 1 }, { gf: 2, ga: 2, drew: true }];
+    persist();
+    const full = audit(qualTable());
+
+    S.round = 10;
+    S.results[7] = { gf: 1, ga: 1, drew: true };
+    S.results[8] = { gf: 0, ga: 2, lost: true };
+    S.results[9] = { gf: 3, ga: 1 };
+    persist();
+    const group = audit(groupTable());
+
+    /* And it must not reshuffle itself between two looks at the same save. */
+    const again = audit(groupTable());
+    return { early, full, group, stable: JSON.stringify(again.rows) === JSON.stringify(group.rows) };
+  });
+
   // --- 9. the screen renders every phase without throwing
   const screens = {};
   for (const [name, round] of [['qual', 2], ['playoff', 6], ['group', 8], ['ko', 11]]) {
@@ -220,6 +264,35 @@ const shot = n => path.join(shotDir, n);
     fails.push('LOSING EVERYTHING ENDED THE CAMPAIGN: ' + JSON.stringify(survives));
   }
 
+  ['early', 'full', 'group'].forEach(k => {
+    const t = standings[k];
+    if (t.gf !== t.ga) fails.push(k + ' table: goals for ' + t.gf + ' != goals against ' + t.ga);
+    if (t.w !== t.l) fails.push(k + ' table: ' + t.w + ' wins but ' + t.l + ' losses');
+    if (t.d % 2) fails.push(k + ' table: ' + t.d + ' draws, which cannot happen');
+    if (t.pts !== t.w * 3 + t.d) fails.push(k + ' table: ' + t.pts + ' points, wanted ' + (t.w * 3 + t.d));
+    if (t.played.some(p => p !== t.played[0])) {
+      fails.push(k + ' table: teams on different games played: ' + t.played.join(','));
+    }
+  });
+  // the specific report: he beat Norway, so Norway cannot be unbeaten
+  if (!standings.early.by.norway || standings.early.by.norway.l < 1) {
+    fails.push('BEAT NORWAY AND NORWAY IS STILL UNBEATEN: ' + standings.early.rows.join(' | '));
+  }
+  if (standings.early.by.spain.pts !== 6 || standings.early.by.norway.pts > 3) {
+    fails.push('two wins did not read as two wins: ' + standings.early.rows.join(' | '));
+  }
+  // group: drew with Japan, lost to Morocco, beat Uruguay. All three have to show it.
+  if (standings.group.by.japan.d < 1) {
+    fails.push('drew with Japan and Japan has no draw: ' + standings.group.rows.join(' | '));
+  }
+  if (standings.group.by.morocco.w < 1) {
+    fails.push('lost to Morocco and Morocco has no win: ' + standings.group.rows.join(' | '));
+  }
+  if (standings.group.by.uruguay.l < 1) {
+    fails.push('beat Uruguay and Uruguay has no loss: ' + standings.group.rows.join(' | '));
+  }
+  if (!standings.stable) fails.push('the table reshuffled itself between two looks');
+
   Object.keys(screens).forEach(k => {
     const sc = screens[k];
     if (sc.phases !== 3) fails.push(k + ' screen lost the phase strip: ' + sc.phases);
@@ -242,6 +315,8 @@ const shot = n => path.join(shotDir, n);
   console.log('group draw "' + afterDraw.title + '" -> round ' + afterDraw.round);
   console.log('ko draw   "' + afterKoDraw + '"');
   console.log('lose all  -> playoff at ' + survives.atPlayoff + ', then ' + survives.stage);
+  ['early', 'full', 'group'].forEach(k => console.log('table ' + k.padEnd(6) +
+    standings[k].rows.join(' | ')));
   Object.keys(screens).forEach(k => console.log('screen ' + k.padEnd(8) + JSON.stringify(screens[k])));
   console.log('save      ' + size + ' bytes for a full campaign (Safari allows ~5 MB)');
   console.log('errors    ' + (errs.length ? errs.join('\n') : 'NONE'));
