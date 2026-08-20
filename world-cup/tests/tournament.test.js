@@ -31,7 +31,12 @@ fs.mkdirSync(shotDir, { recursive: true });
    22 gives two to three shots a match, which is enough for the score table to
    mean something again. If this is ever lowered, watch the shots column: one
    shot a match means the number is too low. */
-const SECS = 22;
+/* Matches are compressed so the suite is minutes rather than a quarter of an
+   hour. That also collapses every round to a single break away, because the
+   count is a rate over the match length - so this run proves the campaign can
+   be completed, NOT that the real knockout lengths are winnable.
+   MATCH_SECS=real plays them at their true lengths for that. */
+const SECS = process.env.MATCH_SECS === 'real' ? null : parseInt(process.env.MATCH_SECS || '22', 10);
 const RETRIES = 3;
 
 (async () => {
@@ -45,9 +50,10 @@ const RETRIES = 3;
   await page.waitForTimeout(500);
 
   await page.evaluate(s => {
-    ROUNDS.forEach(r => { r.secs = s; });
+    if (s !== null) ROUNDS.forEach(r => { r.secs = s; });
     S.round = 0; S.results = []; S.cups = 0; S.goals = 0; persist();
   }, SECS);
+  console.log(SECS === null ? 'match length: real (per round)' : 'match length: ' + SECS + 's, compressed');
 
   const table = [];
   const fails = [];
