@@ -212,6 +212,9 @@ function check(name, cond, extra) {
   /* --- full game against level 1 driven by the engine itself --- */
   await page.evaluate(() => { window.ChessQuest.setLevel(1); window.ChessQuest.newGame(); });
   await page.waitForFunction(() => window.ChessQuest.state.phase === 'myturn', null, { timeout: 10000 });
+  // finish() bumps stats.won and the level together, so comparing the count
+  // across the game tells us whether this was actually a win.
+  const wonBefore = await page.evaluate(() => window.ChessQuest.state.stats.won);
   let plies = 0, finished = false;
   for (; plies < 80; plies++) {
     const st = await page.evaluate(() => window.ChessQuest.state.phase);
@@ -225,7 +228,30 @@ function check(name, cond, extra) {
       // pick among near-equal best moves, so the driver does not shuffle into
       // a repetition the way a fixed deterministic picker would
       const pool = r.filter(x => r[0].score - x.score <= 30).slice(0, 3);
-      window.ChessQuest.play(pool[Math.floor(Math.random() * pool.length)].move);
+      // Randomising that pick lowered the odds of a threefold repetition. It
+      // could not remove them, and CI drew the short straw: the game ended
+      // "the same position happened three times" and nothing was promoted.
+      //
+      // It is not bad luck so much as a trap the game lays on purpose. Once
+      // the bot is losing badly it stops avoiding repetitions and starts
+      // playing for one - see the movePepeats guard in ui.js, which it applies
+      // only while it is not behind. A human gets a coach warning the second
+      // time a position comes round. The driver gets no warning, so it has to
+      // look for itself and refuse the move that completes the draw.
+      //
+      // Declining is always safe here: the only moves removed are ones that
+      // end the game as a draw, which fails this test however it happens.
+      const completesDraw = (m) => {
+        makeMove(G.s, m);
+        const k = posKey(G.s);
+        let n = 1;
+        for (let i = 0; i < G.hist.length; i++) if (G.hist[i] === k) n++;
+        unmakeMove(G.s);
+        return n >= 3;
+      };
+      const safe = pool.filter(x => !completesDraw(x.move));
+      const from = safe.length ? safe : pool;
+      window.ChessQuest.play(from[Math.floor(Math.random() * from.length)].move);
       return true;
     });
     if (!played) break;
@@ -237,12 +263,20 @@ function check(name, cond, extra) {
   const endState = await page.evaluate(() => ({
     phase: window.ChessQuest.state.phase,
     level: window.ChessQuest.state.level,
+    won: window.ChessQuest.state.stats.won,
+    last: window.ChessQuest.state.lastResult,
     card: document.getElementById('card').textContent.slice(0, 200)
   }));
+  const iWon = endState.won > wonBefore;
   check('a full game against level 1 reaches a finish', finished || endState.phase === 'over',
     'phase=' + endState.phase + ' after ' + plies + ' of my moves');
-  check('beating level 1 promotes to level 2', endState.level >= 2,
-    'level ' + endState.level + ' — end card: ' + endState.card.replace(/\s+/g, ' ').slice(0, 80));
+  // Split deliberately. "The driver could not win" and "winning did not promote"
+  // used to produce the same red, and telling them apart meant reading the end
+  // card by hand. Only the second one is a bug in the game.
+  check('the driver actually beat level 1', iWon,
+    'game ended as a ' + endState.last + ' — end card: ' + endState.card.replace(/\s+/g, ' ').slice(0, 80));
+  check('beating level 1 promotes to level 2', !iWon || endState.level >= 2,
+    'won the game but the level stayed at ' + endState.level);
   log('  end card: ' + endState.card.replace(/\s+/g, ' ').slice(0, 140));
 
   await page.screenshot({ path: 'docs/screenshots/run-end.png' });

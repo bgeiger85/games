@@ -12,11 +12,78 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Which games actually changed? Every job below is gated on this, so a commit
+  # that only touches world-cup no longer spends twenty minutes re-proving chess.
+  #
+  # The bias is deliberate and one-directional: anything we cannot work out for
+  # certain runs all three. A wrong "run everything" costs a few minutes; a wrong
+  # "skip" ships a game nobody tested. Only skip on a diff we actually have.
+  changes:
+    name: What changed
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      chess: ${{ steps.filter.outputs.chess }}
+      bear: ${{ steps.filter.outputs.bear }}
+      soccer: ${{ steps.filter.outputs.soccer }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The diff needs both ends of the range, so no shallow clone here.
+          fetch-depth: 0
+      - name: Work out which games are affected
+        id: filter
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE_PR: ${{ github.event.pull_request.base.sha }}
+          BASE_PUSH: ${{ github.event.before }}
+          HEAD: ${{ github.sha }}
+        run: |
+          all() {
+            printf 'chess=true\nbear=true\nsoccer=true\n' >> "$GITHUB_OUTPUT"
+            echo "Running all three: $1"
+            exit 0
+          }
+
+          [ "$EVENT" = "workflow_dispatch" ] && all "started by hand."
+
+          if [ "$EVENT" = "pull_request" ]; then base="$BASE_PR"; else base="$BASE_PUSH"; fi
+
+          # A brand new branch reports an all-zero "before", and a force push can
+          # name a commit that is no longer reachable. Neither can be diffed.
+          case "$base" in
+            ''|0000000000000000000000000000000000000000) all "no base commit to compare against." ;;
+          esac
+          git cat-file -e "$base^{commit}" 2>/dev/null || all "base commit $base is not in this clone."
+
+          files=$(git diff --name-only "$base" "$HEAD")
+          echo "Changed files:"
+          echo "$files" | sed 's/^/  /'
+
+          # Anything outside the three game folders is shared ground: the
+          # workflows, the deploy, the root README. Re-run all three rather than
+          # reason about what a shared change can reach.
+          if echo "$files" | grep -qvE '^(chess-quest|cutie-bear|world-cup)/'; then
+            all "something outside the game folders changed."
+          fi
+
+          touched() { echo "$files" | grep -qE "^$1/" && echo true || echo false; }
+          {
+            echo "chess=$(touched chess-quest)"
+            echo "bear=$(touched cutie-bear)"
+            echo "soccer=$(touched world-cup)"
+          } >> "$GITHUB_OUTPUT"
+          echo "Decision:"
+          sed 's/^/  /' "$GITHUB_OUTPUT"
+
   # Pure logic: no browser, so this is the fast signal. If move generation is
   # wrong nothing else is worth running.
   logic:
     name: Engine, perft and contrast
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: changes
+    if: needs.changes.outputs.chess == 'true'
     defaults:
       run:
         working-directory: chess-quest
@@ -28,6 +95,7 @@ jobs:
           cache: npm
           cache-dependency-path: chess-quest/package-lock.json
       - run: npm ci
+        timeout-minutes: 10
       - name: Build
         run: npm run build
       - name: The build is reproducible
@@ -48,7 +116,9 @@ jobs:
   browser:
     name: Browser (${{ matrix.engine }})
     runs-on: ubuntu-latest
-    needs: logic
+    timeout-minutes: 45
+    needs: [changes, logic]
+    if: needs.changes.outputs.chess == 'true'
     strategy:
       fail-fast: false
       matrix:
@@ -64,8 +134,26 @@ jobs:
           cache: npm
           cache-dependency-path: chess-quest/package-lock.json
       - run: npm ci
+        timeout-minutes: 10
+      - name: Which Playwright
+        id: pw
+        run: echo "v=$(node -p "require('playwright/package.json').version")" >> "$GITHUB_OUTPUT"
+      - name: Cache the browser
+        id: pwcache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ matrix.engine }}-${{ steps.pw.outputs.v }}
       - name: Install ${{ matrix.engine }}
+        if: steps.pwcache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps ${{ matrix.engine }}
+        timeout-minutes: 15
+      - name: System packages for ${{ matrix.engine }}
+        # The browser itself is cached; the apt packages it links against are
+        # not, and they live outside the cached path.
+        if: steps.pwcache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps ${{ matrix.engine }}
+        timeout-minutes: 15
       - name: Build
         run: npm run build
       - name: Interface suite
@@ -87,6 +175,9 @@ jobs:
   cutie-bear:
     name: Cutie Bear (${{ matrix.engine }})
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+    needs: changes
+    if: needs.changes.outputs.bear == 'true'
     strategy:
       fail-fast: false
       matrix:
@@ -102,8 +193,24 @@ jobs:
           cache: npm
           cache-dependency-path: cutie-bear/package-lock.json
       - run: npm ci
+        timeout-minutes: 10
+      - name: Which Playwright
+        id: pw
+        run: echo "v=$(node -p "require('playwright/package.json').version")" >> "$GITHUB_OUTPUT"
+      - name: Cache the browser
+        id: pwcache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ matrix.engine }}-${{ steps.pw.outputs.v }}
       - name: Install ${{ matrix.engine }}
+        if: steps.pwcache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps ${{ matrix.engine }}
+        timeout-minutes: 15
+      - name: System packages for ${{ matrix.engine }}
+        if: steps.pwcache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps ${{ matrix.engine }}
+        timeout-minutes: 15
       - name: Build
         run: npm run build
       - name: The build is reproducible
@@ -125,6 +232,9 @@ jobs:
   world-cup:
     name: World Cup (${{ matrix.engine }})
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+    needs: changes
+    if: needs.changes.outputs.soccer == 'true'
     strategy:
       fail-fast: false
       matrix:
@@ -140,8 +250,24 @@ jobs:
           cache: npm
           cache-dependency-path: world-cup/package-lock.json
       - run: npm ci
+        timeout-minutes: 10
+      - name: Which Playwright
+        id: pw
+        run: echo "v=$(node -p "require('playwright/package.json').version")" >> "$GITHUB_OUTPUT"
+      - name: Cache the browser
+        id: pwcache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ matrix.engine }}-${{ steps.pw.outputs.v }}
       - name: Install ${{ matrix.engine }}
+        if: steps.pwcache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps ${{ matrix.engine }}
+        timeout-minutes: 15
+      - name: System packages for ${{ matrix.engine }}
+        if: steps.pwcache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps ${{ matrix.engine }}
+        timeout-minutes: 15
       - name: Build
         run: npm run build
       - name: The build is reproducible
